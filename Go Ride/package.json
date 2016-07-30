@@ -1,0 +1,14 @@
+{
+  "name": "go-ride",
+  "version": "0.0.0",
+  "description": "Go Ride",
+  "main": "app.js",
+  "author": {
+    "name": "ldfle"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}
