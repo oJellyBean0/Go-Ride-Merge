@@ -4,7 +4,7 @@
     "debug": "registry:dt/debug#0.0.0+20160317120654",
     "express": "registry:dt/express#4.0.0+20160708185218",
     "inherits": "registry:dt/inherits#0.0.0+20160316155526",
-    "node": "registry:dt/node#6.0.0+20160802155038",
+    "node": "registry:dt/node#6.0.0+20160815222444",
     "stylus": "registry:dt/stylus#0.0.0+20160317120654"
   }
 }
