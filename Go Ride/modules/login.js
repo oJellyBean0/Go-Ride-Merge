@@ -1,40 +1,31 @@
 var sql = require('node-mssql');
 var config = {
-    user: 'JN08User',
+    username: 'JN08User',
     password: '2yWkBhRQ',
-    server: 'openbox.nmmu.ac.za\\wrr',
-    database: 'JN08',
-
-    options: {
-        encrypt: false
-    }
+    host: 'openbox.nmmu.ac.za\\wrr',
+    db: 'JN08'
 };
 
 
-exports.tryLogin = function (username, password, err) {
-    var connection = new sql.Connection(config, function (error) {
-        err = error;
-        return false;
+exports.tryLogin = function (username, password, callback) {
+    var query = new sql.Query(config);
+    var success = false;
+    query.table('[dbo].[user]');
+    query.where({
+        'Username': username
     });
-    var request = new sql.Request();
-    request.query('select Password from User where Username=' + username, function (error, recordset) {
-        if (!err) {
-            console.log(recordset);
-            if (recordset.length != 1) {
-                err = "Invalid username and password.";
-                return false;
-            }
-            else
-                if (recordset[0].password != password) {
-                    err = "Invalid username and password.";
-                    return false;
-                } else {
-                    return true;
-                }
-        } else {
-            console.log(error);
-            err = error;
-            return false;
+    query.select(function (results) {
+        console.log(results);
+        if (results.length < 1 || results[0].Password != password) {
+            err = "Incorrect Username or Password";
+            callback(false, err);
         }
+        else {
+            callback(true);
+        }
+    }, function (error, sql) {
+        console.log(error);
+        console.log(sql);
+        callback(false, error);
     });
 };

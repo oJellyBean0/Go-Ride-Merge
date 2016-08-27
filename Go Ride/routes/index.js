@@ -22,9 +22,13 @@ exports.login = function (req, res) {
 exports.loginpost = function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
-    
+    var err;
+    var login = require("../modules/login.js");
     // WHERE DO I GET ACCESS TO tryLogin
-    res.send(modules.tryLogin(username,password));
+    login.tryLogin(username, password, function (success, err) {
+        if (success) { res.send(true); }
+        else { res.send(err); }
+    });
 };
 
 
