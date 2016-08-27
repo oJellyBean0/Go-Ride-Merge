@@ -32,6 +32,7 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
+app.get('/login', routes.login);
 
 // var config = {
 //     user: 'JN08User',
