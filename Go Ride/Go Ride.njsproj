@@ -77,8 +77,11 @@
     <Folder Include="typings\globals\debug\" />
     <Folder Include="typings\globals\express\" />
     <Folder Include="typings\globals\inherits\" />
+    <Folder Include="typings\globals\jade\" />
     <Folder Include="typings\globals\node\" />
     <Folder Include="typings\globals\stylus\" />
+    <Folder Include="typings\modules\" />
+    <Folder Include="typings\modules\mssql\" />
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
@@ -86,9 +89,11 @@
     <TypeScriptCompile Include="typings\globals\debug\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\express\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\inherits\index.d.ts" />
+    <TypeScriptCompile Include="typings\globals\jade\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\node\index.d.ts" />
     <TypeScriptCompile Include="typings\globals\stylus\index.d.ts" />
     <TypeScriptCompile Include="typings\index.d.ts" />
+    <TypeScriptCompile Include="typings\modules\mssql\index.d.ts" />
   </ItemGroup>
   <!-- Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them. -->
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="False" />
