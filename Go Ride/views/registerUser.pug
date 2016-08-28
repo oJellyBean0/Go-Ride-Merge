@@ -1,31 +1,39 @@
 extends layout
 
 block content
+  
   form(action ="", method = "post")
+    h3.text-center User Registeration
+      h4 Personal details
+      h5
       .form-group
-        label(for="IDnumber") ID Number
-        input#IDnumber.form-control(type="number", name="IDnumber", required)
-        label(for="name") Name
-        input#name.form-control(type="text", name="name", required)
-        label(for="surname") Surname
-        input#surname.form-control(type="text", name="surname", required)
-        label(for="email") Email Address
-        input#email.form-control(type="email", name="email", required)
-        label(for="username") Username
-        input#username.form-control(type="text", name="username", required)
-        label(for="password") Password
-        input#password.form-control(type="password", name="password", required)
-        label(for="picture") Picture
-        input#picture.form-control(type="text", name="picture", required)
+        .col-md-6
+          label(for="IDnumber") ID Number
+          input#IDnumber.form-control(type="number", name="IDnumber", required)
+          label(for="name") Name
+          input#name.form-control(type="text", name="name", required)
+          label(for="surname") Surname
+          input#surname.form-control(type="text", name="surname", required)
+          label(for="email") Email Address
+          input#email.form-control(type="email", name="email", required)
+          label(for="username") Username
+          input#username.form-control(type="text", name="username", required)
+          label(for="password") Password
+          input#password.form-control(type="password", name="password", required)
+          label(for="picture") Picture
+          input#picture.form-control(type="text", name="picture", required)
         
-        label(for="streetNum") Street Number
-        input#streetNum.form-control(type="text", name="streetNum", required)
-        label(for="streetName") Street Name
-        input#streetNum.form-control(type="text", name="streetNum", required)
-        label(for="suburb") Suburb
-        input#suburb.form-control(type="text", name="suburb", required)
-        label(for="town") Town
-        input#town.form-control(type="text", name="town", required)
-        label(for="province") Province
-        input#province.form-control(type="text", name="province", required)
-        button#submitRegistration.btn.button-primary(type="submit") Submit
+        .col-md-6
+          h4 Saved Location
+
+          label(for="streetNum") Street Number
+          input#streetNum.form-control(type="text", name="streetNum", required)
+          label(for="streetName") Street Name
+          input#streetNum.form-control(type="text", name="streetNum", required)
+          label(for="suburb") Suburb
+          input#suburb.form-control(type="text", name="suburb", required)
+          label(for="town") Town
+          input#town.form-control(type="text", name="town", required)
+          label(for="province") Province
+          input#province.form-control(type="text", name="province", required)
+          button#submitRegistration.btn.button-primary(type="submit") Submit
