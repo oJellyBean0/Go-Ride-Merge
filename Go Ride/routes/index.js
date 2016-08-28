@@ -28,9 +28,9 @@ exports.loginpost = function (req, res) {
     login.tryLogin(username, password, function (success, err) {
         if (success) {
             res.cookie(user, username);
-            res.send(true);
+            res.render('index', { title: 'Express', year: new Date().getFullYear() });
         }
-        else { res.send(err); }
+        else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
     });
 };
 
