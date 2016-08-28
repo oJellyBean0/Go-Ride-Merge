@@ -8,7 +8,7 @@ var routes = require('./routes');
 var http = require('http');
 var path = require('path');
 var sql = require('node-mssql');
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
