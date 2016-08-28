@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  form(action ="", method = "post")
+      .form-group
+        label(for="IDnumber") ID Number
+        input#IDnumber.form-control(type="number", name="IDnumber", required)
+        label(for="name") Name
+        input#name.form-control(type="text", name="name", required)
+        label(for="surname") Surname
+        input#surname.form-control(type="text", name="surname", required)
+        label(for="email") Email Address
+        input#email.form-control(type="email", name="email", required)
+        label(for="username") Username
+        input#username.form-control(type="text", name="username", required)
+        label(for="password") Password
+        input#password.form-control(type="password", name="password", required)
+        label(for="picture") Picture
+        input#picture.form-control(type="text", name="picture", required)
+        
+        label(for="streetNum") Street Number
+        input#streetNum.form-control(type="text", name="streetNum", required)
+        label(for="streetName") Street Number
+        input#streetName.form-control(type="text", name="streetName", required)
+        label(for="streetNum") Street Number
+        input#streetNum.form-control(type="text", name="streetNum", required)
+        button#submitRegistration.btn.button-primary(type="submit") Submit
