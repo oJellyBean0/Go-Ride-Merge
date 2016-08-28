@@ -26,7 +26,10 @@ exports.loginpost = function (req, res) {
     var login = require("../modules/login.js");
     // WHERE DO I GET ACCESS TO tryLogin
     login.tryLogin(username, password, function (success, err) {
-        if (success) { res.send(true); }
+        if (success) {
+            res.cookie(user, username);
+            res.send(true);
+        }
         else { res.send(err); }
     });
 };
