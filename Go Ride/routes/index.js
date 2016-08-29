@@ -27,7 +27,7 @@ exports.loginpost = function (req, res) {
     if (success) {
       res.cookie('user', username);
       res.render('index', { title: 'Express', year: new Date().getFullYear() });
-    }else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
+    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
   });
 };
 
@@ -36,7 +36,7 @@ exports.registerUser = function (req, res) {
 };
 
 exports.userDetails = function (req, res) {
-  res.render('user_details', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('user_details', { title: '', year: new Date().getFullYear(), message: '' });
 };
 // Needs to be uncommented and updated when back code is done.
 /*exports.registerpost = function (req, res) {
