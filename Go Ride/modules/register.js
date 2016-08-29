@@ -6,19 +6,18 @@ var config = {
     db: 'JN08'
 };
 
-var errorHandler = function (error, sql) {
-    console.log(error);
-    console.log(sql);
-    callback(false, error);
-};
-
 
 exports.tryRegister = function (IDnumber, name, surname, username, password, picture, streetNumber, streetName, suburb, town, province, callback) {
     //TODO escape strings
+    var errorHandler = function (error, sql) {
+        console.log(error);
+        console.log(sql);
+        callback(false, error);
+    };
     var query = new sql.Query(config);
     query.table('[dbo].[user]');
     query.where({
-        'IDNumber': IDNumber
+        'IDNumber': IDnumber
     });
     query.select(function (results) {
         if (results.length > 0) {
@@ -39,7 +38,6 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 'Username': username,
                 'Password': password,
                 'UserType': "Passenger",
-                'Picture': picture,
                 'Blocked': "0"
             });
             query.insert(function (results) {
