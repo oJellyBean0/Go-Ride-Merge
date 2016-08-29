@@ -37,8 +37,9 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
 app.get('/manageEvent', routes.manageEvent);
-app.post('/login', routes.loginpost);
 app.get('/user_details', routes.userDetails);
+app.get('/addEvent', routes.addEvent)
+app.post('/login', routes.loginpost);
 app.post('/registerUser', routes.registerUser);
 
 // var config = {

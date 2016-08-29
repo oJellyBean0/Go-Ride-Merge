@@ -60,3 +60,7 @@ exports.manageEvent = function (req, res) {
     res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
 };
 
+exports.addEvent = function (req, res) {
+    res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
+};
+

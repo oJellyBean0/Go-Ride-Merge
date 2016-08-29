@@ -1,13 +1,13 @@
 extends layout
 
 block content
-    div.row.form-inline
+    div.row
       .form-group
-        .col-md-3
+        .col-md-4
         input#searchBar.form-control(type="text", name="searchBar")
         button#addEvent.btn.btn-primary(type="addEvent") Add event
         
-        .col-md-9
+        .col-md-8
         label(for="eventCategory") Event Catagory
         input#eventCategory.form-control(type="text", name="eventCategory", required)
         label(for="streetNumORVenueName") Street Number or Venue Name
@@ -25,5 +25,7 @@ block content
         label(for="time") Time
         input#time.form-control(type="time", name="time", required)
 
+        span.pull-right
         button#create.btn.btn-primary(type="submit") Create
+        span.pull-left
         button#cancel.btn.btn-primary(type="submit") Cancel
