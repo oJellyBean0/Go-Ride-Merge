@@ -50,9 +50,12 @@ exports.registerUser = function (req, res) {
     var streetNumber = req.body.streetNumber;
     var streetName = req.body.streetName;
     var suburb = req.body.suburb;
+    var city = req.body.city
     var province = req.body.province;
     var register = require("../modules/register.js");
     register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
 */
 
-
+exports.manageEvent = function (req, res) {
+    res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
+};

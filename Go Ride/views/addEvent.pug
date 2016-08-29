@@ -1,0 +1,29 @@
+extends layout
+
+block content
+    div.row.form-inline
+      .form-group
+        .col-md-3
+        input#searchBar.form-control(type="text", name="searchBar")
+        button#addEvent.btn.btn-primary(type="addEvent") Add event
+        
+        .col-md-9
+        label(for="eventCategory") Event Catagory
+        input#eventCategory.form-control(type="text", name="eventCategory", required)
+        label(for="streetNumORVenueName") Street Number or Venue Name
+        input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
+        label(for="streetName") Street Name
+        input#streetNum.form-control(type="text", name="streetNum", required)
+        label(for="suburb") Suburb
+        input#suburb.form-control(type="text", name="suburb", required)
+        label(for="city") City
+        input#city.form-control(type="text", name="city", required)
+        label(for="province") Province
+        input#province.form-control(type="text", name="province", required)
+        label(for="date") Date
+        input#date.form-control(type="date", name="date", required)
+        label(for="time") Time
+        input#time.form-control(type="time", name="time", required)
+
+        button#create.btn.btn-primary(type="submit") Create
+        button#cancel.btn.btn-primary(type="submit") Cancel
