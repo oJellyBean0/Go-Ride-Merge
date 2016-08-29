@@ -47,13 +47,12 @@ exports.registerUser = function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var picture = req.body.picture;
-
     var streetNumber = req.body.streetNumber;
     var streetName = req.body.streetName;
     var suburb = req.body.suburb;
     var province = req.body.province;
     var register = require("../modules/register.js");
-    register.registerpost(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
+    register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
 */
 
 

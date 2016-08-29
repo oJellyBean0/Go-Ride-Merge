@@ -7,7 +7,7 @@ var config = {
 };
 
 
-exports.tryLogin = function (username, password, callback) {
+exports.tryRegister = function (username, password, callback) {
     var query = new sql.Query(config);
     var success = false;
     query.table('[dbo].[user]');
