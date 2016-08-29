@@ -8,6 +8,7 @@ var config = {
 
 
 exports.tryRegister = function (username, password, callback) {
+    //TODO escape strings
     var query = new sql.Query(config);
     var success = false;
     query.table('[dbo].[user]');

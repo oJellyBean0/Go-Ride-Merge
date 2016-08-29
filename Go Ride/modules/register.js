@@ -8,5 +8,5 @@ var config = {
 
 
 exports.tryRegister = function (IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province) {
-    
+    //TODO escape strings
 };
