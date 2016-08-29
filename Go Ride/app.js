@@ -37,6 +37,7 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
 app.post('/login', routes.loginpost);
+app.post('/registerUser', routes.registerUser);
 
 // var config = {
 //     user: 'JN08User',

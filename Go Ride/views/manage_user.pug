@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  div.col-sm-offset-4
+    form(action ="", method = "post")
+      .form-group
+        label(for="username") Username
+        input#username.form-control(type="text", name="username", required)
+        label(for="password") Password
+        input#password.form-control(type="password", name="password", required)
+        button#btnlogin.btn.button-primary(type="submit") Login
+  
