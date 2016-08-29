@@ -1,0 +1,61 @@
+//- extends layout
+
+//- block content
+//-   div.modal-dialog
+//-     div.modal-header
+//-       h2.text-center Login
+//-     div.modal-body
+//-       form.col-md-12.center-block(action ="", method = "post")
+//-         .form-group
+//-           label(for="username") Username
+//-           input#username.form-control(type="text", name="username", required)
+//-           label(for="password") Password
+//-           input#password.form-control(type="password", name="password", required)
+//-           span.pull-right
+//-             input#username.form-control(type="text", name="username", required)
+
+//-         .form-group  
+//-           button#btnlogin.btn.button-primary(type="submit") Login
+//-           span.pull-right
+//-             a(href="registerUser") Register
+
+extends layout
+block content
+    div.modal-dialog
+        div.modal-header
+            glyphicon.glyphicon-user
+            h2.text-center USERNAME GOES HERE
+        form.div.modal-body(action="", method="post")
+
+            div.row
+                div.col-md-6.span6
+                    label(for="username") Name
+                div.col-md-6.span6.pull-right
+                    input#username.form-control(type="text", name="username", required)
+
+            div.row
+                div.col-md-6.span6
+                    label(for="username") Surname
+                div.col-md-6.span6.pull-right
+                    input#username.form-control(type="text", name="username", required)
+
+            div.row
+                div.col-md-6.span6
+                    label(for="username") Username
+                div.col-md-6.span6.pull-right
+                    input#username.form-control(type="text", name="username", required)
+
+            div.row
+                div.col-md-6.span6
+                    label(for="username") Password
+                div.col-md-6.span6.pull-right
+                    input#username.form-control(type="text", name="username", required)
+
+        div.modal-footer
+            div.row
+                div.col-md-4.clearfix
+                    button.btn.button-primary.pull-left(type="submit") Cancel
+                div.col-md-4.clearfix.text-center
+                    button.btn.button-primary(type="submit") Cancel
+                div.col-md-4.clearfix
+                    button.btn.button-primary.pull-right(type="submit") Cancel
