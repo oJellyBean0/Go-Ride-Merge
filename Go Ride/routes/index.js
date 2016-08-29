@@ -52,11 +52,11 @@ exports.registerpost = function (req, res) {
   var province = req.body.province;
   var town = req.body.town;
   var register = require("../modules/register.js");
-  register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, suburb, town, province, function (success, error) {
-    if (success) {
-      res.render('login', { title: 'Login', year: new Date().getFullYear(), message: 'Registration Successful' });
-    } else {
-      res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: error });
-    }
-  });
+  // register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, suburb, town, province, function (success, error) {
+  //   if (success) {
+  //     res.redirect('/login');
+  //   } else {
+  //     res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: error });
+  //   }
+  // });
 };
