@@ -24,7 +24,7 @@ app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(cookieParser());
+app.use(cookieParser('cookiesecret'));
 
 // development only
 if ('development' == app.get('env')) {
@@ -35,6 +35,7 @@ app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
+app.get('/registerUser', routes.registerUser);
 app.post('/login', routes.loginpost);
 
 // var config = {
