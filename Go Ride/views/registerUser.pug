@@ -4,9 +4,10 @@ block content
   
   form(action ="", method = "post")
     h3.text-center User Registeration
-    div
+    div.row
       .form-group
-        .col-md-6
+        .col-md-2
+        .col-md-5
           h4 Personal details
           h5
           label(for="IDnumber") ID Number
@@ -22,7 +23,7 @@ block content
           label(for="password") Password
           input#password.form-control(type="password", name="password", required)
           label(for="picture") Picture
-          input#picture.btn-default(type="file", name="picture")
+          input#picture.btn.btn-default(type="file", name="picture", accept="image/*")
         
         div.col-md-5
           h4 Saved Location
@@ -37,4 +38,4 @@ block content
           input#town.form-control(type="text", name="town", required)
           label(for="province") Province
           input#province.form-control(type="text", name="province", required)
-          button#submitRegistration.btn.btn-default(type="submit") Submit
+          button#submitRegistration.btn.btn-primary(type="submit") Submit
