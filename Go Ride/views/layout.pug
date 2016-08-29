@@ -15,9 +15,22 @@ html
           li.sidebar-brand
             a(href='/') Go Ride
           li
-            a(href='#') Example Link
-          li
             a(href="/login") Login
+          li
+            a(data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
+            ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
+              li
+                a(href='/') User Details
+              li
+                a(href='/') Locations
+              li
+                a(href='/') Block User
+              li
+                a(href='/') Delete User
+              li
+                a(href='/') View Profile
+
+
       #page-content-wrapper
         .container-fluid
           block content
