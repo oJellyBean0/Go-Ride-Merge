@@ -19,12 +19,15 @@ exports.login = function (req, res) {
     res.render('login', { title: 'Login', year: new Date().getFullYear(), message: 'Your login page' });
 };
 
+exports.registerUser = function (req, res) {
+    res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: 'Register User page' });
+};
+
 exports.loginpost = function (req, res) {
     var username = req.body.username;
     var password = req.body.password;
     var err;
     var login = require("../modules/login.js");
-    // WHERE DO I GET ACCESS TO tryLogin
     login.tryLogin(username, password, function (success, err) {
         if (success) {
             res.cookie('user', username);
