@@ -53,7 +53,22 @@ block content
             span.pull-right
                 button#edit.btn.btn-primary(type="submit") Edit
             span
-                button#delete.btn.btn-primary(type="submit") Delete
+                button#delete.btn.btn-primary(type="submit", data-toggle="modal", data-target="#myModal") Delete
+                button#cancel.btn.btn-primary(type="button") Cancel
+                div.modal.fade(id="myModal" role="dialog")
+                  div.modal-dialog
+
+                    div.modal-content
+                      div.modal-header
+                        button.close(type="button" data-dismiss="modal") &times;
+                        h4.modal-title Delete Event
+
+                      div.modal-body
+                        p Are you sure you would like to delete this event?
+
+                      div.modal-footer
+                        button.btn.btn-default(type="button"  data-dismiss="modal") Close
             span.pull-left
                 a(href="manageEvent")
-                button#cancel.btn.btn-primary(type="button") Cancel
+           
+                
