@@ -44,6 +44,7 @@ app.get('/addEvent', routes.addEvent);
 app.post('/login', upload.array(), routes.loginpost);
 app.get('/user_details', routes.userDetails);
 app.post('/registerUser', upload.single('picture'), routes.registerpost);
+//app.post('/addEvent', routes.addEventpost);
 
 
 http.createServer(app).listen(app.get('port'), function () {

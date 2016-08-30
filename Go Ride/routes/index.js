@@ -70,3 +70,20 @@ exports.registerpost = function (req, res) {
     }
   });
 };
+
+/* exports.addEventpost = function (req, res) {
+  var eventName = req.body.eventName;
+  var eventCategory = req.body.eventCatagory;
+  var streetNumORVenueName = req.body.streetNumORVenueName;
+  ver streetName = req.body.streetName;
+  var suburb = req.body.suburb;
+  var city = req.body.city;
+  var province = req.body.province;
+  var date = req.body.date;
+  var time = req.body.time;
+  var register = require("../modules/addEvent.js");
+  addEvent.tryAddEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
+    
+      });
+    };
+  */
