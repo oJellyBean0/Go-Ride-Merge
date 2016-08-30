@@ -9,6 +9,8 @@ var http = require('http');
 var path = require('path');
 var sql = require('node-mssql');
 var cookieParser = require('cookie-parser');
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 var app = express();
 
@@ -20,7 +22,6 @@ app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.multipart());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
@@ -38,24 +39,9 @@ app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
-app.post('/login', routes.loginpost);
+app.post('/login', upload.array(), routes.loginpost);
 app.get('/user_details', routes.userDetails);
-app.post('/registerUser', routes.registerpost);
-
-// var config = {
-//     user: 'JN08User',
-//     password: '2yWkBhRQ',
-//     server: 'openbox.nmmu.ac.za\\wrr',
-//     database: 'JN08',
-
-//     options:{
-//         encrypt: false
-//     }
-// }
-
-// var connection = new sql.Connection(config, function(error){
-//     //Implement error testing
-// });
+app.post('/registerUser', upload.single('picture'), routes.registerpost);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

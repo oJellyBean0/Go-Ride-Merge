@@ -53,73 +53,67 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
     };
 
     var UserInsert = function () {
-        var params = {
-            'IDNumber': IDnumber,
-            'Name': name,
-            'Surname': surname,
-            'Username': username,
-            'Password': password,
-            'UserType': "Passenger",
-            'Blocked': "0"
-        };
-        var tableName = '[dbo].[user]';
+        var tableName = '[JN08].[dbo].[user]';
         var connObj = mssql.connect(dbConfig, function (err) {
             if (err) {
                 errorHandler(err, '');
             }
             else {
                 var sql = 'INSERT INTO ' + tableName;
-                sql += ' (' + Object.keys(params).join(',') + ') VALUES (';
-                Object.keys(params).forEach(function (key) {
-                    sql += '\'' + params[key] + '\', ';
-                });
-                sql = sql.slice(0, -2);
-                sql += ')';
                 var request = new mssql.Request(connObj);
-                request.query(sql, function (err, recordset) {
-                    connObj.close();
-                    if (err) {
-                        errorHandler(err, sql);
-                    }
-                    else {
-                        console.log(recordset);
-                        LocationInsert();
-                    }
-                });
+                request.input('IDNumber', mssql.Char, IDnumber);
+                request.input('Name', mssql.NVarChar, name);
+                request.input('Surname', mssql.NVarChar, surname);
+                request.input('Username', mssql.NVarChar, username);
+                request.input('Password', mssql.NVarChar, password);
+                request.input('UserType', mssql.NChar, "Passenger");
+                request.input('Blocked', mssql.Bit, "0");
+                if (picture) {
+                        request.query(sql + '(IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, ' + picture + ')', function (err, recordset) {
+                        connObj.close();
+                        if (err) {
+                            errorHandler(err, sql);
+                        }
+                        else {
+                            LocationInsert();
+                        }
+                    });
+                } else {
+                    request.query(sql + '(IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)', function (err, recordset) {
+                        connObj.close();
+                        if (err) {
+                            errorHandler(err, sql);
+                        }
+                        else {
+                            LocationInsert();
+                        }
+                    });
+                }
             }
         });
     };
 
     var LocationInsert = function () {
-        var params = {
-            'IDNumber': IDnumber,
-            'StreetNumber': streetNumber,
-            'StreetName': streetName,
-            'Suburb': suburb,
-            'Town': town,
-            'Province': province
-        };
-        var tableName = '[dbo].[Location]';
+        var tableName = '[JN08].[dbo].[Location]';
         var connObj = mssql.connect(dbConfig, function (err) {
             if (err) {
                 errorHandler(err, '');
             }
             else {
                 var sql = 'INSERT INTO ' + tableName;
-                sql += ' (' + Object.keys(params).join(',') + ') VALUES (';
-                Object.keys(params).forEach(function (key) {
-                    sql += '\'' + params[key] + '\', ';
-                });
-                sql = sql.slice(0, -2);
-                sql += ')';
                 var request = new mssql.Request(connObj);
-                request.query(sql, function (err, recordset) {
+                request.input('IDNumber', mssql.Char, IDnumber);
+                request.input('StreetNumber', mssql.Int, streetNumber);
+                request.input('StreetName', mssql.NVarChar, streetName);
+                request.input('Suburb', mssql.NVarChar, suburb);
+                request.input('Town', mssql.NVarChar, town);
+                request.input('Province', mssql.NVarChar, province);
+                request.query(sql + '(IDNumber, StreetNumber, StreetName, Suburb, Town, Province) VALUES (@IDNumber, @StreetNumber, @StreetName, @Suburb, @Town, @Province)', function (err, recordset) {
                     connObj.close();
                     if (err) {
                         errorHandler(err, sql);
                     }
                     else {
-                        console.log(recordset);
                         callback(true);
                         return;
                     }
