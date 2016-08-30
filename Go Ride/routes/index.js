@@ -46,6 +46,9 @@ exports.manageEvent = function (req, res) {
 exports.addEvent = function (req, res) {
     res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
 };
+exports.editEvent = function (req, res) {
+    res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: 'Edit Event page' });
+};
 
 
 exports.registerpost = function (req, res) {
@@ -83,6 +86,23 @@ exports.registerpost = function (req, res) {
   var time = req.body.time;
   var register = require("../modules/addEvent.js");
   addEvent.tryAddEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
+    
+      });
+    };
+  */
+
+  /* exports.editEventpost = function (req, res) {
+  var eventName = req.body.eventName;
+  var eventCategory = req.body.eventCatagory;
+  var streetNumORVenueName = req.body.streetNumORVenueName;
+  ver streetName = req.body.streetName;
+  var suburb = req.body.suburb;
+  var city = req.body.city;
+  var province = req.body.province;
+  var date = req.body.date;
+  var time = req.body.time;
+  var register = require("../modules/editEvent.js");
+  editEvent.tryEditEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
     
       });
     };

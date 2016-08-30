@@ -1,0 +1,59 @@
+extends layout
+
+
+
+block content
+    link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    div.row
+      .form-group
+        div.col-md-4.inline.pull-left
+          div.col-md-8#searchBarDiv
+            input#searchBar.form-control(type="text", name="searchBar")
+          a(href="addEvent")
+            button#addEvent.btn.btn-primary(type="addEvent") Add event
+          div.text-justify
+            p This will be a list of the events.
+            p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar ultricies egestas. Pellentesque consectetur pretium ipsum ac eleifend. Nullam at euismod nisl. Curabitur rutrum odio id metus rhoncus, feugiat laoreet tortor mattis. Fusce in nulla fermentum, lacinia enim ut, gravida libero. Pellentesque at euismod eros. Vivamus at neque magna. Praesent non tristique felis, nec vestibulum magna. Sed aliquet feugiat elit, viverra rhoncus tellus placerat eu. Sed elit lacus, ultricies ut tempus sit amet, malesuada et arcu. Sed tempus commodo ipsum eu pretium. Vivamus vestibulum tempor feugiat. Etiam pulvinar vitae massa ut consequat. Nullam rutrum vel sapien eget ultricies. Vestibulum quis elit imperdiet lacus gravida finibus. 
+
+            p viverra rhoncus tellus placerat eu. Sed elit lacus, ultricies ut tempus sit amet, malesuada et arcu. Sed tempus commodo ipsum eu pretium. Vivamus vestibulum tempor feugiat. Etiam pulvinar vitae massa ut consequat. Nullam rutrum vel sapien eget ultricies. Vestibulum quis elit imperdiet lacus gravida finibus.
+        div.col-md-2  
+        div.col-md-3
+          //The text boxes underneath need to recieve data from the database. Agnes
+          h3#addEventHeading Event Details
+          label(for="eventName") Event Name
+          input#eventName.form-control(type="text", name="eventName", required)
+          label(for="eventCategory") Event Catagory
+          div.dropdown
+            button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown", required) Pick Event Catagory
+              span.caret
+            ul.dropdown-menu
+              li 
+                a(href="#") Catagory1
+              li
+                a(href="#") Catagory2
+              li
+                a(href="#") Catagory3
+
+          label(for="streetNumORVenueName") Street Number or Venue Name
+          input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
+          label(for="streetName") Street Name
+          input#streetNum.form-control(type="text", name="streetNum", required)
+          label(for="suburb") Suburb
+          input#suburb.form-control(type="text", name="suburb", required)
+          label(for="city") City
+          input#city.form-control(type="text", name="city", required)
+          label(for="province") Province
+          input#province.form-control(type="text", name="province", required)
+          label(for="date") Date (dd/mm/yyyy)
+          input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
+          label(for="time") Time (hh:mm)
+          input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
+
+          div
+            span.pull-right
+                button#edit.btn.btn-primary(type="submit") Edit
+            span
+                button#delete.btn.btn-primary(type="submit") Delete
+            span.pull-left
+                a(href="manageEvent")
+                button#cancel.btn.btn-primary(type="button") Cancel
