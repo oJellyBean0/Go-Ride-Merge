@@ -40,23 +40,7 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
 app.get('/manageEvent', routes.manageEvent);
-app.get('/addEvent', routes.addEvent)
-
-// var config = {
-//     user: 'JN08User',
-//     password: '2yWkBhRQ',
-//     server: 'openbox.nmmu.ac.za\\wrr',
-//     database: 'JN08',
-
-//     options:{
-//         encrypt: false
-//     }
-// }
-
-// var connection = new sql.Connection(config, function(error){
-//     //Implement error testing
-// });
-
+app.get('/addEvent', routes.addEvent);
 app.post('/login', upload.array(), routes.loginpost);
 app.get('/user_details', routes.userDetails);
 app.post('/registerUser', upload.single('picture'), routes.registerpost);
