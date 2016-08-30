@@ -53,6 +53,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
     };
 
     var UserInsert = function () {
+        var fs = require('fs');
         var tableName = '[JN08].[dbo].[user]';
         var connObj = mssql.connect(dbConfig, function (err) {
             if (err) {
@@ -69,14 +70,19 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 request.input('UserType', mssql.NChar, "Passenger");
                 request.input('Blocked', mssql.Bit, "0");
                 if (picture) {
-                        request.query(sql + '(IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, ' + picture + ')', function (err, recordset) {
-                        connObj.close();
-                        if (err) {
-                            errorHandler(err, sql);
-                        }
-                        else {
-                            LocationInsert();
-                        }
+                    fs.readFile(picture.path, function (err, data) {
+                        if (err) { callback(false, err); return; }
+                        request.input('Picture', mssql.Image, data);
+                        fs.unlink(picture.path);
+                        request.query(sql + '(IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)', function (err, recordset) {
+                            connObj.close();
+                            if (err) {
+                                errorHandler(err, sql);
+                            }
+                            else {
+                                LocationInsert();
+                            }
+                        });
                     });
                 } else {
                     request.query(sql + '(IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)', function (err, recordset) {
