@@ -38,23 +38,6 @@ exports.registerUser = function (req, res) {
 exports.userDetails = function (req, res) {
   res.render('user_details', { title: '', year: new Date().getFullYear(), message: '' });
 };
-// Needs to be uncommented and updated when back code is done.
-/*exports.registerpost = function (req, res) {
-    var IDnumber = req.body.IDnumber
-    var name = req.body.name;
-    var surname = req.bosy.surname;
-    var username = req.body.username;
-    var password = req.body.password;
-    var picture = req.body.picture;
-    var streetNumber = req.body.streetNumber;
-    var streetName = req.body.streetName;
-    var suburb = req.body.suburb;
-    var province = req.body.province;
-    var town = req.body.town;
-    var register = require("../modules/register.js");
-    register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, suburb, town, province);
-*/
-
 
 exports.manageEvent = function (req, res) {
     res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
@@ -64,3 +47,26 @@ exports.addEvent = function (req, res) {
     res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
 };
 
+
+exports.registerpost = function (req, res) {
+  var IDnumber = req.body.IDnumber;
+  var name = req.body.name;
+  var surname = req.body.surname;
+  var username = req.body.username;
+  var password = req.body.password;
+  var picture = req.file;
+  console.log(picture);
+  var streetNumber = req.body.streetNum[0];
+  var streetName = req.body.streetNum[1];
+  var suburb = req.body.suburb;
+  var province = req.body.province;
+  var town = req.body.town;
+  var register = require("../modules/register.js");
+  register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, suburb, town, province, function (success, error) {
+    if (success) {
+      res.redirect('/login');
+    } else {
+      res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: error });
+    }
+  });
+};

@@ -6,15 +6,15 @@ var config = {
     db: 'JN08'
 };
 
-var errorHandler = function (error, sql) {
-    console.log(error);
-    console.log(sql);
-    callback(false, error);
-};
 
 
 exports.tryLogin = function (username, password, callback) {
     //TODO escape strings
+    var errorHandler = function (error, sql) {
+        console.log(error);
+        console.log(sql);
+        callback(false, error);
+    };
     var query = new sql.Query(config);
     query.table('[dbo].[user]');
     query.where({

@@ -9,6 +9,8 @@ var http = require('http');
 var path = require('path');
 var sql = require('node-mssql');
 var cookieParser = require('cookie-parser');
+var multer = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 var app = express();
 
@@ -26,6 +28,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser('cookiesecret'));
 
+
 // development only
 if ('development' == app.get('env')) {
     app.use(express.errorHandler());
@@ -37,10 +40,7 @@ app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
 app.get('/manageEvent', routes.manageEvent);
-app.get('/user_details', routes.userDetails);
 app.get('/addEvent', routes.addEvent)
-app.post('/login', routes.loginpost);
-app.post('/registerUser', routes.registerUser);
 
 // var config = {
 //     user: 'JN08User',
@@ -56,6 +56,11 @@ app.post('/registerUser', routes.registerUser);
 // var connection = new sql.Connection(config, function(error){
 //     //Implement error testing
 // });
+
+app.post('/login', upload.array(), routes.loginpost);
+app.get('/user_details', routes.userDetails);
+app.post('/registerUser', upload.single('picture'), routes.registerpost);
+
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
