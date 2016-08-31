@@ -15,7 +15,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: 'Your login page' });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '' });
 };
 
 exports.loginpost = function (req, res) {
@@ -32,7 +32,7 @@ exports.loginpost = function (req, res) {
 };
 
 exports.registerUser = function (req, res) {
-  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: 'Register User page' });
+  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: '' });
 };
 
 exports.userDetails = function (req, res) {
