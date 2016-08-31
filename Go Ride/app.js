@@ -36,9 +36,11 @@ app.get('/about', routes.about);
 app.get('/contact', routes.contact);
 app.get('/login', routes.login);
 app.get('/registerUser', routes.registerUser);
+app.get('/manageLocations', routes.manageLocations);
 app.post('/login', routes.loginpost);
-app.get('/user_details', routes.userDetails)
+app.get('/userDetails', routes.userDetails);
 app.post('/registerUser', routes.registerUser);
+app.post('/manageLocations', routes.manageLocations);        //not sure if this needs to be here?
 
 // var config = {
 //     user: 'JN08User',

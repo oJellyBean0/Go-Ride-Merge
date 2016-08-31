@@ -1,0 +1,59 @@
+extends layout
+block content
+
+    div.col-md-5
+        div.modal-content
+            div.modal-header
+                .input-group
+                    input.form-control(type='text', placeholder='Search for...', style="width:100%;")
+                    span.input-group-btn
+                        button.btn.btn-default(type='button') Add
+            div.modal-body
+                .list-group
+                    a.list-group-item(href='#')
+                        | Home
+                    a.list-group-item(href='#') place 1
+                    a.list-group-item(href='#') place 2
+                    a.list-group-item(href='#') Place 3
+                    a.list-group-item(href='#') place 4
+                    a.list-group-item(href='#') place 5
+
+    .col-md-7
+        div.modal-dialog(style="padding-top:0px")
+            div.modal-header
+                a(href='') place name goes here
+            div.modal-body
+                br
+                div.row
+                    div.col-md-3
+                        label(for="streetNumber") Street Number:
+                    div.col-md-4
+                        input#streetNumber.form-control(type="text", name="streetNumber")
+                br
+                div.row
+                    div.col-md-3
+                        label(for="streetName") Street Name:
+                    div.col-md-4
+                        input#streetName.form-control(type="text", name="streetName")
+                br
+                div.row
+                    div.col-md-3
+                        label(for="suburb") Suburb:
+                    div.col-md-4
+                        input#suburb.form-control(type="text", name="suburb")
+                br
+                div.row
+                    div.col-md-3
+                        label(for="city") City:
+                    div.col-md-4
+                        input#city.form-control(type="text", name="city")
+            div.modal-footer
+                div.row
+                    div.col-md-2.clearfix
+                        button.btn.button-primary.pull-left(type="submit") Cancel
+                    div.col-md-3.clearfix.text-center
+                        button.btn.button-primary(type="submit") Delete
+                    div.col-md-2.clearfix
+                        button.btn.button-primary.pull-right(type="submit") Edit
+                
+
