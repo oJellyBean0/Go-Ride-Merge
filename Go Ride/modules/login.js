@@ -7,10 +7,15 @@ var config = {
 };
 
 
-exports.tryRegister = function (username, password, callback) {
+
+exports.tryLogin = function (username, password, callback) {
     //TODO escape strings
+    var errorHandler = function (error, sql) {
+        console.log(error);
+        console.log(sql);
+        callback(false, error);
+    };
     var query = new sql.Query(config);
-    var success = false;
     query.table('[dbo].[user]');
     query.where({
         'Username': username
@@ -24,9 +29,5 @@ exports.tryRegister = function (username, password, callback) {
         else {
             callback(true);
         }
-    }, function (error, sql) {
-        console.log(error);
-        console.log(sql);
-        callback(false, error);
-    });
+    }, errorHandler);
 };
