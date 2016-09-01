@@ -1,0 +1,153 @@
+extends layout
+block content
+
+    .col-md-6
+        .row
+            .panel.panel-default
+                .panel-heading.c-list
+                    span.title Contacts
+                    |                     
+                    ul.pull-right.c-controls
+                        li
+                            a(href='#cant-do-all-the-work-for-you', data-toggle='tooltip', data-placement='top', title='Add Contact')
+                                i.glyphicon.glyphicon-plus
+                        |                         
+                        li
+                            a.hide-search(href='#', data-command='toggle-search', data-toggle='tooltip', data-placement='top', title='Toggle Search')
+                                i.fa.fa-ellipsis-v
+                |                 
+                |                 
+                .row(style='display: none;')
+                    .col-md-6
+                        .input-group.c-search
+                            input#contact-list-search.form-control(type='text')
+                            |                             
+                            span.input-group-btn
+                                button.btn.btn-default(type='button')
+                                    span.glyphicon.glyphicon-search.text-muted
+                |                 
+                |                 
+                .list-group
+                    a.list-group-item
+                        .col-md-6.col-sm-1
+                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
+                        |                         
+                        .col-md-6.col-sm-3
+                            span.name Scott Stevens
+                            br
+                            |                             
+                            span.glyphicon.glyphicon-map-marker.text-muted.c-info(data-toggle='tooltip', title='5842 Hillcrest Rd')
+                            |                             
+                            span.visible-md
+                                span.text-muted 5842 Hillcrest Rd
+                                br
+                            |                             
+                            span.glyphicon.glyphicon-earphone.text-muted.c-info(data-toggle='tooltip', title='(870) 288-4149')
+                            |                             
+                            span.visible-md
+                                span.text-muted (870) 288-4149
+                                br
+                            |                             
+                            span.fa.fa-comments.text-muted.c-info(data-toggle='tooltip', title='scott.stevens@example.com')
+                            |                             
+                            span.visible-md
+                                span.text-muted scott.stevens@example.com
+                                br
+                        |                         
+                        .clearfix
+                    |                     
+                    a.list-group-item
+                        .col-md-6.col-sm-1
+                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
+                        |                         
+                        .col-md-6.col-sm-3
+                            span.name Scott Stevens
+                            br
+                            |                             
+                            span.glyphicon.glyphicon-map-marker.text-muted.c-info(data-toggle='tooltip', title='5842 Hillcrest Rd')
+                            |                             
+                            span.visible-md
+                                span.text-muted 5842 Hillcrest Rd
+                                br
+                            |                             
+                            span.glyphicon.glyphicon-earphone.text-muted.c-info(data-toggle='tooltip', title='(870) 288-4149')
+                            |                             
+                            span.visible-md
+                                span.text-muted (870) 288-4149
+                                br
+                            |                             
+                            span.fa.fa-comments.text-muted.c-info(data-toggle='tooltip', title='scott.stevens@example.com')
+                            |                             
+                            span.visible-md
+                                span.text-muted scott.stevens@example.com
+                                br
+                        |                         
+                        .clearfix
+                    |                      
+                a.list-group-item
+                        .col-md-6.col-sm-1
+                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
+                        |                         
+                        .col-md-6.col-sm-3
+                            span.name Scott Stevens
+                            br
+                            |                             
+                            span.glyphicon.glyphicon-map-marker.text-muted.c-info(data-toggle='tooltip', title='5842 Hillcrest Rd')
+                            |                             
+                            span.visible-md
+                                span.text-muted 5842 Hillcrest Rd
+                                br
+                            |                             
+                            span.glyphicon.glyphicon-earphone.text-muted.c-info(data-toggle='tooltip', title='(870) 288-4149')
+                            |                             
+                            span.visible-md
+                                span.text-muted (870) 288-4149
+                                br
+                            |                             
+                            span.fa.fa-comments.text-muted.c-info(data-toggle='tooltip', title='scott.stevens@example.com')
+                            |                             
+                            span.visible-md
+                                span.text-muted scott.stevens@example.com
+                                br
+                        |                         
+                        .clearfix
+
+    .col-md-6
+        div.modal-dialog(style="padding-top:0px")
+            div.modal-header(style="padding-top:0px; margin-top:0px;")
+                h1(style="padding-top:0px; margin-top:0px") place name goes here
+            div.modal-body
+                br
+                div.row
+                    div.col-md-2
+                        label(for="streetNumber") Street Number:
+                    div.col-md-4
+                        input#streetNumber.form-control(type="text", name="streetNumber")
+                br
+                div.row
+                    div.col-md-2
+                        label(for="streetName") Street Name:
+                    div.col-md-4
+                        input#streetName.form-control(type="text", name="streetName")
+                br
+                div.row
+                    div.col-md-2
+                        label(for="suburb") Suburb:
+                    div.col-md-4
+                        input#suburb.form-control(type="text", name="suburb")
+                br
+                div.row
+                    div.col-md-2
+                        label(for="city") City:
+                    div.col-md-4
+                        input#city.form-control(type="text", name="city")
+            div.modal-footer
+                div.row
+                    div.col-md-2.clearfix
+                        button.btn.button-primary.pull-left(type="submit") Cancel
+                    div.col-md-2.clearfix.text-center
+                        button.btn.button-primary(type="submit") Delete
+                    div.col-md-2.clearfix
+                        button.btn.button-primary.pull-right(type="submit") Edit
+                
+

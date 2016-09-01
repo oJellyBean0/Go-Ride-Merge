@@ -44,6 +44,8 @@ app.post('/registerUser', upload.single('picture'), routes.registerpost);
 app.get('/manageLocations', routes.manageLocations);
 app.post('/manageLocations', routes.manageLocations);        //not sure if this needs to be here?
 app.get('/userDetails', routes.userDetails);
+app.get('/contacts', routes.contacts);
+app.post('/contacts', routes.contacts);
 
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
