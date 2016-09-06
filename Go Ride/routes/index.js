@@ -36,16 +36,16 @@ exports.registerUser = function (req, res) {
 };
 
 exports.userDetails = function (req, res) {
-  res.render('userDetails', { title: '', year: new Date().getFullYear(), message: ''})
-}
+  res.render('userDetails', { title: '', year: new Date().getFullYear(), message: ''});
+};
 
 exports.manageLocations = function (req, res) {
-  res.render('manageLocations', { title: '', year: new Date().getFullYear(), message: ''})
-}
+  res.render('manageLocations', { title: '', year: new Date().getFullYear(), message: ''});
+};
 
 exports.contacts = function (req, res) {
-  res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''})
-}
+  res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
+};
 // Needs to be uncommented and updated when back code is done.
 /*exports.registerpost = function (req, res) {
     var IDnumber = req.body.IDnumber
