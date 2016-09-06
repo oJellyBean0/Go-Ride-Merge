@@ -153,5 +153,5 @@ exports.getCategories = function (req, res) {
   var categories = require("../modules/getCatergories.js");
   categories.tryGetCategories(function (jsonObject) {
     res.json(jsonObject);
-  })
-}
+  });
+};
