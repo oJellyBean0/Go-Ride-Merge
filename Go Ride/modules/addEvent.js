@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryAddEvent = function (username, eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, datetime, callback) {
+exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -34,40 +34,40 @@ exports.tryAddEvent = function (username, eventName, eventCatagory, streetNumORV
                 errorHandler(err, sql);
             }
             else {
-                getCatagory(recordset[0].IDNumber);
+                getCategory(recordset[0].IDNumber);
             }
         });
     };
 
-    var getCatagory = function (IDNumber) {
-        var tableName = '[JN08].[dbo].[EventCatagory]';
-        var sql = 'SELECT CatagoryID FROM ' + tableName;
+    var getCategory = function (IDNumber) {
+        var tableName = '[JN08].[dbo].[EventCategory]';
+        var sql = 'SELECT CategoryID FROM ' + tableName;
         var request = new mssql.Request(connObj);
-        request.input("CatagoryDescr", mssql.Text, eventCatagory);
-        sql += " WHERE CatagoryDescr=@CatagoryDescr";
+        request.input("CategoryDescr", mssql.Text, eventCategory);
+        sql += " WHERE CategoryDescr=@CategoryDescr";
         request.query(sql, function (err, recordset) {
             if (err) {
                 errorHandler(err, sql);
             }
             else {
-                addEvent(IDNumber, recordset[0].CatagoryID);
+                addEvent(IDNumber, recordset[0].CategoryID);
             }
         });
     };
 
-    var addEvent = function (IDNumber, CatagoryID) {
+    var addEvent = function (IDNumber, CategoryID) {
         var tableName = '[JN08].[dbo].[Event]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("EventName", mssql.VarChar, eventName);
         request.input("CreatorID", mssql.Char, IDNumber);
-        request.input("CatagoryID", mssql.UniqueIdentifier, CatagoryID);
+        request.input("CategoryID", mssql.UniqueIdentifier, CategoryID);
         request.input("StreetNumber", mssql.Int, streetNumORVenueName);
         request.input("StreetName", mssql.NVarChar, streetName);
         request.input("Town", mssql.NVarChar, city);
         request.input("Suburb", mssql.NVarChar, suburb);
         request.input("Date", mssql.SmallDateTime, datetime);
-        sql += ' (EventID,EventName,CreatorID,CatagoryID,StreetNumber,StreetName,Town,Suburb,Date) VALUES (@EventName, @CreatorID,@CatagoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Date)';
+        sql += ' (EventID,EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Suburb,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Date)';
         request.query(sql, function (err, recordset) {
             if (err) {
                 errorHandler(err, sql);

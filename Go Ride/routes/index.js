@@ -111,8 +111,8 @@ exports.addEventpost = function (req, res) {
   var datetime;
   var username = req.cookie.JSONCookie('user');
   var register = require("../modules/addEvent.js");
-  addEvent.tryAddEvent(username, eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
-    
+  addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+
   });
 };
 
@@ -128,7 +128,7 @@ var province = req.body.province;
 var date = req.body.date;
 var time = req.body.time;
 var register = require("../modules/editEvent.js");
-editEvent.tryEditEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
+editEvent.tryEditEvent(eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
   
     });
   };
@@ -141,3 +141,10 @@ exports.getEvents = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getCategories = function (req, res) {
+  var categories = require("../modules/getCatergories.js");
+  categories.tryGetCategories(function (jsonObject) {
+    res.json(jsonObject);
+  })
+}

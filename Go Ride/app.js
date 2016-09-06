@@ -52,6 +52,7 @@ app.get('/addEvent', routes.addEvent);
 app.get('/editEvent', routes.editEvent);
 //app.post('/addEvent', routes.addEventpost);
 //app.post('/editEvent', routes.editEventpost);
+app.get('/categories', routes.getCategories);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
