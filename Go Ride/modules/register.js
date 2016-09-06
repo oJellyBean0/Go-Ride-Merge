@@ -28,7 +28,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
 
     var IDTest = function () {
         var sql = 'SELECT * FROM ' + tableName;
-        var request = connObj.Request(connObj);
+        var request = new mssql.Request(connObj);
         request.input('IDNumber', mssql.Char, IDnumber);
         sql += ' Where IDNumber=@IDNumber';
         request.query(sql, function (err, recordset) {
@@ -47,7 +47,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
 
     var UserTest = function () {
         var sql = 'SELECT * FROM ' + tableName;
-        var request = connObj.Request(connObj);
+        var request = new mssql.Request(connObj);
         request.input('Username', mssql.NVarChar, username);
         sql += ' Where Username=@Username';
         request.query(sql, function (err, recordset) {
