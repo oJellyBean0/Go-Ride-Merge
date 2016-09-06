@@ -46,6 +46,10 @@ exports.manageLocations = function (req, res) {
 exports.contacts = function (req, res) {
   res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
 };
+
+exports.userDelete = function (req, res) {
+  res.render('userDelete', { title: '', year: new Date().getFullYear(), message: ''});
+};
 // Needs to be uncommented and updated when back code is done.
 /*exports.registerpost = function (req, res) {
     var IDnumber = req.body.IDnumber

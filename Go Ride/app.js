@@ -46,6 +46,8 @@ app.post('/manageLocations', routes.manageLocations);        //not sure if this 
 app.get('/userDetails', routes.userDetails);
 app.get('/contacts', routes.contacts);
 app.post('/contacts', routes.contacts);
+app.post('/userDelete', routes.userDelete);
+app.get('/userDelete', routes.userDelete);
 
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
