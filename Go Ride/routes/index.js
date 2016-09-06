@@ -36,15 +36,15 @@ exports.registerUser = function (req, res) {
 };
 
 exports.userDetails = function (req, res) {
-  res.render('userDetails', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('userDetails', { title: '', year: new Date().getFullYear(), message: '' });
 };
 
 exports.manageLocations = function (req, res) {
-  res.render('manageLocations', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('manageLocations', { title: '', year: new Date().getFullYear(), message: '' });
 };
 
 exports.contacts = function (req, res) {
-  res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('contacts', { title: '', year: new Date().getFullYear(), message: '' });
 };
 // Needs to be uncommented and updated when back code is done.
 /*exports.registerpost = function (req, res) {
@@ -63,14 +63,14 @@ exports.contacts = function (req, res) {
     register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
 */
 exports.manageEvent = function (req, res) {
-    res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
+  res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
 };
 
 exports.addEvent = function (req, res) {
-    res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
+  res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
 };
 exports.editEvent = function (req, res) {
-    res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: 'Edit Event page' });
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: 'Edit Event page' });
 };
 
 
@@ -114,19 +114,27 @@ exports.registerpost = function (req, res) {
     };
   */
 
-  /* exports.editEventpost = function (req, res) {
-  var eventName = req.body.eventName;
-  var eventCategory = req.body.eventCatagory;
-  var streetNumORVenueName = req.body.streetNumORVenueName;
-  ver streetName = req.body.streetName;
-  var suburb = req.body.suburb;
-  var city = req.body.city;
-  var province = req.body.province;
-  var date = req.body.date;
-  var time = req.body.time;
-  var register = require("../modules/editEvent.js");
-  editEvent.tryEditEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
-    
-      });
-    };
-  */
+/* exports.editEventpost = function (req, res) {
+var eventName = req.body.eventName;
+var eventCategory = req.body.eventCatagory;
+var streetNumORVenueName = req.body.streetNumORVenueName;
+ver streetName = req.body.streetName;
+var suburb = req.body.suburb;
+var city = req.body.city;
+var province = req.body.province;
+var date = req.body.date;
+var time = req.body.time;
+var register = require("../modules/editEvent.js");
+editEvent.tryEditEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
+  
+    });
+  };
+*/
+
+exports.getEvents = function (req, res) {
+  var events = require("../modules/getEvent.js");
+  var searchTerm = req.query.searchTerm;
+  events.trySearch(searchTerm, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
