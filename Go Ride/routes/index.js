@@ -44,9 +44,34 @@ exports.manageLocations = function (req, res) {
 };
 
 exports.contacts = function (req, res) {
+<<<<<<< HEAD
+  res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
+};
+
+exports.userDelete = function (req, res) {
+  res.render('userDelete', { title: '', year: new Date().getFullYear(), message: ''});
+};
+// Needs to be uncommented and updated when back code is done.
+/*exports.registerpost = function (req, res) {
+    var IDnumber = req.body.IDnumber
+    var name = req.body.name;
+    var surname = req.bosy.surname;
+    var email = req.body.email;
+    var username = req.body.username;
+    var password = req.body.password;
+    var picture = req.body.picture;
+    var streetNumber = req.body.streetNumber;
+    var streetName = req.body.streetName;
+    var suburb = req.body.suburb;
+    var province = req.body.province;
+    var register = require("../modules/register.js");
+    register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
+*/
+=======
   res.render('contacts', { title: '', year: new Date().getFullYear(), message: '' });
 };
 
+>>>>>>> fe5092cbc779caf2e5eaa8b5f75c0dc07e76c96f
 exports.manageEvent = function (req, res) {
   res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
 };

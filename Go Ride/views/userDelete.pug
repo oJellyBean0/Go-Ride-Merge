@@ -1,0 +1,33 @@
+extends layout
+block content
+
+    div.modal-dialog(style="padding-top:0px")
+        div.modal-header
+            h2 Delete user profile
+        div.modal-body
+            br
+            aria Would you like to delete your user profile?
+            br
+        div.modal-footer
+            div.row
+                div.col-md-2.clearfix
+                    button.btn.button-primary.pull-left(type='submit', data-toggle='modal', data-target='#myModal') Delete
+                div.col-md-3.clearfix.text-center
+                    
+                div.col-md-2.clearfix
+                    button.btn.button-primary.pull-right(type="submit") Cancel
+
+    .modal#myModal(tabindex='-1', role='dialog', aria-labelledby='myModalLabel1', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;         
+                    h4#myModalLabel1.modal-title Permenantly Delete?
+                       
+                .modal-body
+                    aria This will permenantly delete any data associated with your profile. Are you sure this is what you want?       
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    |         
+                    button.btn.btn-primary(type='button') Delete

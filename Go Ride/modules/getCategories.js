@@ -29,7 +29,24 @@ exports.tryGetCategories = function (callback) {
         }
         else {
             var sql = "SELECT CategoryDescr FROM " + tableName;
-            var request = mssql.Request()
+            var request = mssql.Request(connObj);
+            request.query(sql, function (err, recordset) {
+                connObj.close();
+                if (err) {
+                    errorHandler(err, sql);
+                }
+                else {
+                    var jsonObject = {
+                        categories: []
+                    };
+                    recordset.forEach(function (item) {
+                        jsonObject.categories.push({
+                            'CategoryDescr': item.CategoryDescr
+                        });
+                    });
+                    callback(jsonObject);
+                }
+            });
         }
     });
-}
+};

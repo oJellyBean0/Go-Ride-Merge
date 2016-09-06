@@ -9,6 +9,7 @@ html
     link(rel='stylesheet', type='text/css', href='/stylesheets/simple-sidebar.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     script(src='/javascripts/modernizr-2.6.2.js')
+    block head
   body
     #wrapper
       #sidebar-wrapper
@@ -17,21 +18,17 @@ html
             a(href='/') Go Ride
           li
             a(href='/login') Login
-          li
-            a(data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
+          li 
+            a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
             ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
               li
                 a(href='/userDetails') User Details
               li
                 a(href='/manageLocations') Locations
               li
-                a(href='/contacts') Contacts
+                a(href='/contacts') Blocked Users
               li
-                a(href='/') Block User
-              li
-                a(href='/') Delete User
-              li
-                a(href='/') View Profile
+                a(href='/userDelete') Delete User
           li
             a(href='/manageEvent') Events
           li
