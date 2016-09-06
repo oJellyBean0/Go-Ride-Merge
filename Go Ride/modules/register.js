@@ -24,7 +24,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         connObj.close();
         callback(false, error);
     };
-    var tableName = '[JN08].[dbo].[user]';
+    var tableName = '[JN08].[dbo].[User]';
 
     var IDTest = function () {
         var sql = 'SELECT * FROM ' + tableName;
