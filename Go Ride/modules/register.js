@@ -80,10 +80,10 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 if (err) { callback(false, err); return; }
                 request.input('Picture', mssql.Image, data);
                 fs.unlink(picture.path);
-                sql += '(IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
+                sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
             });
         } else {
-            sql += '(IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
+            sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
         }
         request.query(sql, function (err, recordset) {
             if (err) {
