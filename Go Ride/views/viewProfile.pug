@@ -1,19 +1,32 @@
 extends layout
 block content
 
-    div.col-md-5
+    div.modal-dialog
+        div.col-md-5
         div.modal-content
             div.modal-header
-                .input-group
-                    input.form-control(type='text', placeholder='Search for...', style="width:100%;")
-                    span.input-group-btn
-                        button.btn.btn-default(type='button') Add
+                h2.text-center Jane Doe
+                div.row.center-block
+                    div.col-md-3
+                    div.col-md-6.center-block
+                        img.img-responsive.img-circle(src='http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=83254125', alt='Profile Image')
+                    
             div.modal-body
-                .list-group
-                    a.list-group-item(href='#')
-                        | Home
-                    a.list-group-item(href='#') place 1
-                    a.list-group-item(href='#') place 2
-                    a.list-group-item(href='#') Place 3
-                    a.list-group-item(href='#') place 4
-                    a.list-group-item(href='#') place 5
+              div.row
+                div.col-md-3
+                div.col-md-3
+                    p Age
+                div.col-md-5.pull-right
+                    P Age of user
+
+              div.row
+                div.col-md-3
+                div.col-md-3
+                    p Current City
+                div.col-md-5.pull-right
+                    p Current city of user
+
+              div.row
+                div.pull-right
+                    div.col-md-3.clearfix
+                        button.btn.button-primary(type="button") Back
