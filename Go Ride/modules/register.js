@@ -81,19 +81,26 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 request.input('Picture', mssql.Image, data);
                 fs.unlink(picture.path);
                 sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
+                request.query(sql, function (err, recordset) {
+                    if (err) {
+                        errorHandler(err, sql);
+                    }
+                    else {
+                        LocationInsert();
+                    }
+                });
             });
         } else {
             sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
+            request.query(sql, function (err, recordset) {
+                if (err) {
+                    errorHandler(err, sql);
+                }
+                else {
+                    LocationInsert();
+                }
+            });
         }
-        request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                LocationInsert();
-            }
-        });
-
     };
 
     var LocationInsert = function () {

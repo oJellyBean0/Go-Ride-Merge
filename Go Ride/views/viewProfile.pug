@@ -1,0 +1,19 @@
+extends layout
+block content
+
+    div.col-md-5
+        div.modal-content
+            div.modal-header
+                .input-group
+                    input.form-control(type='text', placeholder='Search for...', style="width:100%;")
+                    span.input-group-btn
+                        button.btn.btn-default(type='button') Add
+            div.modal-body
+                .list-group
+                    a.list-group-item(href='#')
+                        | Home
+                    a.list-group-item(href='#') place 1
+                    a.list-group-item(href='#') place 2
+                    a.list-group-item(href='#') Place 3
+                    a.list-group-item(href='#') place 4
+                    a.list-group-item(href='#') place 5
