@@ -97,22 +97,25 @@ exports.registerpost = function (req, res) {
   });
 };
 
-/* exports.addEventpost = function (req, res) {
+exports.addEventpost = function (req, res) {
   var eventName = req.body.eventName;
   var eventCategory = req.body.eventCatagory;
   var streetNumORVenueName = req.body.streetNumORVenueName;
-  ver streetName = req.body.streetName;
+  var streetName = req.body.streetName;
   var suburb = req.body.suburb;
   var city = req.body.city;
   var province = req.body.province;
   var date = req.body.date;
   var time = req.body.time;
+  //merge date & time into "2016-09-13 00:00:00" format
+  var datetime;
+  var username = req.cookie.JSONCookie('user');
   var register = require("../modules/addEvent.js");
-  addEvent.tryAddEvent(eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
+  addEvent.tryAddEvent(username, eventName, eventCatagory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
     
-      });
-    };
-  */
+  });
+};
+
 
 /* exports.editEventpost = function (req, res) {
 var eventName = req.body.eventName;
