@@ -46,13 +46,9 @@ app.post('/manageLocations', routes.manageLocations);        //not sure if this 
 app.get('/userDetails', routes.userDetails);
 app.get('/contacts', routes.contacts);
 app.post('/contacts', routes.contacts);
-<<<<<<< HEAD
 app.post('/userDelete', routes.userDelete);
 app.get('/userDelete', routes.userDelete);
-
-=======
 app.post('/event', routes.getEvents);
->>>>>>> fe5092cbc779caf2e5eaa8b5f75c0dc07e76c96f
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
 app.get('/editEvent', routes.editEvent);

@@ -44,7 +44,6 @@ exports.manageLocations = function (req, res) {
 };
 
 exports.contacts = function (req, res) {
-<<<<<<< HEAD
   res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
 };
 
@@ -67,11 +66,6 @@ exports.userDelete = function (req, res) {
     var register = require("../modules/register.js");
     register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
 */
-=======
-  res.render('contacts', { title: '', year: new Date().getFullYear(), message: '' });
-};
-
->>>>>>> fe5092cbc779caf2e5eaa8b5f75c0dc07e76c96f
 exports.manageEvent = function (req, res) {
   res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
 };
