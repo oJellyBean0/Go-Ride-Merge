@@ -1,33 +1,53 @@
-var sql = require('node-mssql');
-var config = {
-    username: 'JN08User',
+var mssql = require('mssql');
+var dbConfig = {
+    server: 'openbox.nmmu.ac.za\\wrr',
+    port: 1433,
+    user: 'JN08User',
     password: '2yWkBhRQ',
-    host: 'openbox.nmmu.ac.za\\wrr',
-    db: 'JN08'
+    database: 'JN08',
+    options: {
+        encrypt: false,
+        pool: {
+            max: 100,
+            min: 0,
+            idleTimeoutMillis: 30000
+        }
+    }
 };
-
+var connectionError = 'Unable to Connect to Server';
 
 
 exports.tryLogin = function (username, password, callback) {
-    //TODO escape strings
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
         callback(false, error);
     };
-    var query = new sql.Query(config);
-    query.table('[dbo].[user]');
-    query.where({
-        'Username': username
-    });
-    query.select(function (results) {
-        console.log(results);
-        if (results.length < 1 || results[0].Password != password) {
-            err = "Incorrect Username or Password";
-            callback(false, err);
+    var tableName = '[JN08].[dbo].[user]';
+    var connObj = mssql.connect(dbConfig, function (err) {
+        if (err) {
+            errorHandler(err, connectionError);
         }
         else {
-            callback(true);
+            var sql = 'SELECT Password FROM ' + tableName;
+            var request = new mssql.Request(connObj);
+            request.input('Username', mssql.NVarChar, username);
+            sql += 'Where Username=@Username';
+            request.query(sql, function (err, recordset) {
+                connObj.close();
+                if (err) {
+                    errorHandler(err, sql);
+                }
+                else {
+                    if (recordset.length < 1 || recordset[0].Password != password) {
+                        err = "Incorrect Username or Password";
+                        callback(false, err);
+                    }
+                    else {
+                        callback(true);
+                    }
+                }
+            });
         }
-    }, errorHandler);
+    });
 };
