@@ -49,4 +49,4 @@ exports.tryGetCategories = function (callback) {
             });
         }
     });
-}
+};
