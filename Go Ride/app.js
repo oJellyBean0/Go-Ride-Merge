@@ -50,6 +50,7 @@ app.post('/event', routes.getEvents);
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
 app.get('/editEvent', routes.editEvent);
+app.get('/viewProfile', routes.viewProfile);
 //app.post('/addEvent', routes.addEventpost);
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
