@@ -29,7 +29,7 @@ exports.tryGetCategories = function (callback) {
         }
         else {
             var sql = "SELECT CategoryDescr FROM " + tableName;
-            var request = mssql.Request(connObj);
+            var request = new mssql.Request(connObj);
             request.query(sql, function (err, recordset) {
                 connObj.close();
                 if (err) {

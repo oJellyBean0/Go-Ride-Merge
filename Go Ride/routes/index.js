@@ -150,7 +150,7 @@ exports.getEvents = function (req, res) {
 };
 
 exports.getCategories = function (req, res) {
-  var categories = require("../modules/getCatergories.js");
+  var categories = require("../modules/getCategories.js");
   categories.tryGetCategories(function (jsonObject) {
     res.json(jsonObject);
   });
