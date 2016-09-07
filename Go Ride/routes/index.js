@@ -113,9 +113,10 @@ exports.addEventpost = function (req, res) {
   var city = req.body.city;
   var province = req.body.province;
   var date = req.body.date;
+  var dateformat = date.substring(6,9)+"-"+date.substring(3,4)+"-"+date.substring(0,1);
   var time = req.body.time;
   //merge date & time into "2016-09-13 00:00:00" format
-  var datetime;
+  var datetime = dateformat+time+"00";
   var username = req.cookie.JSONCookie('user');
   var register = require("../modules/addEvent.js");
   addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {

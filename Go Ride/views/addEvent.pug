@@ -5,7 +5,7 @@ extends layout
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     div.row
-      .form-group
+      .form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
