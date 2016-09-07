@@ -2,39 +2,88 @@ extends layout
 block content
     div.modal-dialog
         div.modal-header
-            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
-            h2.text-center USERNAME GOES HERE
+            div.row
+                h2.text-center USERNAME GOES HERE
+            div.row.text-center
+                img.center-block.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
+            
         form.div.modal-body(action="", method="post")
 
             div.row
-                div.col-md-6.span6
+                div.col-md-4.span4
                     label(for="username") Name
-                div.col-md-6.span6.pull-right
-                    input#username.form-control(type="text", name="username", required)
+                div.col-md-8.span8.pull-right
+                    span.pull-right
+                        aria(type="text", name="streetName") *place holder*
 
             div.row
-                div.col-md-6.span6
+                div.col-md-4.span4
                     label(for="username") Surname
-                div.col-md-6.span6.pull-right
-                    input#username.form-control(type="text", name="username", required)
+                div.col-md-8.span8.pull-right
+                    span.pull-right
+                        aria(type="text", name="streetName") *place holder*
 
             div.row
-                div.col-md-6.span6
+                div.col-md-4.span4
                     label(for="username") Username
-                div.col-md-6.span6.pull-right
-                    input#username.form-control(type="text", name="username", required)
+                div.col-md-8.span8.pull-right
+                    span.pull-right
+                        aria(type="text", name="streetName") *place holder*
 
             div.row
-                div.col-md-6.span6
+                div.col-md-4.span4
                     label(for="username") Password
-                div.col-md-6.span6.pull-right
-                    input#username.form-control(type="text", name="username", required)
+                div.col-md-8.span8.pull-right
+                    span.pull-right
+                        aria(type="text", name="streetName") *place holder*
 
         div.modal-footer
             div.row
                 div.col-md-4.clearfix
-                    button.btn.button-primary.pull-left(type="submit") Cancel
+                    //button.btn.button-primary.pull-left(type="submit") Cancel
                 div.col-md-4.clearfix.text-center
-                    button.btn.button-primary(type="submit") Cancel
+                    button.btn.button-primary(type='submit', data-toggle='modal', data-target='#modalEdit') Edit
                 div.col-md-4.clearfix
-                    button.btn.button-primary.pull-right(type="submit") Cancel
+                    //button.btn.button-primary.pull-right(type="submit") Cancel
+
+
+    .modal#modalEdit(tabindex='-1', role='dialog', aria-labelledby='modalEditLabel1', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;         
+                    h4#modalEdit.Label1.modal-title Edit Details?      
+                .modal-body
+                    div.modal-dialog(style="padding-top:0px")
+                        div.modal-header
+                            h2 *User name goes here*
+                        div.modal-body
+                            br
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="username") Name
+                                div.col-md-8.span8.pull-right
+                                    input#username.form-control(type="text", name="username", required)
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="username") Surname
+                                div.col-md-8.span8.pull-right
+                                    input#username.form-control(type="text", name="username", required)
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="username") Username
+                                div.col-md-8.span8.pull-right
+                                    input#username.form-control(type="text", name="username", required)
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="username") Password
+                                div.col-md-8.span8.pull-right
+                                    input#username.form-control(type="text", name="username", required)       
+                .modal-footer
+                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    |         
+                    button.btn.btn-primary(type='button') Save

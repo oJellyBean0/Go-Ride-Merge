@@ -85,7 +85,13 @@ ul.c-controls li a:hover {
 
 .name {
     font-size: 1.7em;
-    font-weight: 700;
+    font-weight: 500;
+}
+
+.centerall{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 100%;
 }
 
 .c-info {
