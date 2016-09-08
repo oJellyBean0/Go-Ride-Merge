@@ -2,17 +2,18 @@
 
 block content
   div.modal-dialog
-    div.modal-header
-      h2.text-center Login
-    div.modal-body
-      form.col-md-12.center-block(action ="", method = "post")
-        .form-group
-          label(for="username") Username
-          input#username.form-control(type="text", name="username", required)
-          label(for="password") Password
-          input#password.form-control(type="password", name="password", required)
-        .form-group 
-          p.text-danger #{message}  
-          button#btnlogin.btn.button-primary(type="submit") Login
-          span.pull-right
-            a(href="registerUser") Register
+    div.modal-content
+      div.modal-header
+        h2.text-center Login
+      div.modal-body
+        .col-md-12(action ="", method = "post")
+          .form-group
+            label(for="username") Username
+            input#username.form-control(type="text", name="username", required)
+            label(for="password") Password
+            input#password.form-control(type="password", name="password", required)
+          .form-group 
+            p.text-danger #{message}  
+            button#btnlogin.btn.button-primary(type="submit") Login
+            span.pull-right
+              a(href="registerUser") Register
