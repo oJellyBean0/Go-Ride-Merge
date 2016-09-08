@@ -67,17 +67,20 @@ exports.userDelete = function (req, res) {
     register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
 */
 exports.manageEvent = function (req, res) {
-  res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: 'Manage Event page' });
+  res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: '' });
 };
 
 exports.addEvent = function (req, res) {
-  res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'Add Event page' });
+  res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'e' });
 };
 exports.editEvent = function (req, res) {
-  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: 'Edit Event page' });
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '' });
 };
 exports.viewProfile = function (req, res) {
-    res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: 'Profile page' });
+    res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
+};
+exports.ParticipatingRideshareGroups = function (req, res) {
+    res.render('ParticipatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
 };
 
 
@@ -105,8 +108,9 @@ exports.registerpost = function (req, res) {
 };
 
 exports.addEventpost = function (req, res) {
+  console.log(req.body);
   var eventName = req.body.eventName;
-  var eventCategory = req.body.eventCatagory;
+  var eventCategory = req.body.eventCategory;
   var streetNumORVenueName = req.body.streetNumORVenueName;
   var streetName = req.body.streetName;
   var suburb = req.body.suburb;
@@ -127,7 +131,7 @@ exports.addEventpost = function (req, res) {
 
 /* exports.editEventpost = function (req, res) {
 var eventName = req.body.eventName;
-var eventCategory = req.body.eventCatagory;
+var eventCategory = req.body.eventCategory;
 var streetNumORVenueName = req.body.streetNumORVenueName;
 ver streetName = req.body.streetName;
 var suburb = req.body.suburb;

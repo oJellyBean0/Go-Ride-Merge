@@ -41,17 +41,23 @@ block content
           h3#addEventHeading Event Details
           label(for="eventName") Event Name
           input#eventName.form-control(type="text", name="eventName", required)
-          label(for="eventCategory") Event Catagory
+          label(for="eventCategory") Event Category
           div.dropdown
-            button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown", required) Pick Event Catagory
+            select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
               span.caret
-            ul.dropdown-menu
-              li 
-                a(href="#") Catagory1
-              li
-                a(href="#") Catagory2
-              li
-                a(href="#") Catagory3
+              option(disabled, selected) Select Event
+            script(type="text/javascript").
+              $.getJSON( "/categories", function( data ) {
+                console.log(data.categories[0].CategoryDescr)
+                var items = [];
+                $.each( data.categories, function( key, val ) {
+                  $( "<option/>", {
+                    "class": "my-new-list",
+                    html: val.CategoryDescr
+                  }).appendTo( "#dropdownMenu" );   
+                });
+              });
+            
 
           label(for="streetNumORVenueName") Street Number or Venue Name
           input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)

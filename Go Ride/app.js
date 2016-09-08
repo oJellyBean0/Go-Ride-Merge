@@ -51,11 +51,13 @@ app.get('/userDelete', routes.userDelete);
 app.post('/event', routes.getEvents);
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
+app.post('/addEvent', routes.addEventpost);
 app.get('/editEvent', routes.editEvent);
 app.get('/viewProfile', routes.viewProfile);
-//app.post('/addEvent', routes.addEventpost);
+
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
+app.get('/ParticipatingRideshareGroups', routes.ParticipatingRideshareGroups);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
