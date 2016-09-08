@@ -10,13 +10,14 @@ block content
           .col-md-1
           .col-md-10.center-block(action ="", method = "post")
             .form-group
-              label(for="username") Username
-              input#username.form-control(type="text", name="username", required)
-              label(for="password") Password
-              input#password.form-control(type="password", name="password", required)
-            .form-group 
-              p.text-danger #{message}  
-              button#btnlogin.btn.button-primary(type="submit") Login
+              
+              input#username.form-control.input-lg(type="text", name="username", placeholder="Username", required, style = "max-width:none")
+              p
+              input#password.form-control.input-lg(type="password", name="password", placeholder="Password", required, style = "max-width:none")
+            .form-group
+              p.text-danger #{message} 
               span.pull-right
-                a(href="registerUser") Register
+                a(href="registerUser", style = "margin-bottom: 10px") Register 
+                p
+              button#btnlogin.btn.btn-block.btn-info.btn-lg(type="submit",style = "max-width:none") Login
           .col-md-1
