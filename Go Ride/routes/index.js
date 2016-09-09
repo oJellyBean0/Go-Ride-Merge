@@ -79,8 +79,8 @@ exports.editEvent = function (req, res) {
 exports.viewProfile = function (req, res) {
     res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
 };
-exports.ParticipatingRideshareGroups = function (req, res) {
-    res.render('ParticipatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
+exports.participatingRideshareGroups = function (req, res) {
+    res.render('participatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
 };
 
 
