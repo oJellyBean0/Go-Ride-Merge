@@ -55,7 +55,7 @@ app.get('/addEvent', routes.addEvent);
 app.post('/addEvent', routes.addEventpost);
 app.get('/editEvent', routes.editEvent);
 app.get('/viewProfile', routes.viewProfile);
-
+app.get('/blocked', routes.getBlockedUsers);
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
 app.get('/participatingRideshareGroups', routes.participatingRideshareGroups);

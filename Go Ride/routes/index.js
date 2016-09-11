@@ -168,3 +168,11 @@ exports.getEvent = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getBlockedUsers = function (req,res){
+  var users = require("../modules/blockedUsers.js");
+  var username = req.cookie.JSONCookie('user');
+  users.tryBlockedUsers(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
