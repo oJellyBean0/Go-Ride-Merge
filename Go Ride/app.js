@@ -57,7 +57,7 @@ app.get('/viewProfile', routes.viewProfile);
 
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
-app.get('/ParticipatingRideshareGroups', routes.ParticipatingRideshareGroups);
+app.get('/participatingRideshareGroups', routes.participatingRideshareGroups);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
