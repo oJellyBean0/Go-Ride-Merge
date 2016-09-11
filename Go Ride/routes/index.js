@@ -148,7 +148,7 @@ editEvent.tryEditEvent(eventName, eventCategory, streetNumORVenueName, streetNam
 
 exports.searchEvents = function (req, res) {
   var events = require("../modules/searchEvents.js");
-  var searchTerm = req.query.searchTerm;
+  var searchTerm = req.body.searchTerm;
   events.trySearch(searchTerm, function (jsonObject) {
     res.json(jsonObject);
   });
