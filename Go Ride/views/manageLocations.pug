@@ -2,14 +2,16 @@ extends layout
 block head
     script(src='/javascripts/manageLocations.js')
 block content
-
+    
     div.col-md-5
-        div.modal-content
+        br
+        br
+        div.modal-content(style="margin-top:0px;")
             div.modal-header
                 h2 Saved Locations:
-            div.modal-body
+            form.div.modal-body(id="savedLocations")
                 .input-group
-                    input.form-control(type='text', placeholder='Enter a new location here', style="width:100%;")
+                    input.form-control(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="addLocationInput")
                     span.input-group-btn
                         button.btn.btn-default(type='button') Add
                 br
@@ -23,7 +25,7 @@ block content
                     a.list-group-item(href='#') place 5
 
     .col-md-7
-        div.modal-dialog(style="padding-top:0px")
+        div.modal-dialog(style="padding-top:11px;")
             div.modal-header
                 h2 *place name goes here*
             div.modal-body

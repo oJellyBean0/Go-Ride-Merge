@@ -3,7 +3,7 @@ block content
     div.modal-dialog
         div.modal-header
             div.row
-                h2.text-center USERNAME GOES HERE
+                h2.text-center(id="usernameHeading") USERNAME GOES HERE
             div.row.text-center
                 img.center-block.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens')
             
@@ -11,31 +11,31 @@ block content
 
             div.row
                 div.col-md-4.span4
-                    label(for="username") Name
+                    label(for="username") Name:
                 div.col-md-8.span8.pull-right
                     span.pull-right
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="name", id="name") *place holder*
 
             div.row
                 div.col-md-4.span4
-                    label(for="username") Surname
+                    label(for="username") Surname:
                 div.col-md-8.span8.pull-right
                     span.pull-right
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="surname", id="surname") *place holder*
 
             div.row
                 div.col-md-4.span4
-                    label(for="username") Username
+                    label(for="username") Username:
                 div.col-md-8.span8.pull-right
                     span.pull-right
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="username", id="username") *place holder*
 
             div.row
                 div.col-md-4.span4
-                    label(for="username") Password
+                    label(for="username") Password:
                 div.col-md-8.span8.pull-right
                     span.pull-right
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="password", id="password") *place holder*
 
         div.modal-footer
             div.row
@@ -49,7 +49,7 @@ block content
 
     .modal#modalEdit(tabindex='-1', role='dialog', aria-labelledby='modalEditLabel1', aria-hidden='true')
         .modal-dialog(role='document')
-            .modal-content
+            form.modal-content(id="info", name="info", method="post", action="", autocomplete="on", enctype="text/plain")
                 .modal-header
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') &times;         
@@ -57,33 +57,33 @@ block content
                 .modal-body
                     div.modal-dialog(style="padding-top:0px")
                         div.modal-header
-                            h2 *User name goes here*
+                            h2(id="usernameHeading") *User name goes here*
                         div.modal-body
                             br
                             div.row
                                 div.col-md-4.span4
-                                    label(for="username") Name
+                                    label(for="nameInput") Name
                                 div.col-md-8.span8.pull-right
-                                    input#username.form-control(type="text", name="username", required)
+                                    input.form-control(type="text", name="nameInput", id="nameInput" required)
 
                             div.row
                                 div.col-md-4.span4
-                                    label(for="username") Surname
+                                    label(for="surnameInput") Surname
                                 div.col-md-8.span8.pull-right
-                                    input#username.form-control(type="text", name="username", required)
+                                    input.form-control(type="text", name="surnameInput", id="surnameInput" required)
 
                             div.row
                                 div.col-md-4.span4
-                                    label(for="username") Username
+                                    label(for="usernameInput") Username
                                 div.col-md-8.span8.pull-right
-                                    input#username.form-control(type="text", name="username", required)
+                                    input.form-control(type="text", name="usernameInput", id="usernameInput" required)
 
                             div.row
                                 div.col-md-4.span4
-                                    label(for="username") Password
+                                    label(for="passwordInput") Password
                                 div.col-md-8.span8.pull-right
-                                    input#username.form-control(type="text", name="username", required)       
+                                    input.form-control(type="password", name="passwordInput", id="passwordInput" required)       
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
-                    button.btn.btn-primary(type='button') Save
+                    button.btn.btn-primary(type='submit') Save
