@@ -25,18 +25,22 @@ block content
             input#searchBar.form-control(type="text", name="searchBar")
             script(type="text/javascript").
               $( "#searchBar" ).on("input",function() {
-                $("#eventList").empty();
-                $.post( "/event",{ searchTerm: $("#searchBar").val() }, function( data ) {
-                  console.log("posting")
-                  $.each( data.events, function( key, val ) {
-                    $( "<a/>", {
-                            "class": "list-group-item",
-                            "href": "login",
-                            html: val.EventName
-                          }).appendTo( "#eventList" ); 
-                  
-                    });
+                var savedSearchTerm = $("#searchBar").val();
+                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
+                  if (savedSearchTerm == $("#searchBar").val()){
+                    $("#eventList").empty();
+                    $.each( data.events, function( key, val ) {
+                        $( "<a/>", {
+                                "class": "list-group-item",
+                                "href": "login",
+                                html: val.EventName
+                              }).appendTo( "#eventList" ); 
+                      
+                        });
+                    
+                  }
                 });
+                  
               });
             
           a(href="addEvent")
