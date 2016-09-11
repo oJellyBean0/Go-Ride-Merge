@@ -2,6 +2,8 @@
  * GET home page.
  */
 
+var cookie = require('cookie');
+
 exports.index = function (req, res) {
   res.render('index', { title: 'Express', year: new Date().getFullYear() });
 };
@@ -50,22 +52,7 @@ exports.contacts = function (req, res) {
 exports.userDelete = function (req, res) {
   res.render('userDelete', { title: '', year: new Date().getFullYear(), message: '' });
 };
-// Needs to be uncommented and updated when back code is done.
-/*exports.registerpost = function (req, res) {
-    var IDnumber = req.body.IDnumber
-    var name = req.body.name;
-    var surname = req.bosy.surname;
-    var email = req.body.email;
-    var username = req.body.username;
-    var password = req.body.password;
-    var picture = req.body.picture;
-    var streetNumber = req.body.streetNumber;
-    var streetName = req.body.streetName;
-    var suburb = req.body.suburb;
-    var province = req.body.province;
-    var register = require("../modules/register.js");
-    register.tryRegister(IDnumber, name, surname, email, username, password, picture, streetNumber, streetName, suburb, province);
-*/
+
 exports.manageEvent = function (req, res) {
   res.render('manageEvent', { title: 'Manage Event', year: new Date().getFullYear(), message: '' });
 };
@@ -91,7 +78,6 @@ exports.registerpost = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   var picture = req.file;
-  console.log(picture);
   var streetNumber = req.body.streetNum[0];
   var streetName = req.body.streetNum[1];
   var suburb = req.body.suburb;
@@ -171,7 +157,7 @@ exports.getEvent = function (req, res) {
 
 exports.getBlockedUsers = function (req,res){
   var users = require("../modules/blockedUsers.js");
-  var username = req.cookie.JSONCookie('user');
+  var username = cookie.parse(req.headers.cookie).user;
   users.tryBlockedUsers(username, function (jsonObject) {
     res.json(jsonObject);
   });

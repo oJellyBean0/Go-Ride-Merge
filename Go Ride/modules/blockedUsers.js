@@ -17,6 +17,14 @@ var dbConfig = {
 var connectionError = 'Unable to Connect to Server';
 
 exports.tryBlockedUsers = function (username, callback) {
+    var decimalToHex = function (d) {
+        var hex = Number(d).toString(16);
+        var padding = 2;
+        while (hex.length < padding) {
+            hex = "0" + hex;
+        }
+        return hex;
+    };
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -27,7 +35,7 @@ exports.tryBlockedUsers = function (username, callback) {
     };
 
     var getID = function () {
-        var tableName = '[JN08].[dbo].[Users]';
+        var tableName = '[JN08].[dbo].[User]';
         var sql = "SELECT IDNumber FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
@@ -44,26 +52,26 @@ exports.tryBlockedUsers = function (username, callback) {
 
     var getBlocked = function (IDNumber) {
         var tableName = '[JN08].[dbo].[BlockedUser]';
-        var sql = "SELECT IDNumber FROM " + tableName;
+        var sql = "SELECT BlockedID FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("Username", mssql.NVarChar, username);
-        sql += " WHERE Username=@Username";
+        request.input("BlockerID", mssql.NVarChar, IDNumber);
+        sql += " WHERE BlockerID=@BlockerID";
         request.query(sql, function (err, recordset) {
             if (err) {
                 errorHandler(err, sql);
             }
             else {
-                getUsers("(" + recordset.join() + ")");
+                getUsers("(\'" + recordset.map(function (item) { return item.BlockedID; }).join("\',\'") + "\')");
             }
         });
     };
 
     var getUsers = function (inList) {
-        var tableName = '[JN08].[dbo].[Users]';
+        if (inList == "()") { callback(false); return; }
+        var tableName = '[JN08].[dbo].[User]';
         var sql = "SELECT * FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("List", mssql.NVarChar, inList);
-        sql += " WHERE IDNumber in @List";
+        sql += " WHERE IDNumber in " + inList;
         request.query(sql, function (err, recordset) {
             connObj.close();
             if (err) {
@@ -71,11 +79,12 @@ exports.tryBlockedUsers = function (username, callback) {
             }
             else {
                 recordset.forEach(function (item) {
+                    var image = item.Picture === null ? null : new Buffer(JSON.parse(JSON.stringify(item.Picture)).data.map(decimalToHex).join(""), 'hex').toString('base64');
                     jsonObject.users.push({
                         'Username': item.Username,
                         'Name': item.Name,
                         'Surname': item.Surname,
-                        'Picture': item.Picture
+                        'Picture': image
                     });
                 });
                 callback(jsonObject);
@@ -88,7 +97,7 @@ exports.tryBlockedUsers = function (username, callback) {
             errorHandler(err, connectionError);
         }
         else {
-            getEvent();
+            getID();
         }
     });
 };
