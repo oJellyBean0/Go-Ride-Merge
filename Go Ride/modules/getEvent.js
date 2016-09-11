@@ -44,7 +44,8 @@ exports.tryGetEvent = function (eventName, callback) {
                         'StreetName': item.StreetName,
                         'Town': item.Town,
                         'Suburb': item.Suburb,
-                        'Date': item.Date
+                        'Date': item.Date,
+                        'CategoryID': item.CategoryID
                     });
                 });
                 getCategory();
@@ -55,6 +56,8 @@ exports.tryGetEvent = function (eventName, callback) {
         var tableName = '[JN08].[dbo].[EventCategory]';
         var sql = "SELECT CategoryDescr FROM " + tableName;
         var request = new mssql.Request(connObj);
+        request.input("CategoryID", mssql.UniqueIdentifier, jsonObject.events[0].CategoryID);
+        sql += "WHERE CategoryID=@CategoryID";
         request.query(sql, function (err, recordset) {
             connObj.close();
             if (err) {
