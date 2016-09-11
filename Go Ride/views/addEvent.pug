@@ -8,7 +8,14 @@ block content
       $( document ).ready(function() {
           $.post( "/event",{ searchTerm: "" }, function( data ) {
             console.log("posting")
-           
+            $.each( data.events, function( key, val ) {
+              $( "<a/>", {
+                      "class": "list-group-item",
+                      "href": "login",
+                      html: val.EventName
+                    }).appendTo( "#eventList" ); 
+            
+              });
           });
       });
     div.row
@@ -16,14 +23,28 @@ block content
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
+            script(type="text/javascript").
+              $( "#searchBar" ).on("input",function() {
+                $("#eventList").empty();
+                $.post( "/event",{ searchTerm: $("#searchBar").val() }, function( data ) {
+                  console.log("posting")
+                  $.each( data.events, function( key, val ) {
+                    $( "<a/>", {
+                            "class": "list-group-item",
+                            "href": "login",
+                            html: val.EventName
+                          }).appendTo( "#eventList" ); 
+                  
+                    });
+                });
+              });
             
           a(href="addEvent")
             button#addEvent.btn.btn-primary(type="addEvent") Add event
             p
           div
-            .list-group#eventList(style ="height: 500px; overflow: auto")
+            .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-                a.list-group-item(href='#') Event 1
                 
 
         div.col-md-2  
