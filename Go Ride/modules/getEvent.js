@@ -61,11 +61,7 @@ exports.tryGetEvent = function (eventName, callback) {
                 errorHandler(err, sql);
             }
             else {
-                recordset.forEach(function (item) {
-                    jsonObject.events[0].push({
-                        'CategoryDescr': item.CategoryDescr
-                    });
-                });
+                jsonObject.events[0].CategoryDescr = recordset[0].CategoryDescr;
                 callback(jsonObject);
             }
         });
