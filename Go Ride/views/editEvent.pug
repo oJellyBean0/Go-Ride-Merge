@@ -1,40 +1,52 @@
 extends layout
 
-
-
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    script(type="text/javascript").
+      $( document ).ready(function() {
+          $.post( "/getEvent",{ eventName: "" }, function( data ) {
+          })
+          $.post( "/event",{ searchTerm: "" }, function( data ) {
+            console.log("posting")
+            $.each( data.events, function( key, val ) {
+              $( "<a/>", {
+                      "class": "list-group-item",
+                      "href": "login",
+                      html: val.EventName
+                    }).appendTo( "#eventList" ); 
+            
+              });
+          });
+      });
     div.row
-      .form-group
+      form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
+            script(type="text/javascript").
+              $( "#searchBar" ).on("input",function() {
+                var savedSearchTerm = $("#searchBar").val();
+                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
+                  if (savedSearchTerm == $("#searchBar").val()){
+                    $("#eventList").empty();
+                    $.each( data.events, function( key, val ) {
+                        $( "<a/>", {
+                                "class": "list-group-item",
+                                "href": "login",
+                                html: val.EventName
+                              }).appendTo( "#eventList" ); 
+                      
+                        });
+                    
+                  }
+                });
+                  
+              });
           a(href="addEvent")
             button#addEvent.btn.btn-primary(type="addEvent") Add event
-          div
             p
-            
-            p This will be a list of the events.
-
-            p Event 1
-
-            p Event 2
-
-            p Event 3
-            
-            p Event 4
-
-            p Event 5
-
-            p Event 6
-
-            p Event 7
-            
-            p Event 8
-
-            p Event 9
-            
-            p Event 10
+          div
+            .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
         div.col-md-2  
         div.col-md-3
@@ -44,17 +56,21 @@ block content
           input#eventName.form-control(type="text", name="eventName", required)
           label(for="eventCategory") Event Catagory
           div.dropdown
-            button.btn.btn-default.dropdown-toggle(type="button" data-toggle="dropdown", required) Pick Event Catagory
+           select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
               span.caret
-            ul.dropdown-menu
-              li 
-                a(href="#") Catagory1
-              li
-                a(href="#") Catagory2
-              li
-                a(href="#") Catagory3
+              option(disabled, selected) Select Event
+           script(type="text/javascript").
+              $.getJSON( "/categories", function( data ) {
+                console.log(data.categories[0].CategoryDescr)
+                $.each( data.categories, function( key, val ) {
+                  $( "<option/>", {
+                    "class": "my-new-list",
+                    html: val.CategoryDescr
+                  }).appendTo( "#dropdownMenu" );   
+                });
+              });
 
-          label(for="streetNumORVenueName") Street Number or Venue Name
+          label(for="streetNumORVenueName") Street Number
           input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
           label(for="streetName") Street Name
           input#streetNum.form-control(type="text", name="streetNum", required)
