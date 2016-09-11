@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.getEvent = function (eventName, callback) {
+exports.tryGetEvent = function (eventName, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -70,7 +70,7 @@ exports.getEvent = function (eventName, callback) {
             }
         });
     };
-    
+
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) {
             errorHandler(err, connectionError);

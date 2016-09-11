@@ -164,7 +164,7 @@ exports.getCategories = function (req, res) {
 exports.getEvent = function (req, res) {
   var events = require("../modules/getEvent.js");
   var eventName = req.query.eventName;
-  events.trySearch(eventName, function (jsonObject) {
+  events.tryGetEvent(eventName, function (jsonObject) {
     res.json(jsonObject);
   });
 };
