@@ -74,7 +74,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('Username', mssql.NVarChar, username);
         request.input('Password', mssql.NVarChar, password);
         request.input('UserType', mssql.NChar, "Passenger");
-        request.input('Blocked', mssql.Bit, "0");
+        request.input('Blocked', mssql.Bit, false);
         if (picture) {
             fs.readFile(picture.path, function (err, data) {
                 if (err) { callback(false, err); return; }
