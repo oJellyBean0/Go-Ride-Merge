@@ -79,8 +79,8 @@ exports.editEvent = function (req, res) {
 exports.viewProfile = function (req, res) {
     res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
 };
-exports.ParticipatingRideshareGroups = function (req, res) {
-    res.render('ParticipatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
+exports.participatingRideshareGroups = function (req, res) {
+    res.render('participatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
 };
 
 
@@ -146,8 +146,8 @@ editEvent.tryEditEvent(eventName, eventCategory, streetNumORVenueName, streetNam
   };
 */
 
-exports.getEvents = function (req, res) {
-  var events = require("../modules/getEvent.js");
+exports.searchEvents = function (req, res) {
+  var events = require("../modules/searchEvents.js");
   var searchTerm = req.query.searchTerm;
   events.trySearch(searchTerm, function (jsonObject) {
     res.json(jsonObject);

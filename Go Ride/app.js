@@ -48,7 +48,7 @@ app.get('/contacts', routes.contacts);
 app.post('/contacts', routes.contacts);
 app.post('/userDelete', routes.userDelete);
 app.get('/userDelete', routes.userDelete);
-app.post('/event', routes.getEvents);
+app.post('/event', routes.searchEvents);
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
 app.post('/addEvent', routes.addEventpost);
@@ -57,7 +57,7 @@ app.get('/viewProfile', routes.viewProfile);
 
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
-app.get('/ParticipatingRideshareGroups', routes.ParticipatingRideshareGroups);
+app.get('/participatingRideshareGroups', routes.participatingRideshareGroups);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
