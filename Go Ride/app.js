@@ -49,6 +49,7 @@ app.post('/contacts', routes.contacts);
 app.post('/userDelete', routes.userDelete);
 app.get('/userDelete', routes.userDelete);
 app.post('/event', routes.searchEvents);
+app.post('/getEvent', routes.getEvent);
 app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
 app.post('/addEvent', routes.addEventpost);

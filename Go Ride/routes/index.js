@@ -44,11 +44,11 @@ exports.manageLocations = function (req, res) {
 };
 
 exports.contacts = function (req, res) {
-  res.render('contacts', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('contacts', { title: '', year: new Date().getFullYear(), message: '' });
 };
 
 exports.userDelete = function (req, res) {
-  res.render('userDelete', { title: '', year: new Date().getFullYear(), message: ''});
+  res.render('userDelete', { title: '', year: new Date().getFullYear(), message: '' });
 };
 // Needs to be uncommented and updated when back code is done.
 /*exports.registerpost = function (req, res) {
@@ -77,10 +77,10 @@ exports.editEvent = function (req, res) {
   res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '' });
 };
 exports.viewProfile = function (req, res) {
-    res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
+  res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
 };
 exports.participatingRideshareGroups = function (req, res) {
-    res.render('participatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
+  res.render('participatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
 };
 
 
@@ -117,10 +117,10 @@ exports.addEventpost = function (req, res) {
   var city = req.body.city;
   var province = req.body.province;
   var date = req.body.date;
-  var dateformat = date.substring(6,9)+"-"+date.substring(3,4)+"-"+date.substring(0,1);
+  var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
   var time = req.body.time;
   //merge date & time into "2016-09-13 00:00:00" format
-  var datetime = dateformat+time+"00";
+  var datetime = dateformat + time + "00";
   var username = req.cookie.JSONCookie('user');
   var register = require("../modules/addEvent.js");
   addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
@@ -157,6 +157,14 @@ exports.searchEvents = function (req, res) {
 exports.getCategories = function (req, res) {
   var categories = require("../modules/getCategories.js");
   categories.tryGetCategories(function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
+exports.getEvent = function (req, res) {
+  var events = require("../modules/getEvent.js");
+  var eventName = req.query.eventName;
+  events.trySearch(eventName, function (jsonObject) {
     res.json(jsonObject);
   });
 };
