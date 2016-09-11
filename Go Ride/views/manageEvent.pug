@@ -2,34 +2,47 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    script(type="text/javascript").
+      $( document ).ready(function() {
+          $.post( "/event",{ searchTerm: "" }, function( data ) {
+            console.log("posting")
+            $.each( data.events, function( key, val ) {
+              $( "<a/>", {
+                      "class": "list-group-item",
+                      "href": "login",
+                      html: val.EventName
+                    }).appendTo( "#eventList" ); 
+            
+              });
+          });
+      });
     div.row
       .form-group
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
+            script(type="text/javascript").
+              $( "#searchBar" ).on("input",function() {
+                var savedSearchTerm = $("#searchBar").val();
+                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
+                  if (savedSearchTerm == $("#searchBar").val()){
+                    $("#eventList").empty();
+                    $.each( data.events, function( key, val ) {
+                        $( "<a/>", {
+                                "class": "list-group-item",
+                                "href": "login",
+                                html: val.EventName
+                              }).appendTo( "#eventList" ); 
+                      
+                        });
+                  }
+                });
+                  
+              });
           a(href="addEvent")
             button#addEvent.btn.btn-primary(type="addEvent") Add event
           p
           div
-            .list-group(style ="height: 500px; overflow: auto")
-                a.list-group-item(href='#') Event 1
-                a.list-group-item(href='#') Event 2
-                a.list-group-item(href='#') Event 3
-                a.list-group-item(href='#') Event 4
-                a.list-group-item(href='#') Event 5
-                a.list-group-item(href='#') Event 6
-                a.list-group-item(href='#') Event 7
-                a.list-group-item(href='#') Event 8
-                a.list-group-item(href='#') Event 9
-                a.list-group-item(href='#') Event 10
-                a.list-group-item(href='#') Event 11
-                a.list-group-item(href='#') Event 12
-                a.list-group-item(href='#') Event 13
-                a.list-group-item(href='#') Event 14
-                a.list-group-item(href='#') Event 15
-                a.list-group-item(href='#') Event 16
-                a.list-group-item(href='#') Event 17
-                a.list-group-item(href='#') Event 18
-                a.list-group-item(href='#') Event 19
-                a.list-group-item(href='#') Event 20
+            .list-group#eventList(style ="max-height: 500px; overflow: auto")
+                
         
