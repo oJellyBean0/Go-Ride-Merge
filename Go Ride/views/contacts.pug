@@ -51,9 +51,9 @@ block content
                         .clearfix
 
     .col-md-6
-        div.modal-dialog(style="padding-top:0px")
+        form.div.modal-dialog(id="unblockUser", name="unblockUser", method="post", action="", autocomplete="off", enctype="text/plain", style="padding-top:0px")
             div.modal-header(style="padding-top:0px; margin-top:0px;")
-                h2(style="padding-top:0px; margin-top:0px") *Name of selected user*
+                h2(style="padding-top:0px; margin-top:0px", id="unblockUserHeading") *Name of selected user*
             div.modal-body
                 br
                 label Would you like to unblock this user?
