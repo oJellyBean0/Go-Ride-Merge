@@ -2,47 +2,16 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(type="text/javascript").
-      $( document ).ready(function() {
-          $.post( "/event",{ searchTerm: "" }, function( data ) {
-            console.log("posting")
-            $.each( data.events, function( key, val ) {
-              $( "<a/>", {
-                      "class": "list-group-item",
-                      "href": "login",
-                      html: val.EventName
-                    }).appendTo( "#eventList" ); 
-            
-              });
-          });
-      });
+    script(src = "/javascripts/eventSearchBar.js")
+      
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
-            script(type="text/javascript").
-              $( "#searchBar" ).on("input",function() {
-                var savedSearchTerm = $("#searchBar").val();
-                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
-                  if (savedSearchTerm == $("#searchBar").val()){
-                    $("#eventList").empty();
-                    $.each( data.events, function( key, val ) {
-                        $( "<a/>", {
-                                "class": "list-group-item",
-                                "href": "login",
-                                html: val.EventName
-                              }).appendTo( "#eventList" ); 
-                      
-                        });
-                    
-                  }
-                });
-                  
-              });
-            
+
           a(href="addEvent")
-            button#addEvent.btn.btn-primary(type="addEvent") Add event
+            button#addEvent.btn.btn-primary(type="button") Add event
             p
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")
