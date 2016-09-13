@@ -155,10 +155,18 @@ exports.getEvent = function (req, res) {
   });
 };
 
-exports.getBlockedUsers = function (req,res){
+exports.getBlockedUsers = function (req, res) {
   var users = require("../modules/blockedUsers.js");
   var username = cookie.parse(req.headers.cookie).user;
   users.tryBlockedUsers(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
+exports.getLocations = function (req, res) {
+  var locations = require("../modules/getLocations.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  locations.tryGetLocations(username, function (jsonObject) {
     res.json(jsonObject);
   });
 };
