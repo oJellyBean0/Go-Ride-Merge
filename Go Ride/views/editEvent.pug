@@ -4,7 +4,7 @@ block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     script(type="text/javascript").
       $( document ).ready(function() {
-          $.post( "/getEvent",{ eventName: "" }, function( data ) {
+          $.post( "/getEvent",{ eventName: "Test1" }, function( data ) {
           })
           $.post( "/event",{ searchTerm: "" }, function( data ) {
             console.log("posting")
