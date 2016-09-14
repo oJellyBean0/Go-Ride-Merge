@@ -1,6 +1,8 @@
 extends layout
 block head
-    script(src='/javascripts/manageLocations.js')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/manageLocations.css')
+    meta(name='viewport', content='initial-scale=1.0, user-scalable=no')
+    meta(charset='utf-8')
 block content
     
     div.col-md-5
@@ -11,7 +13,7 @@ block content
                 h2 Saved Locations:
             form.div.modal-body(id="savedLocations")
                 .input-group
-                    input.form-control(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="addLocationInput")
+                    input.controls(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="pac-input")
                     span.input-group-btn
                         button.btn.btn-default(type='button') Add
                 br
@@ -65,7 +67,7 @@ block content
     
     .modal#modalEdit(tabindex='-1', role='dialog', aria-labelledby='modalEditLabel1', aria-hidden='true')
         .modal-dialog(role='document')
-            .modal-content
+            form.modal-content(id="editLocations", name="editLocations", method="post", action="", autocomplete="on", enctype="text/plain")
                 .modal-header
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') &times;         
@@ -73,32 +75,32 @@ block content
                 .modal-body
                     div.modal-dialog(style="padding-top:0px")
                         div.modal-header
-                            h2 *place name goes here*
+                            h2(id="headingEditLocation") *place name goes here*
                         div.modal-body
                             br
                             div.row
                                 div.col-md-3
-                                    label(for="streetNumber") Street Number:
+                                    label(for="streetNumberInput") Street Number:
                                 div.col-md-4
-                                    input#streetNumber.form-control(type="text", name="streetNumber")
+                                    input.form-control(type="text", name="streetNumberInput", id="streetNumberInput")
                             br
                             div.row
                                 div.col-md-3
-                                    label(for="streetName") Street Name:
+                                    label(for="streetNameInput") Street Name:
                                 div.col-md-4
-                                    input#streetName.form-control(type="text", name="streetName")
+                                    input.form-control(type="text", name="streetNameInput", id="streetNameInput")
                             br
                             div.row
                                 div.col-md-3
-                                    label(for="suburb") Suburb:
+                                    label(for="suburbInput") Suburb:
                                 div.col-md-4
-                                    input#suburb.form-control(type="text", name="suburb")
+                                    input.form-control(type="text", name="suburbInput", id="suburbInput")
                             br
                             div.row
                                 div.col-md-3
-                                    label(for="city") City:
+                                    label(for="cityInput") City:
                                 div.col-md-4
-                                    input#city.form-control(type="text", name="city")       
+                                    input.form-control(type="text", name="cityInput", id="cityInput")       
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
@@ -107,14 +109,21 @@ block content
 
     #modalDelete.modal.fade
         .modal-dialog
-            .modal-content
+            form.modal-content(id="deleteLocation", name="deleteLocation", method="post", action="", autocomplete="on", enctype="text/plain")
                 .modal-body
                     button.close(type='button', data-dismiss='modal') &times;
                     |         Are you sure you would like to delete this location?
                 // dialog buttons
                 .modal-footer
                     button.btn(type='button', data-dismiss='modal') Cancel
-                    button.btn.btn-primary(type='button') Delete
+                    button.btn.btn-primary(type='button', id="acceptDeleteLocation") Delete
+    .col-md-12
+        br
+        div(id="map")
+
+block scripts
+    script(src='/javascripts/manageLocations.js')
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBfLDPhDXlPR1BEv4xFjUPN5WYZ4OJhb1U&libraries=places&callback=initAutocomplete', async='', defer='')
 
 
     

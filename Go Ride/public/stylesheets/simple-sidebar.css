@@ -68,6 +68,13 @@
     line-height: 40px;
 }
 
+                                                                    /*styling icons*/
+.sidebar-nav li i{                                         
+    text-indent: 20px;
+    line-height: 40px;
+    float: left;
+}
+
 .sidebar-nav li a {
     display: block;
     text-decoration: none;

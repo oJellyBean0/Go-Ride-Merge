@@ -1,4 +1,4 @@
-﻿html
+html
   head
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1.0, shrink-to-fit=no')
@@ -20,28 +20,24 @@
           li.sidebar-brand
             a(href='/') Go Ride
           li
-            a(href='/login') Login
+            span
+              i.material-icons(style="font-size:36;") account_box
+              a(href='/login') Login
           li
             span
               i.material-icons(style="font-size:36;") account_box
               a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
               ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
-                ul
+                li
                   span
-                    i.material-icons(style="font-size:36;") info_outline
                     a(href='/userDetails') User Details
-                ul
-                  span
-                    i.material-icons(style="font-size:36;") location_on
-                    a(href='/manageLocations') Locations
-                ul
-                  span
-                    i.material-icons(style="font-size:36;") block
-                    a(href='/contacts') Blocked Users
-                ul
-                  span
-                    i.material-icons(style="font-size:36;") delete_forever
-                    a(href='/userDelete') Delete User
+                li
+                  i.material-icons(style="font-size:36;") account_box
+                  a(href='/manageLocations') Locations
+                li
+                  a(href='/contacts') Blocked Users
+                li
+                  a(href='/userDelete') Delete User
           li
             a(href='/manageEvent') Events
           li

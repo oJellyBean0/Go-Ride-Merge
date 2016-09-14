@@ -59,6 +59,7 @@ app.get('/blocked', routes.getBlockedUsers);
 //app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
 app.get('/participatingRideshareGroups', routes.participatingRideshareGroups);
+app.get('/getLocations', routes.getLocations);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
