@@ -1,14 +1,15 @@
+var createItem = function (key, val) {
+    $("<a/>", {
+        "class": "list-group-item",
+        "href": "editEvent?eventName=" + val.EventName,
+        html: val.EventName
+    }).appendTo("#eventList");
+};
+
 $(document).ready(function () {
     $.post("/event", { searchTerm: "" }, function (data) {
-        console.log("posting")
-        $.each(data.events, function (key, val) {
-            $("<a/>", {
-                "class": "list-group-item",
-                "href": "login",
-                html: val.EventName
-            }).appendTo("#eventList");
-
-        });
+        console.log("posting");
+        $.each(data.events, createItem);
     });
 });
 $("#searchBar").on("input", function () {
@@ -16,15 +17,7 @@ $("#searchBar").on("input", function () {
     $.post("/event", { searchTerm: savedSearchTerm }, function (data) {
         if (savedSearchTerm == $("#searchBar").val()) {
             $("#eventList").empty();
-            $.each(data.events, function (key, val) {
-                $("<a/>", {
-                    "class": "list-group-item",
-                    "href": "login",
-                    html: val.EventName
-                }).appendTo("#eventList");
-
-            });
-
+            $.each(data.events, createItem);
         }
     });
 });

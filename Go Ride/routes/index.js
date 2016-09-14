@@ -61,7 +61,7 @@ exports.addEvent = function (req, res) {
   res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'e' });
 };
 exports.editEvent = function (req, res) {
-  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '' });
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '' , event: req.query.eventName});
 };
 exports.viewProfile = function (req, res) {
   res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
@@ -149,7 +149,7 @@ exports.getCategories = function (req, res) {
 
 exports.getEvent = function (req, res) {
   var events = require("../modules/getEvent.js");
-  var eventName = req.query.eventName;
+  var eventName = req.body.eventName;
   events.tryGetEvent(eventName, function (jsonObject) {
     res.json(jsonObject);
   });
