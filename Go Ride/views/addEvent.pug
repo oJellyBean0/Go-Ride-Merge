@@ -3,8 +3,7 @@ extends layout
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     script(type="text/javascript").
-      $( document ).ready(function() {
-          $.post( "/event",{ searchTerm: "" }, function( data ) {
+      var searchPost = function( data ) {
             console.log("posting")
             $.each( data.events, function( key, val ) {
               $( "<a/>", {
@@ -14,6 +13,9 @@ block content
                     }).appendTo( "#eventList" ); 
             
               });
+      };
+      $( document ).ready(function() {
+          $.post( "/event",{ searchTerm: "" }, searchPost;
           });
       });
     div.row
