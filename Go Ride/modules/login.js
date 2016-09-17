@@ -21,23 +21,19 @@ exports.tryLogin = function (username, password, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var tableName = '[JN08].[dbo].[user]';
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
+        if (err) errorHandler(err, connectionError);
         else {
             var sql = 'SELECT Password FROM ' + tableName;
             var request = new mssql.Request(connObj);
             request.input('Username', mssql.NVarChar, username);
             sql += 'Where Username=@Username';
             request.query(sql, function (err, recordset) {
-                connObj.close();
-                if (err) {
-                    errorHandler(err, sql);
-                }
+                if (err) errorHandler(err, sql);
                 else {
                     if (recordset.length < 1 || recordset[0].Password != password) {
                         err = "Incorrect Username or Password";
@@ -45,6 +41,7 @@ exports.tryLogin = function (username, password, callback) {
                     }
                     else {
                         callback(true);
+                        connObj.close();
                     }
                 }
             });

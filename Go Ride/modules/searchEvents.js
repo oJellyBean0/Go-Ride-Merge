@@ -20,13 +20,12 @@ exports.trySearch = function (searchTerm, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var tableName = '[JN08].[dbo].[Event]';
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
+        if (err) errorHandler(err, connectionError);
         else {
             var sql = 'SELECT Top 20 *, priority = CASE ';
             var request = new mssql.Request(connObj);
@@ -38,10 +37,7 @@ exports.trySearch = function (searchTerm, callback) {
             sql += ' Where EventName Like @frontmatch Or EventName Like @fullmatch ';
             sql += 'Order By priority, EventName';
             request.query(sql, function (err, recordset) {
-                connObj.close();
-                if (err) {
-                    errorHandler(err, sql);
-                }
+                if (err) errorHandler(err, sql);
                 else {
                     var jsonObject = {
                         events: []
@@ -53,6 +49,7 @@ exports.trySearch = function (searchTerm, callback) {
                         });
                     });
                     callback(jsonObject);
+                    connObj.close();
                 }
             });
         }

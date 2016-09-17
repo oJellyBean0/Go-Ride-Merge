@@ -20,6 +20,7 @@ exports.tryEditEvent = function (eventID, eventName, eventCategory, streetNumORV
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
 
@@ -30,12 +31,8 @@ exports.tryEditEvent = function (eventID, eventName, eventCategory, streetNumORV
         request.input("CategoryDescr", mssql.Text, eventCategory);
         sql += " WHERE CategoryDescr=@CategoryDescr";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                editEvent(recordset[0].CategoryID);
-            }
+            if (err) errorHandler(err, sql);
+            else editEvent(recordset[0].CategoryID);
         });
     };
 
@@ -62,21 +59,16 @@ exports.tryEditEvent = function (eventID, eventName, eventCategory, streetNumORV
         sql += ' Date=@Date';
         sql += ' WHERE EventID=@EventID';
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 callback(true);
+                connObj.close();
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            getCategory();
-        }
+        if (err) errorHandler(err, connectionError);
+        else getCategory();
     });
 };

@@ -20,6 +20,7 @@ exports.tryGetEvent = function (eventName, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var jsonObject = {
@@ -33,9 +34,7 @@ exports.tryGetEvent = function (eventName, callback) {
         request.input("EventName", mssql.VarChar, eventName);
         sql += " WHERE EventName=@EventName";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 recordset.forEach(function (item) {
                     jsonObject.events.push({
@@ -60,23 +59,17 @@ exports.tryGetEvent = function (eventName, callback) {
         request.input("CategoryID", mssql.UniqueIdentifier, jsonObject.events[0].CategoryID);
         sql += "WHERE CategoryID=@CategoryID";
         request.query(sql, function (err, recordset) {
-            connObj.close();
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 jsonObject.events[0].CategoryDescr = recordset[0].CategoryDescr;
                 callback(jsonObject);
+                connObj.close();
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            getEvent();
-        }
+        if (err) errorHandler(err, connectionError);
+        else getEvent();
     });
 };

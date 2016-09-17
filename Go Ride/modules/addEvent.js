@@ -20,6 +20,7 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
 
@@ -30,12 +31,8 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                getCategory(recordset[0].IDNumber);
-            }
+            if (err) errorHandler(err, sql);
+            else getCategory(recordset[0].IDNumber);
         });
     };
 
@@ -46,12 +43,8 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         request.input("CategoryDescr", mssql.Text, eventCategory);
         sql += " WHERE CategoryDescr=@CategoryDescr";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                addEvent(IDNumber, recordset[0].CategoryID);
-            }
+            if (err) errorHandler(err, sql);
+            else addEvent(IDNumber, recordset[0].CategoryID);
         });
     };
 
@@ -70,21 +63,16 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         request.input("Date", mssql.SmallDateTime, datetime);
         sql += ' (EventID,EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Suburb,Province,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Province,@Date)';
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 callback(true);
+                connObj.close();
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            getID();
-        }
+        if (err) errorHandler(err, connectionError);
+        else getID();
     });
 };
