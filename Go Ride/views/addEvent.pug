@@ -2,47 +2,14 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(type="text/javascript").
-      var searchPost = function( data ) {
-            console.log("posting")
-            $.each( data.events, function( key, val ) {
-              $( "<a/>", {
-                      "class": "list-group-item",
-                      "href": "login",
-                      html: val.EventName
-                    }).appendTo( "#eventList" ); 
-            
-              });
-      };
-      $( document ).ready(function() {
-          $.post( "/event",{ searchTerm: "" }, searchPost;
-          });
-      });
+    script(src = "/javascripts/eventSearchBar.js")
+      
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
           div.col-md-8#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar")
-            script(type="text/javascript").
-              $( "#searchBar" ).on("input",function() {
-                var savedSearchTerm = $("#searchBar").val();
-                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
-                  if (savedSearchTerm == $("#searchBar").val()){
-                    $("#eventList").empty();
-                    $.each( data.events, function( key, val ) {
-                        $( "<a/>", {
-                                "class": "list-group-item",
-                                "href": "login",
-                                html: val.EventName
-                              }).appendTo( "#eventList" ); 
-                      
-                        });
-                    
-                  }
-                });
-                  
-              });
-            
+                        
           a(href="addEvent")
             button#addEvent.btn.btn-primary(type="addEvent") Add event
             p
@@ -59,16 +26,7 @@ block content
             select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
               span.caret
               option(disabled, selected) Select Event
-            script(type="text/javascript").
-              $.getJSON( "/categories", function( data ) {
-                console.log(data.categories[0].CategoryDescr)
-                $.each( data.categories, function( key, val ) {
-                  $( "<option/>", {
-                    "class": "my-new-list",
-                    html: val.CategoryDescr
-                  }).appendTo( "#dropdownMenu" );   
-                });
-              });
+              
             
 
           label(for="streetNumORVenueName") Street Number

@@ -2,110 +2,92 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    script(src = "/javascripts/eventSearchBar.js")
     script(type="text/javascript").
-      $( document ).ready(function() {
-          $.post( "/getEvent",{ eventName: "#{event}" }, function( data ) {
-            console.log(data);
-          })
-          $.post( "/event",{ searchTerm: "" }, function( data ) {
-            console.log("posting")
-            $.each( data.events, function( key, val ) {
-              $( "<a/>", {
-                      "class": "list-group-item",
-                      "href": "login",
-                      html: val.EventName
-                    }).appendTo( "#eventList" ); 
-            
-              });
+          $( document ).ready(function() {
+                $.post( "/getEvent",{ eventName: "#{event}" }, function( data ) {
+                  console.log(data.events[0]);
+                  var streetNum = data.events[0].StreetNumber;
+                  var streetName = data.events[0].StreetName;
+                  var town = data.events[0].Town;
+                  var suburb = data.events[0].Suburb;
+                  var category = data.events[0].CategoryDescr;
+                  var dateAndTime = data.events[0].Date;
+                  var arr = dateAndTime.split('T');
+                  var date = arr[0];
+                  var timeArr = arr[1].split(':');
+                  var time = timeArr[0]+':'+timeArr[1];
+                  $('#date').val(date);
+                  $('#time').val(time);
+                  $('#eventName').val("#{event}");
+                  $('#streetNumORVenueName').val(streetNum);
+                  $('#streetName').val(streetName);
+                  $('#suburb').val(suburb);
+                  $('#city').val(town);
+                  $('#dropdownMenu').val(category);
+                })
           });
-      });
+          
     div.row
-      form.form-group(action ="", method = "post")
-        div.col-md-4.inline.pull-left
-          div.col-md-8#searchBarDiv
-            input#searchBar.form-control(type="text", name="searchBar")
-            script(type="text/javascript").
-              $( "#searchBar" ).on("input",function() {
-                var savedSearchTerm = $("#searchBar").val();
-                $.post( "/event",{ searchTerm: savedSearchTerm }, function( data ) {
-                  if (savedSearchTerm == $("#searchBar").val()){
-                    $("#eventList").empty();
-                    $.each( data.events, function( key, val ) {
-                        $( "<a/>", {
-                                "class": "list-group-item",
-                                "href": "login",
-                                html: val.EventName
-                              }).appendTo( "#eventList" ); 
-                      
-                        });
-                    
-                  }
-                });
-                  
-              });
-          a(href="addEvent")
-            button#addEvent.btn.btn-primary(type="addEvent") Add event
-            p
-          div
-            .list-group#eventList(style ="max-height: 500px; overflow: auto")
+    form.form-group(action ="", method = "post")
+      div.col-md-4.inline.pull-left
+        div.col-md-8#searchBarDiv
+          input#searchBar.form-control(type="text", name="searchBar")
 
-        div.col-md-2  
-        div.col-md-3
-          //The text boxes underneath need to recieve data from the database. Agnes
-          h3#addEventHeading Event Details
-          label(for="eventName") Event Name
-          input#eventName.form-control(type="text", name="eventName", required)
-          label(for="eventCategory") Event Catagory
-          div.dropdown
-           select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
-              span.caret
-              option(disabled, selected) Select Event
-           script(type="text/javascript").
-              $.getJSON( "/categories", function( data ) {
-                console.log(data.categories[0].CategoryDescr)
-                $.each( data.categories, function( key, val ) {
-                  $( "<option/>", {
-                    "class": "my-new-list",
-                    html: val.CategoryDescr
-                  }).appendTo( "#dropdownMenu" );   
-                });
-              });
+        a(href="addEvent")
+          button#addEvent.btn.btn-primary(type="addEvent") Add event
+          p
+        div
+          .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-          label(for="streetNumORVenueName") Street Number
-          input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
-          label(for="streetName") Street Name
-          input#streetNum.form-control(type="text", name="streetNum", required)
-          label(for="suburb") Suburb
-          input#suburb.form-control(type="text", name="suburb", required)
-          label(for="city") City
-          input#city.form-control(type="text", name="city", required)
-          label(for="province") Province
-          input#province.form-control(type="text", name="province", required)
-          label(for="date") Date (dd/mm/yyyy)
-          input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
-          label(for="time") Time (hh:mm)
-          input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
+      div.col-md-2  
+      div.col-md-3
+        //The text boxes underneath need to recieve data from the database. Agnes
+        h3#addEventHeading Event Details
+        label(for="eventName") Event Name
+        input#eventName.form-control(type="text", name="eventName", required)
+        label(for="eventCategory") Event Catagory
+        div.dropdown
+          select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
+            span.caret
+            option(disabled, selected) Select Event
+        
 
-          div
-            span.pull-right
-                button#edit.btn.btn-primary(type="submit") Edit
-            span
-                button#delete.btn.btn-primary(type="submit", data-toggle="modal", data-target="#myModal") Delete
-                button#cancel.btn.btn-primary(type="button") Cancel
-                div.modal.fade(id="myModal" role="dialog")
-                  div.modal-dialog
+        label(for="streetNumORVenueName") Street Number
+        input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
+        label(for="streetName") Street Name
+        input#streetName.form-control(type="text", name="streetNum", required)
+        label(for="suburb") Suburb
+        input#suburb.form-control(type="text", name="suburb", required)
+        label(for="city") City
+        input#city.form-control(type="text", name="city", required)
+        label(for="province") Province
+        input#province.form-control(type="text", name="province", required)
+        label(for="date") Date (dd/mm/yyyy)
+        input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
+        label(for="time") Time (hh:mm)
+        input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
 
-                    div.modal-content
-                      div.modal-header
-                        button.close(type="button" data-dismiss="modal") &times;
-                        h4.modal-title Delete Event
+        div
+          span.pull-right
+              button#edit.btn.btn-primary(type="submit") Edit
+          span
+              button#delete.btn.btn-primary(type="submit", data-toggle="modal", data-target="#myModal") Delete
+              button#cancel.btn.btn-primary(type="button") Cancel
+              div.modal.fade(id="myModal" role="dialog")
+                div.modal-dialog
 
-                      div.modal-body
-                        p Are you sure you would like to delete this event?
+                  div.modal-content
+                    div.modal-header
+                      button.close(type="button" data-dismiss="modal") &times;
+                      h4.modal-title Delete Event
 
-                      div.modal-footer
-                        button.btn.btn-default(type="button"  data-dismiss="modal") Close
-            span.pull-left
-                a(href="manageEvent")
+                    div.modal-body
+                      p Are you sure you would like to delete this event?
+
+                    div.modal-footer
+                      button.btn.btn-default(type="button"  data-dismiss="modal") Close
+          span.pull-left
+              a(href="manageEvent")
            
                 

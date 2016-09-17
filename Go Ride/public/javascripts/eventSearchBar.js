@@ -7,6 +7,7 @@ var createItem = function (key, val) {
 };
 
 $(document).ready(function () {
+    
     $.post("/event", { searchTerm: "" }, function (data) {
         console.log("posting");
         $.each(data.events, createItem);
@@ -21,4 +22,14 @@ $("#searchBar").on("input", function () {
         }
     });
 });
+
+$.getJSON( "/categories", function( data ) {
+                console.log(data.categories[0].CategoryDescr)
+                $.each( data.categories, function( key, val ) {
+                  $( "<option/>", {
+                    "class": "my-new-list",
+                    html: val.CategoryDescr
+                  }).appendTo( "#dropdownMenu" );   
+                });
+              });
 
