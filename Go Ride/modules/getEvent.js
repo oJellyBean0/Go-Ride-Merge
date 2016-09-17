@@ -45,6 +45,7 @@ exports.tryGetEvent = function (eventName, callback) {
                         'Town': item.Town,
                         'Suburb': item.Suburb,
                         'Date': item.Date,
+                        'Province': item.Province,
                         'CategoryID': item.CategoryID
                     });
                 });
