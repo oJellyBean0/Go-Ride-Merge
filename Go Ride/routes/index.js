@@ -61,7 +61,7 @@ exports.addEvent = function (req, res) {
   res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'e' });
 };
 exports.editEvent = function (req, res) {
-  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '' , event: req.query.eventName});
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName });
 };
 exports.viewProfile = function (req, res) {
   res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
@@ -103,9 +103,9 @@ exports.addEventpost = function (req, res) {
   var city = req.body.city;
   var province = req.body.province;
   var date = req.body.date;
-  var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
   var time = req.body.time;
   //merge date & time into "2016-09-13 00:00:00" format
+  var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
   var datetime = dateformat + time + "00";
   var username = cookie.parse(req.headers.cookie).user;
   var register = require("../modules/addEvent.js");
@@ -115,22 +115,26 @@ exports.addEventpost = function (req, res) {
 };
 
 
-/* exports.editEventpost = function (req, res) {
-var eventName = req.body.eventName;
-var eventCategory = req.body.eventCategory;
-var streetNumORVenueName = req.body.streetNumORVenueName;
-ver streetName = req.body.streetName;
-var suburb = req.body.suburb;
-var city = req.body.city;
-var province = req.body.province;
-var date = req.body.date;
-var time = req.body.time;
-var register = require("../modules/editEvent.js");
-editEvent.tryEditEvent(eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, date, time, function (success, error) {
-  
-    });
-  };
-*/
+exports.editEventpost = function (req, res) {
+  var eventID = req.body.eventID;
+  var eventName = req.body.eventName;
+  var eventCategory = req.body.eventCategory;
+  var streetNumORVenueName = req.body.streetNumORVenueName;
+  var streetName = req.body.streetName;
+  var suburb = req.body.suburb;
+  var city = req.body.city;
+  var province = req.body.province;
+  var date = req.body.date;
+  var time = req.body.time;
+  //merge date & time into "2016-09-13 00:00:00" format
+  var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
+  var datetime = dateformat + time + "00";
+  var register = require("../modules/editEvent.js");
+  editEvent.tryEditEvent(eventID, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+
+  });
+};
+
 
 exports.searchEvents = function (req, res) {
   var events = require("../modules/searchEvents.js");
