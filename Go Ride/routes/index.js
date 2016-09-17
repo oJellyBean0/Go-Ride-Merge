@@ -107,7 +107,7 @@ exports.addEventpost = function (req, res) {
   var time = req.body.time;
   //merge date & time into "2016-09-13 00:00:00" format
   var datetime = dateformat + time + "00";
-  var username = req.cookie.JSONCookie('user');
+  var username = cookie.parse(req.headers.cookie).user;
   var register = require("../modules/addEvent.js");
   addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
 
