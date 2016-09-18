@@ -135,6 +135,14 @@ exports.editEventpost = function (req, res) {
   });
 };
 
+exports.deleteEvent = function (req, res) {
+  var events = require("../modules/deleteEvent.js");
+  var eventID = req.body.eventID;
+  events.tryDeleteEvent(eventID, function (success, error) {
+    
+  });
+};
+
 
 exports.searchEvents = function (req, res) {
   var events = require("../modules/searchEvents.js");

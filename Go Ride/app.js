@@ -54,6 +54,7 @@ app.get('/manageEvent', routes.manageEvent);
 app.get('/addEvent', routes.addEvent);
 app.post('/addEvent', routes.addEventpost);
 app.get('/editEvent', routes.editEvent);
+app.post('/deleteEvent', routes.deleteEvent);
 app.get('/viewProfile', routes.viewProfile);
 app.get('/blocked', routes.getBlockedUsers);
 app.post('/editEvent', routes.editEventpost);
