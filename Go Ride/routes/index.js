@@ -23,7 +23,6 @@ exports.login = function (req, res) {
 exports.loginpost = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
-  var err;
   var login = require('../modules/login.js');
   login.tryLogin(username, password, function (success, err) {
     if (success) {
