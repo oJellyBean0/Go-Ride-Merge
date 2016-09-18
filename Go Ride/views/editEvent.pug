@@ -88,8 +88,15 @@ block content
                       p Are you sure you would like to delete this event?
 
                     div.modal-footer
-                      button.btn.btn-default(type="submit" ) Delete
+                      button.btn.btn-default#deleteEvent(type="submit" ) Delete
                       button.btn.btn-default(type="button"  data-dismiss="modal") Close
+                      script(type="text/javascript").
+                        $( "#deleteEvent").onclick(function() {
+                              $.post( "/deleteEvent",{ eventID: "#{eventID}" }, function( data ) {
+                                console.log(data.events[0]);
+                                
+                              })
+                        });
           span.pull-left
               a(href="manageEvent")
            

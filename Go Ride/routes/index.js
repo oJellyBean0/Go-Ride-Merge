@@ -61,7 +61,7 @@ exports.addEvent = function (req, res) {
   res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'e' });
 };
 exports.editEvent = function (req, res) {
-  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName });
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName, eventID: req.query.eventID,  });
 };
 exports.viewProfile = function (req, res) {
   res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
