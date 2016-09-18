@@ -74,7 +74,7 @@ block content
           span.pull-right
               button#edit.btn.btn-primary(type="submit") Edit
           span
-              button#delete.btn.btn-primary(type="submit", data-toggle="modal", data-target="#myModal") Delete
+              button#delete.btn.btn-primary(type="button", data-toggle="modal", data-target="#myModal") Delete
               button#cancel.btn.btn-primary(type="button") Cancel
               div.modal.fade(id="myModal" role="dialog")
                 div.modal-dialog
@@ -88,6 +88,7 @@ block content
                       p Are you sure you would like to delete this event?
 
                     div.modal-footer
+                      button.btn.btn-default(type="submit" ) Delete
                       button.btn.btn-default(type="button"  data-dismiss="modal") Close
           span.pull-left
               a(href="manageEvent")
