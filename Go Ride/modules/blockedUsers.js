@@ -28,6 +28,7 @@ exports.tryBlockedUsers = function (username, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var jsonObject = {
@@ -41,12 +42,8 @@ exports.tryBlockedUsers = function (username, callback) {
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                getBlocked(recordset[0].IDNumber);
-            }
+            if (err) errorHandler(err, sql);
+            else getBlocked(recordset[0].IDNumber);
         });
     };
 
@@ -57,12 +54,8 @@ exports.tryBlockedUsers = function (username, callback) {
         request.input("BlockerID", mssql.NVarChar, IDNumber);
         sql += " WHERE BlockerID=@BlockerID";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                getUsers("(\'" + recordset.map(function (item) { return item.BlockedID; }).join("\',\'") + "\')");
-            }
+            if (err) errorHandler(err, sql);
+            else getUsers("(\'" + recordset.map(function (item) { return item.BlockedID; }).join("\',\'") + "\')");
         });
     };
 
@@ -73,10 +66,7 @@ exports.tryBlockedUsers = function (username, callback) {
         var request = new mssql.Request(connObj);
         sql += " WHERE IDNumber in " + inList;
         request.query(sql, function (err, recordset) {
-            connObj.close();
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 recordset.forEach(function (item) {
                     var image = item.Picture === null ? null : new Buffer(JSON.parse(JSON.stringify(item.Picture)).data.map(decimalToHex).join(""), 'hex').toString('base64');
@@ -88,16 +78,13 @@ exports.tryBlockedUsers = function (username, callback) {
                     });
                 });
                 callback(jsonObject);
+                connObj.close();
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            getID();
-        }
+        if (err) errorHandler(err, connectionError);
+        else getID();
     });
 };

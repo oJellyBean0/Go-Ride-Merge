@@ -20,21 +20,17 @@ exports.tryGetCategories = function (callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var tableName = '[JN08].[dbo].[EventCategory]';
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
+        if (err) errorHandler(err, connectionError);
         else {
             var sql = "SELECT CategoryDescr FROM " + tableName;
             var request = new mssql.Request(connObj);
             request.query(sql, function (err, recordset) {
-                connObj.close();
-                if (err) {
-                    errorHandler(err, sql);
-                }
+                if (err) errorHandler(err, sql);
                 else {
                     var jsonObject = {
                         categories: []
@@ -45,6 +41,7 @@ exports.tryGetCategories = function (callback) {
                         });
                     });
                     callback(jsonObject);
+                    connObj.close();
                 }
             });
         }

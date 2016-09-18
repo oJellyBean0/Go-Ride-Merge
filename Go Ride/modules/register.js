@@ -32,14 +32,11 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('IDNumber', mssql.Char, IDnumber);
         sql += ' Where IDNumber=@IDNumber';
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 if (recordset.length > 0) {
                     err = "ID Number is already registered";
                     callback(false, err);
-                    return;
                 } else UserTest();
             }
         });
@@ -51,14 +48,11 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('Username', mssql.NVarChar, username);
         sql += ' Where Username=@Username';
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 if (recordset.length > 0) {
                     err = "Username is taken";
                     callback(false, err);
-                    return;
                 } else UserInsert();
             }
         });
@@ -82,23 +76,15 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 fs.unlink(picture.path);
                 sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
                 request.query(sql, function (err, recordset) {
-                    if (err) {
-                        errorHandler(err, sql);
-                    }
-                    else {
-                        LocationInsert();
-                    }
+                    if (err) errorHandler(err, sql);
+                    else LocationInsert();
                 });
             });
         } else {
             sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
             request.query(sql, function (err, recordset) {
-                if (err) {
-                    errorHandler(err, sql);
-                }
-                else {
-                    LocationInsert();
-                }
+                if (err) errorHandler(err, sql);
+                else LocationInsert();
             });
         }
     };
@@ -114,23 +100,16 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('Town', mssql.NVarChar, town);
         request.input('Province', mssql.NVarChar, province);
         request.query(sql + '(IDNumber, StreetNumber, StreetName, Suburb, Town, Province) VALUES (@IDNumber, @StreetNumber, @StreetName, @Suburb, @Town, @Province)', function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 callback(true);
                 connObj.close();
-                return;
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            IDTest();
-        }
+        if (err) errorHandler(err, connectionError);
+        else IDTest();
     });
 };

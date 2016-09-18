@@ -20,6 +20,7 @@ exports.tryGetLocations = function (username, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
     var jsonObject = {
@@ -33,12 +34,8 @@ exports.tryGetLocations = function (username, callback) {
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
-            if (err) {
-                errorHandler(err, sql);
-            }
-            else {
-                getLocations(recordset[0].IDNumber);
-            }
+            if (err) errorHandler(err, sql);
+            else getLocations(recordset[0].IDNumber);
         });
     };
 
@@ -49,10 +46,7 @@ exports.tryGetLocations = function (username, callback) {
         request.input("IDNumber", mssql.Char, IDNumber);
         sql += "WHERE IDNumber=@IDNumber";
         request.query(sql, function (err, recordset) {
-            connObj.close();
-            if (err) {
-                errorHandler(err, sql);
-            }
+            if (err) errorHandler(err, sql);
             else {
                 recordset.forEach(function (item) {
                     jsonObject.locations.push({
@@ -65,16 +59,13 @@ exports.tryGetLocations = function (username, callback) {
                     });
                 });
                 callback(jsonObject);
+                connObj.close();
             }
         });
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
-        if (err) {
-            errorHandler(err, connectionError);
-        }
-        else {
-            getID();
-        }
+        if (err) errorHandler(err, connectionError);
+        else getID();
     });
 };
