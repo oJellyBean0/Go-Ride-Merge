@@ -11,6 +11,7 @@ block content
                   var streetName = data.events[0].StreetName;
                   var town = data.events[0].Town;
                   var suburb = data.events[0].Suburb;
+                  var province = data.events[0].Province;
                   var category = data.events[0].CategoryDescr;
                   var dateAndTime = data.events[0].Date;
                   var arr = dateAndTime.split('T');
@@ -23,6 +24,7 @@ block content
                   $('#streetNumORVenueName').val(streetNum);
                   $('#streetName').val(streetName);
                   $('#suburb').val(suburb);
+                  $('#province').val(province);
                   $('#city').val(town);
                   $('#dropdownMenu').val(category);
                 })
