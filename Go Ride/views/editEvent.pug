@@ -34,7 +34,7 @@ block content
     form.form-group(action ="", method = "post")
       div.col-md-4.inline.pull-left
         div.col-md-8#searchBarDiv
-          input#searchBar.form-control(type="text", name="searchBar")
+          input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
         a(href="addEvent")
           button#addEvent.btn.btn-primary(type="addEvent") Add event
@@ -70,7 +70,7 @@ block content
         label(for="time") Time (hh:mm)
         input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
 
-        div
+        div.form.form-group(action ="", method = "post")
           span.pull-right
               button#edit.btn.btn-primary(type="submit") Edit
           span
