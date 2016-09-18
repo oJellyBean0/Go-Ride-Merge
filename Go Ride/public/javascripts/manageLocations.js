@@ -1,27 +1,37 @@
-    $("#modalDelete").on("show", function() {    // wire up the OK button to dismiss the modal when shown
-        $("#modalDelete a.btn").on("click", function(e) {
-            console.log("button pressed");   // just as an example...
-            $("#modalDelete").modal('hide');     // dismiss the dialog
-        });
-    });
-    $("#modalDelete").on("hide", function() {    // remove the event listeners when the dialog is dismissed
-        $("#modalDelete a.btn").off("click");
-    });
-    
-    $("#modalDelete").on("hidden", function() {  // remove the actual elements from the DOM when fully hidden
-        $("#modalDelete").remove();
-    });
-    
-    $("#modalDelete").modal({                    // wire up the actual modal functionality and show the dialog
-      "backdrop"  : "static",
-      "keyboard"  : true,
-      "show"      : true                     // ensure the modal is shown immediately
-    });
+$("#details").hide();                                           //
+                                                                //
+$(".list-group-item").click(function(){                         // hides the details on the RHS
+    $("#details").show();                                       //
+});                                                             //
 
+    // Populate List .....................................................................................
 
+var createItem = function (key, val) {                                                //function - creates new list entry
+    $("<a/>", {
+        "class": "list-group-item",
+        "href": "manageLocation?locationName=" + val.AreaID,
+        html: val.AreaID
+    }).appendTo("#locationList");
+};
 
+$( document ).ready(function () {                                                      // populates the list
+    $.post("/manageLocations", { searchTerm: "" }, function (data) {
+        console.log("posting");
+        $.each(data.locations, createItem);
+    });
+});
 
-    //Google maps javascript api
+$("#pac-input").on("input", function () {                                              // 
+    var savedSearchTerm = $("#pac-input").val();
+    $.post("/manageLocations", { searchTerm: savedSearchTerm }, function (data) {
+        if (savedSearchTerm == $("#pac-input").val()) {
+            $("#locationList").empty();
+            $.each(data.locations, createItem);
+        }
+    });
+});
+
+    //Google maps javascript api .........................................................................................................
 
     // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
