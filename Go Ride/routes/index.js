@@ -110,9 +110,14 @@ exports.addEventpost = function (req, res) {
   var username = cookie.parse(req.headers.cookie).user;
   var register = require("../modules/addEvent.js");
   addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+      if (success) {
+        res.redirect('/manageEvent');
+      } else {
+          res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: error });
+        }
+      });
 
-  });
-};
+  };
 
 
 exports.editEventpost = function (req, res) {
@@ -131,8 +136,13 @@ exports.editEventpost = function (req, res) {
   var datetime = dateformat + time + "00";
   var register = require("../modules/editEvent.js");
   editEvent.tryEditEvent(eventID, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
-
-  });
+        if (success) {
+            res.redirect('/manageEvent');
+          } else {
+            res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: error });
+          }
+        });
+ 
 };
 
 exports.deleteEvent = function (req, res) {
