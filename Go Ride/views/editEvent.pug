@@ -91,7 +91,7 @@ block content
                       button.btn.btn-default#deleteEvent(type="submit" ) Delete
                       button.btn.btn-default(type="button"  data-dismiss="modal") Close
                       script(type="text/javascript").
-                        $( "#deleteEvent").onclick(function() {
+                        $( "#deleteEvent").click(function() {
                               $.post( "/deleteEvent",{ eventID: "#{eventID}" }, function( data ) {
                                 console.log(data.events[0]);
                                 

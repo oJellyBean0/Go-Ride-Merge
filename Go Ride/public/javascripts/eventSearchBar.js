@@ -1,11 +1,3 @@
-var createItem = function (key, val) {
-    $("<a/>", {
-        "class": "list-group-item",
-        "href": "editEvent?eventName=" + val.EventName,
-        html: val.EventName
-    }).appendTo("#eventList");
-};
-
 $(document).ready(function () {
     
     $.post("/event", { searchTerm: "" }, function (data) {
@@ -22,6 +14,13 @@ $("#searchBar").on("input", function () {
         }
     });
 });
+var createItem = function (key, val) {
+    $("<a/>", {
+        "class": "list-group-item",
+        "href": "editEvent?eventName=" + val.EventName,
+        html: val.EventName
+    }).appendTo("#eventList");
+};
 
 $.getJSON( "/categories", function( data ) {
                 console.log(data.categories[0].CategoryDescr)
