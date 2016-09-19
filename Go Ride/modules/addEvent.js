@@ -60,8 +60,8 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         request.input("Town", mssql.NVarChar, city);
         request.input("Suburb", mssql.NVarChar, suburb);
         request.input("Province", mssql.NVarChar, province);
-        request.input("Date", mssql.SmallDateTime, datetime);
-        sql += ' (EventID,EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Suburb,Province,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Province,@Date)';
+        request.input("Date", mssql.VarChar, datetime);
+        sql += ' (EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Suburb,Province,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Province,@Date)';
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {

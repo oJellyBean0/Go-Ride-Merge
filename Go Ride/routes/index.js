@@ -60,7 +60,7 @@ exports.addEvent = function (req, res) {
   res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: 'e' });
 };
 exports.editEvent = function (req, res) {
-  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName, eventID: req.query.eventID,  });
+  res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName, eventID: req.query.eventID, });
 };
 exports.viewProfile = function (req, res) {
   res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
@@ -77,8 +77,8 @@ exports.registerpost = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
   var picture = req.file;
-  var streetNumber = req.body.streetNum[0];
-  var streetName = req.body.streetNum[1];
+  var streetNumber = req.body.streetNum;
+  var streetName = req.body.streetName;
   var suburb = req.body.suburb;
   var province = req.body.province;
   var town = req.body.town;
@@ -104,20 +104,20 @@ exports.addEventpost = function (req, res) {
   var date = req.body.date;
   var time = req.body.time;
   //merge date & time into "2016-09-13 00:00:00" format
-  var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
-  var datetime = dateformat + time + "00";
+  // var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
+  var datetime = date + "T" + time + ":00";
   var username = cookie.parse(req.headers.cookie).user;
   var events = require("../modules/addEvent.js");
   events.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
 
-      if (success) {
-        res.redirect('/manageEvent');
-      } else {
-          res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: error });
-        }
-      });
+    if (success) {
+      res.redirect('/manageEvent');
+    } else {
+      res.render('addEvent', { title: 'Add Event', year: new Date().getFullYear(), message: error });
+    }
+  });
 
-  };
+};
 
 
 exports.editEventpost = function (req, res) {
@@ -136,20 +136,20 @@ exports.editEventpost = function (req, res) {
   var datetime = dateformat + time + "00";
   var events = require("../modules/editEvent.js");
   events.tryEditEvent(eventID, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
-        if (success) {
-            res.redirect('/manageEvent');
-          } else {
-            res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: error });
-          }
-        });
- 
+    if (success) {
+      res.redirect('/manageEvent');
+    } else {
+      res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: error });
+    }
+  });
+
 };
 
 exports.deleteEvent = function (req, res) {
   var events = require("../modules/deleteEvent.js");
   var eventID = req.body.eventID;
   events.tryDeleteEvent(eventID, function (success, error) {
-    
+
   });
 };
 
