@@ -41,7 +41,7 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         var sql = 'SELECT CategoryID FROM ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("CategoryDescr", mssql.Text, eventCategory);
-        sql += " WHERE CategoryDescr=@CategoryDescr";
+        sql += " WHERE CategoryDescr Like @CategoryDescr";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else addEvent(IDNumber, recordset[0].CategoryID);
