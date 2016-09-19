@@ -7,6 +7,7 @@ block content
           $( document ).ready(function() {
                 $.post( "/getEvent",{ eventName: "#{event}" }, function( data ) {
                   console.log(data.events[0]);
+                  var eventID = data.events[0].EventID;
                   var streetNum = data.events[0].StreetNumber;
                   var streetName = data.events[0].StreetName;
                   var town = data.events[0].Town;
@@ -27,6 +28,7 @@ block content
                   $('#province').val(province);
                   $('#city').val(town);
                   $('#dropdownMenu').val(category);
+                  $("#eventID").val(eventID);
                 })
           });
           
@@ -88,13 +90,13 @@ block content
                       p Are you sure you would like to delete this event?
 
                     div.modal-footer
+                      input#eventID(type="hidden")
                       button.btn.btn-default#deleteEvent(type="submit" ) Delete
                       button.btn.btn-default(type="button"  data-dismiss="modal") Close
                       script(type="text/javascript").
                         $( "#deleteEvent").click(function() {
-                              $.post( "/deleteEvent",{ eventID: "#{eventID}" }, function( data ) {
-                                console.log(data.events[0]);
-                                
+                              $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
+                                window.location.href = "/manageEvent";
                               })
                         });
           span.pull-left

@@ -57,7 +57,7 @@ exports.tryGetEvent = function (eventName, callback) {
         var sql = "SELECT CategoryDescr FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("CategoryID", mssql.UniqueIdentifier, jsonObject.events[0].CategoryID);
-        sql += "WHERE CategoryID=@CategoryID";
+        sql += "WHERE CategoryID Like @CategoryID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
