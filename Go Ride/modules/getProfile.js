@@ -31,7 +31,7 @@ exports.tryGetProfile = function (userID, callback) {
         var s = num + "";
         while (s.length < size) s = "0" + s;
         return s;
-    }
+    };
 
     var calculateAge = function (idNumber) {
         var tempDate = new Date(idNumber.substring(0, 2), idNumber.substring(2, 4) - 1, idNumber.substring(4, 6));
@@ -83,7 +83,7 @@ exports.tryGetProfile = function (userID, callback) {
                 callback(jsonObject);
             }
         });
-    }
+    };
 
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
