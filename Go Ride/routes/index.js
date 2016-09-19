@@ -192,3 +192,11 @@ exports.getLocations = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getProfile = function (req, res) {
+  var user = req.query.user;
+  var profile = require("../modules/getProfile.js");
+  profile.tryGetProfile(user, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};

@@ -27,6 +27,15 @@ exports.tryGetProfile = function (userID, callback) {
         users: []
     };
 
+    var decimalToHex = function (d) {
+        var hex = Number(d).toString(16);
+        var padding = 2;
+        while (hex.length < padding) {
+            hex = "0" + hex;
+        }
+        return hex;
+    };
+
     var pad = function (num, size) {
         var s = num + "";
         while (s.length < size) s = "0" + s;
@@ -56,7 +65,7 @@ exports.tryGetProfile = function (userID, callback) {
             else {
                 recordset.forEach(function (item) {
                     var image = item.Picture === null ? null : new Buffer(JSON.parse(JSON.stringify(item.Picture)).data.map(decimalToHex).join(""), 'hex').toString('base64');
-                    jsonObject.events.push({
+                    jsonObject.users.push({
                         'Name': item.Name,
                         'Surname': item.Surname,
                         'Age': calculateAge(item.IDNumber),
@@ -69,7 +78,7 @@ exports.tryGetProfile = function (userID, callback) {
     };
 
     var getLocation = function (userID) {
-        var tableName = '[JN08].[dbo].[Locations]';
+        var tableName = '[JN08].[dbo].[Location]';
         var sql = "SELECT TOP(1) * FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("UserID", mssql.VarChar, userID);
@@ -78,7 +87,7 @@ exports.tryGetProfile = function (userID, callback) {
             if (err) errorHandler(err, sql);
             else {
                 recordset.forEach(function (item) {
-                    jsonObject.events[0].City = item.Town;
+                    jsonObject.users[0].City = item.Town;
                 });
                 callback(jsonObject);
             }
