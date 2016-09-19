@@ -29,22 +29,22 @@ exports.tryGetLocations = function (username, callback) {
 
     var getID = function () {
         var tableName = '[JN08].[dbo].[User]';
-        var sql = "SELECT IDNumber FROM " + tableName;
+        var sql = "SELECT UserID FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getLocations(recordset[0].IDNumber);
+            else getLocations(recordset[0].UserID);
         });
     };
 
-    var getLocations = function (IDNumber) {
+    var getLocations = function (userID) {
         var tableName = '[JN08].[dbo].[Location]';
         var sql = "SELECT * FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("IDNumber", mssql.Char, IDNumber);
-        sql += "WHERE IDNumber=@IDNumber";
+        request.input("UserID", mssql.UniqueIdentifier, userID);
+        sql += "WHERE UserID=@UserID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {

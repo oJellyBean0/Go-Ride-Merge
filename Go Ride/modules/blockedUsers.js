@@ -37,21 +37,21 @@ exports.tryBlockedUsers = function (username, callback) {
 
     var getID = function () {
         var tableName = '[JN08].[dbo].[User]';
-        var sql = "SELECT IDNumber FROM " + tableName;
+        var sql = "SELECT UserID FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getBlocked(recordset[0].IDNumber);
+            else getBlocked(recordset[0].UserID);
         });
     };
 
-    var getBlocked = function (IDNumber) {
+    var getBlocked = function (userID) {
         var tableName = '[JN08].[dbo].[BlockedUser]';
         var sql = "SELECT BlockedID FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("BlockerID", mssql.NVarChar, IDNumber);
+        request.input("BlockerID", mssql.NVarChar, userID);
         sql += " WHERE BlockerID=@BlockerID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
@@ -64,7 +64,7 @@ exports.tryBlockedUsers = function (username, callback) {
         var tableName = '[JN08].[dbo].[User]';
         var sql = "SELECT * FROM " + tableName;
         var request = new mssql.Request(connObj);
-        sql += " WHERE IDNumber in " + inList;
+        sql += " WHERE UserID in " + inList;
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {

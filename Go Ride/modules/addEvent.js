@@ -26,17 +26,17 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
 
     var getID = function () {
         var tableName = '[JN08].[dbo].[User]';
-        var sql = 'SELECT IDNumber FROM ' + tableName;
+        var sql = 'SELECT UserID FROM ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getCategory(recordset[0].IDNumber);
+            else getCategory(recordset[0].UserID);
         });
     };
 
-    var getCategory = function (IDNumber) {
+    var getCategory = function (userID) {
         var tableName = '[JN08].[dbo].[EventCategory]';
         var sql = 'SELECT CategoryID FROM ' + tableName;
         var request = new mssql.Request(connObj);
@@ -44,16 +44,16 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         sql += " WHERE CategoryDescr Like @CategoryDescr";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else addEvent(IDNumber, recordset[0].CategoryID);
+            else addEvent(userID, recordset[0].CategoryID);
         });
     };
 
-    var addEvent = function (IDNumber, CategoryID) {
+    var addEvent = function (userID, CategoryID) {
         var tableName = '[JN08].[dbo].[Event]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("EventName", mssql.VarChar, eventName);
-        request.input("CreatorID", mssql.Char, IDNumber);
+        request.input("CreatorID", mssql.UniqueIdentifier, userID);
         request.input("CategoryID", mssql.UniqueIdentifier, CategoryID);
         request.input("StreetNumber", mssql.Int, streetNumORVenueName);
         request.input("StreetName", mssql.NVarChar, streetName);

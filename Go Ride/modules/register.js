@@ -74,32 +74,34 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 if (err) { callback(false, err); return; }
                 request.input('Picture', mssql.Image, data);
                 fs.unlink(picture.path);
-                sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
+                sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture)';
+                sql += ' OUTPUT INSERTED.[UserID]';
+                sql += ' VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
                 request.query(sql, function (err, recordset) {
                     if (err) errorHandler(err, sql);
-                    else LocationInsert();
+                    else LocationInsert(recordset[0].UserID);
                 });
             });
         } else {
             sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
             request.query(sql, function (err, recordset) {
                 if (err) errorHandler(err, sql);
-                else LocationInsert();
+                else LocationInsert(recordset[0].UserID);
             });
         }
     };
 
-    var LocationInsert = function () {
+    var LocationInsert = function (UserID) {
         var tableName = '[JN08].[dbo].[Location]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
-        request.input('IDNumber', mssql.Char, IDnumber);
+        request.input('UserID', mssql.UniqueIdentifier, UserID);
         request.input('StreetNumber', mssql.Int, streetNumber);
         request.input('StreetName', mssql.NVarChar, streetName);
         request.input('Suburb', mssql.NVarChar, suburb);
         request.input('Town', mssql.NVarChar, town);
         request.input('Province', mssql.NVarChar, province);
-        request.query(sql + '(IDNumber, StreetNumber, StreetName, Suburb, Town, Province) VALUES (@IDNumber, @StreetNumber, @StreetName, @Suburb, @Town, @Province)', function (err, recordset) {
+        request.query(sql + '(UserID, StreetNumber, StreetName, Suburb, Town, Province) VALUES (@UserID, @StreetNumber, @StreetName, @Suburb, @Town, @Province)', function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
                 callback(true);
