@@ -15,18 +15,17 @@ block content
                 .input-group
                     input.controls(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="pac-input")
                     span.input-group-btn
-                        button.btn.btn-default(type='button') Add
+                        button.btn.btn-default(type='button', id='addLocation') Add
                 br
-                .list-group
-                    a.list-group-item(href='#')
-                        | Home
+                .list-group(id='locationList')
+                    a.list-group-item(href='#') Home
                     a.list-group-item(href='#') place 1
                     a.list-group-item(href='#') place 2
                     a.list-group-item(href='#') Place 3
                     a.list-group-item(href='#') place 4
                     a.list-group-item(href='#') place 5
 
-    .col-md-7
+    .col-md-7(id='details')
         div.modal-dialog(style="padding-top:11px;")
             div.modal-header
                 h2 *place name goes here*
@@ -52,7 +51,7 @@ block content
                 br
                 div.row
                     div.col-md-3
-                        label(for="city") City:
+                        label(for="town") City:
                     div.col-md-4
                         aria(type="text", name="streetName") *place holder*
             div.modal-footer
@@ -80,6 +79,12 @@ block content
                             br
                             div.row
                                 div.col-md-3
+                                    label(for="easyLabel") Friendly label:
+                                div.col-md-4
+                                    input.form-control(type="text", name="easyLabel", id="easyLabel")
+                            br
+                            div.row
+                                div.col-md-3
                                     label(for="streetNumberInput") Street Number:
                                 div.col-md-4
                                     input.form-control(type="text", name="streetNumberInput", id="streetNumberInput")
@@ -98,9 +103,9 @@ block content
                             br
                             div.row
                                 div.col-md-3
-                                    label(for="cityInput") City:
+                                    label(for="townInput") City:
                                 div.col-md-4
-                                    input.form-control(type="text", name="cityInput", id="cityInput")       
+                                    input.form-control(type="text", name="townInput", id="townInput")       
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
@@ -124,6 +129,23 @@ block content
 block scripts
     script(src='/javascripts/manageLocations.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBfLDPhDXlPR1BEv4xFjUPN5WYZ4OJhb1U&libraries=places&callback=initAutocomplete', async='', defer='')
+    script(type="text/javascript").
+        $( document ).ready(function() {
+            $.post( "/getLocations",{ AreaID: "#{AreaID}" }, function( data ) {
+                console.log(data.locations[0]);
+                var streetNum = data.locations[0].StreetNumber;
+                var streetName = data.locations[0].StreetName;
+                var suburb = data.locations[0].Suburb;
+                var town = data.locations[0].Town;
+                var AreaID = data.locations[0].AreaID;
+                
+                $('#AreaID').val("#{AreaID}");
+                $('#streetNumber').val(streetNumber);
+                $('#streetName').val(streetName);
+                $('#suburb').val(suburb);
+                $('#town').val(town);
+            })
+        });
 
 
     

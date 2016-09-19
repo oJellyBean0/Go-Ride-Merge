@@ -23,7 +23,6 @@ exports.login = function (req, res) {
 exports.loginpost = function (req, res) {
   var username = req.body.username;
   var password = req.body.password;
-  var err;
   var login = require('../modules/login.js');
   login.tryLogin(username, password, function (success, err) {
     if (success) {
@@ -108,8 +107,9 @@ exports.addEventpost = function (req, res) {
   var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
   var datetime = dateformat + time + "00";
   var username = cookie.parse(req.headers.cookie).user;
-  var addEvent = require("../modules/addEvent.js");
-  addEvent.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+  var events = require("../modules/addEvent.js");
+  events.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+
       if (success) {
         res.redirect('/manageEvent');
       } else {
@@ -134,8 +134,8 @@ exports.editEventpost = function (req, res) {
   //merge date & time into "2016-09-13 00:00:00" format
   var dateformat = date.substring(6, 9) + "-" + date.substring(3, 4) + "-" + date.substring(0, 1);
   var datetime = dateformat + time + "00";
-  var editEvent = require("../modules/editEvent.js");
-  editEvent.tryEditEvent(eventID, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
+  var events = require("../modules/editEvent.js");
+  events.tryEditEvent(eventID, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, function (success, error) {
         if (success) {
             res.redirect('/manageEvent');
           } else {
