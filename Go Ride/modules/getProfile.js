@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryGetProfile = function (userID,callback) {
+exports.tryGetProfile = function (userID, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -26,4 +26,67 @@ exports.tryGetProfile = function (userID,callback) {
     var jsonObject = {
         users: []
     };
+
+    var pad = function (num, size) {
+        var s = num + "";
+        while (s.length < size) s = "0" + s;
+        return s;
+    }
+
+    var calculateAge = function (idNumber) {
+        var tempDate = new Date(idNumber.substring(0, 2), idNumber.substring(2, 4) - 1, idNumber.substring(4, 6));
+        var id_date = tempDate.getDate();
+        var id_month = tempDate.getMonth();
+        var id_year = tempDate.getFullYear();
+        var fullDate = id_year + "-" + pad(id_month + 1, 2) + "-" + id_date;
+        var birthday = new Date(fullDate);
+        var ageDifMs = Date.now() - birthday.getTime();
+        var ageDate = new Date(ageDifMs);
+        return Math.abs(ageDate.getUTCFullYear() - 1970);
+    };
+
+    var getProfile = function (userID) {
+        var tableName = '[JN08].[dbo].[User]';
+        var sql = "SELECT * FROM " + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("UserID", mssql.VarChar, userID);
+        sql += " WHERE UserID=@UserID";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else {
+                recordset.forEach(function (item) {
+                    var image = item.Picture === null ? null : new Buffer(JSON.parse(JSON.stringify(item.Picture)).data.map(decimalToHex).join(""), 'hex').toString('base64');
+                    jsonObject.events.push({
+                        'Name': item.Name,
+                        'Surname': item.Surname,
+                        'Age': calculateAge(item.IDNumber),
+                        'Picture': image
+                    });
+                });
+                getLocation(userID);
+            }
+        });
+    };
+
+    var getLocation = function (userID) {
+        var tableName = '[JN08].[dbo].[Locations]';
+        var sql = "SELECT TOP(1) * FROM " + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("UserID", mssql.VarChar, userID);
+        sql += " WHERE UserID=@UserID";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else {
+                recordset.forEach(function (item) {
+                    jsonObject.events[0].City = item.Town;
+                });
+                callback(jsonObject);
+            }
+        });
+    }
+
+    var connObj = mssql.connect(dbConfig, function (err) {
+        if (err) errorHandler(err, connectionError);
+        else getProfile(userID);
+    });
 };
