@@ -2,17 +2,18 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    script(src = "/javascripts/eventSearchBar.js")
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
-          div.col-md-8#searchBarDiv
+          div.col-md-7#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
-          a(href="addRideShareGroup")
-            button#addRideShareGroup.btn.btn-primary(type="button") Add Rideshare
+          a(href="addRideshareGroup")
+            button#addRideshareGroup.btn.btn-primary(type="button") Add Rideshare
             p
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-      div.col-md-8
+      div.col-md-8(style="vertical-align: middle")
         img.img-responsive.img-circle.center-block(src='https://lh6.ggpht.com/TzMkdj8C6dTcg_kDRxxGRBC3pM-UDiNL3t6VKNoMSumbhUeqZzs5PT3UfgkbJpORSV4=w300', alt='Profile Image')
