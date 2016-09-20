@@ -63,7 +63,7 @@ exports.editEvent = function (req, res) {
   res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName });
 };
 exports.viewProfile = function (req, res) {
-  res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '' });
+  res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '',UserID: req.query.user});
 };
 exports.participatingRideshareGroups = function (req, res) {
   res.render('participatingRideshareGroups', { title: 'View Participating Rideshar Groups', year: new Date().getFullYear(), message: '' });
@@ -194,7 +194,7 @@ exports.getLocations = function (req, res) {
 };
 
 exports.getProfile = function (req, res) {
-  var user = req.query.user;
+  var user = req.body.userID;
   var profile = require("../modules/getProfile.js");
   profile.tryGetProfile(user, function (jsonObject) {
     res.json(jsonObject);

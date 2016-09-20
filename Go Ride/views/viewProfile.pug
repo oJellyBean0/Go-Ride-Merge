@@ -1,43 +1,48 @@
-extends layout
-block content
-    script(src = "/javascripts/viewProfile.js")
+link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
+link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap-theme.min.css')
+link(rel='stylesheet', type='text/css', href='/stylesheets/simple-sidebar.css')
+link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+            //- http://google.github.io/material-design-icons/#getting-icons
+            //- https://design.google.com/icons/
+link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+script(src='/javascripts/modernizr-2.6.2.js')
+script(src='/javascripts/jquery-1.10.2.min.js')
 
-    div.row
-        form.form-group(action ="", method = "post")
-        div.col-md-4.inline.pull-left
-            div#searchBarDiv
-            input#searchBar.form-control(type="text", name="searchBar", placeholder="Search",style = "max-width:none")
-            p
-            div
-            .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-        div.col-md-8
-            div.modal-dialog
-                div.col-md-5
-                div.modal-content
-                    div.modal-header
-                        h2.text-center Jane Doe
-                        div.row.center-block
-                            div.col-md-3
-                            div.col-md-6.center-block
-                                img.img-responsive.img-circle(src='http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=83254125', alt='Profile Image')
-                            
-                    div.modal-body
-                    div.row
-                        div.col-md-3
-                        div.col-md-3
-                            p Age
-                        div.col-md-5.pull-right
-                            P Age of user
+div.modal-dialog
+    div.col-md-5
+    div.modal-content
+        div.modal-header
+            h2.text-center Jane Doe
+            div.row.center-block
+                div.col-md-3
+                div.col-md-6.center-block
+                    img.img-responsive.img-circle(src='http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=83254125', alt='Profile Image')
+                
+        div.modal-body
+        div.row
+            div.col-md-3
+            div.col-md-3
+                p Age
+            div.col-md-5.pull-right
+                P Age of user
 
-                    div.row
-                        div.col-md-3
-                        div.col-md-3
-                            p Current City
-                        div.col-md-5.pull-right
-                            p Current city of user
+        div.row
+            div.col-md-3
+            div.col-md-3
+                p Current City
+            div.col-md-5.pull-right
+                p Current city of user
 
-                    div.row
-                        .col-md-5
-                        div.col-md-2.center-block
-                            button.btn.button-primary(type="button") Back
+        div.row
+            .col-md-5
+            div.col-md-2.center-block
+                button.btn.button-primary(type="button") Back
+
+    script(type="text/javascript").
+        $( document ).ready(function() {
+            $.post( '/getProfile',{ userID: "#{UserID}" }, function( data ) {
+                console.log(data);
+                
+            })
+        });
