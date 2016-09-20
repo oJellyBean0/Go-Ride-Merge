@@ -59,7 +59,7 @@ app.get('/viewProfile', routes.viewProfile);
 app.get('/blocked', routes.getBlockedUsers);
 app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
-app.get('/participatingRideshareGroups', routes.participatingRideshareGroups);
+app.get('/viewRideshareGroups', routes.viewRideshareGroups);
 app.get('/getLocations', routes.getLocations);
 app.post('/getProfile', routes.getProfile);
 
