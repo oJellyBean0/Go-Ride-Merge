@@ -16,19 +16,19 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryDeleteEvent = function (eventID, callback) {
+exports.tryDeleteLocation = function (areaID, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
         callback(false, error);
     };
 
-    var deleteEvent = function (eventID) {
-        var tableName = '[JN08].[dbo].[Event]';
+    var deleteArea = function (areaID) {
+        var tableName = '[JN08].[dbo].[Location]';
         var sql = "DELETE FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("EventID", mssql.UniqueIdentifier, eventID);
-        sql += " WHERE EventID=@EventID";
+        request.input("AreaID", mssql.UniqueIdentifier, areaID);
+        sql += " WHERE AreaID=@AreaID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else callback(true);
@@ -37,6 +37,6 @@ exports.tryDeleteEvent = function (eventID, callback) {
 
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
-        else deleteEvent(eventID);
+        else deleteArea(areaID);
     });
 };
