@@ -68,6 +68,13 @@ exports.viewProfile = function (req, res) {
 exports.viewListOfRideshareGroups = function (req, res) {
   res.render('viewListOfRideshareGroups', { title: 'View Participating Rideshare Groups', year: new Date().getFullYear(), message: '' });
 };
+exports.viewRideshareGroup = function (req, res) {
+  res.render('viewRideshareGroup', { title: 'View Rideshare Groups', year: new Date().getFullYear(), message: '' });
+};
+exports.addRideshareGroup = function (req, res) {
+  res.render('addRideshareGroup', { title: 'Add Rideshare Groups', year: new Date().getFullYear(), message: '' });
+};
+
 
 
 exports.registerpost = function (req, res) {
