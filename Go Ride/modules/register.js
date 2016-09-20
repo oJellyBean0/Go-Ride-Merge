@@ -60,6 +60,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
 
     var UserInsert = function () {
         var fs = require('fs');
+        var gm = require('gm');
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
         request.input('IDNumber', mssql.Char, IDnumber);
@@ -70,17 +71,22 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('UserType', mssql.NChar, "Passenger");
         request.input('Blocked', mssql.Bit, false);
         if (picture) {
-            fs.readFile(picture.path, function (err, data) {
-                if (err) { callback(false, err); return; }
-                request.input('Picture', mssql.Image, data);
-                fs.unlink(picture.path);
-                sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture)';
-                sql += ' OUTPUT INSERTED.[UserID]';
-                sql += ' VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
-                request.query(sql, function (err, recordset) {
-                    if (err) errorHandler(err, sql);
-                    else LocationInsert(recordset[0].UserID);
-                });
+            gm(picture.path).noProfile().resize('300', '300', '^').gravity('Center').crop('300', '300').write(picture.path, function (err) {
+                if (err) errorHandler(err);
+                else {
+                    fs.readFile(picture.path, function (err, data) {
+                        if (err) { callback(false, err); return; }
+                        request.input('Picture', mssql.Image, data);
+                        fs.unlink(picture.path);
+                        sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked, Picture)';
+                        sql += ' OUTPUT INSERTED.[UserID]';
+                        sql += ' VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked, @Picture)';
+                        request.query(sql, function (err, recordset) {
+                            if (err) errorHandler(err, sql);
+                            else LocationInsert(recordset[0].UserID);
+                        });
+                    });
+                }
             });
         } else {
             sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
