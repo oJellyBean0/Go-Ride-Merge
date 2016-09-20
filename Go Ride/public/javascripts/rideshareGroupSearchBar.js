@@ -4,7 +4,7 @@ $(document).ready(function () {
         var savedSearchTerm = $("#searchBar").val();
         $.post("/event", { searchTerm: savedSearchTerm }, function (data) {
             if (savedSearchTerm == $("#searchBar").val()) {
-                $("#eventList").empty();
+                $(".eventList").empty();
                 $.each(data.events, createItem);
             }
         });
@@ -21,5 +21,13 @@ var createItem = function (key, val) {
         "class": "list-group-item",
         "href": "editEvent?eventName=" + val.EventName,
         html: val.EventName
-    }).appendTo("#eventList");
+    }).appendTo(".eventList");
+};
+
+var createItem2 = function (key, val) {
+    $("<a/>", {
+        "class": "list-group-item",
+        "href": "editEvent?eventName=" + val.EventName,
+        html: val.EventName
+    }).appendTo("#eventList2");
 };
