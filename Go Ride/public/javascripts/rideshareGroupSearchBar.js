@@ -14,20 +14,26 @@ $(document).ready(function () {
         console.log("posting");
         $.each(data.events, createItem);
     });
+    $.post("/event", { searchTerm: "" }, function (data) {
+        console.log("posting");
+        $.each(data.events, searchEvent);
+    });
 });
 
 var createItem = function (key, val) {
-    $("<a/>", {
+    $("<option/>", {
         "class": "list-group-item",
-        "href": "editEvent?eventName=" + val.EventName,
         html: val.EventName
     }).appendTo(".eventList");
 };
 
-var createItem2 = function (key, val) {
-    $("<a/>", {
+
+var searchEvent = function(key,val){
+        $('#item-type').selectize()};
+var eventItem = function (key, val) {
+    $("<option/>", {
         "class": "list-group-item",
-        "href": "editEvent?eventName=" + val.EventName,
         html: val.EventName
-    }).appendTo("#eventList2");
+    }).appendTo(".eventList");
 };
+

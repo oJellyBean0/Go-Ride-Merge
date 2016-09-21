@@ -2,7 +2,10 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/selectize.bootstrap3.css')
+    script(src = "/javascripts/selectize.js")
     script(src = "/javascripts/rideshareGroupSearchBar.js")
+    
       
     div.row
         form.form-group(action ="", method = "post")
@@ -31,13 +34,8 @@ block content
                         input#suburb.form-control(type="text", name="suburb", required)
 
                     div
-                        div.col-md-7#searchBarDiv1
-                            p
-                            input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
-                            p
-                        br
-                        div
-                            .list-group.eventList(style ="max-height: 200px; overflow: auto")
+                        select#item-type(placeholder="Choose type...")
+
                                 
                                     
                         span.pull-right
