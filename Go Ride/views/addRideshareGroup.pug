@@ -33,13 +33,15 @@ block content
                         label(for="suburb") Suburb
                         input#suburb.form-control(type="text", name="suburb", required)
 
-                    div
-                        select#item-type(placeholder="Choose type...")
-
-                                
-                                    
+                        label(for="eventsList") Event
+                        div.dropdown
+                            select.form-control#dropdownMenu(name = "eventsList",required) Select event
+                                span.caret
+                                option(disabled, selected) Select event
+                        p
                         span.pull-right
                             button#create.btn.btn-primary(type="submit") Create
                         span.pull-left
                             a(href="viewListOfRideshareGroups")
                                 button#cancel.btn.btn-primary(type="button") Cancel
+                        
