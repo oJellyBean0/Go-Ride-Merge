@@ -19,31 +19,33 @@ $(document).ready(function () {
   })
 })
 
-$('.list-group-item').click(function () {
-  var ID = $(this).attr('id')
-  $.getJSON('/getLocations', {}, function (data) {
-    console.log(data);
-    $.each(data.locations, function (key, val) {
-      if (ID == val.AreaID) {
-        var StreetNumber = val.StreetNumber;
-        var StreetName = val.StreetName;
-        var Town = val.Town;
-        var Suburb = val.Suburb;
-        var Province = val.Province;
-        $('#streetNumber').val(StreetNum);
-        $('#streetName').val(StreetName);
-        $('#suburb').val(Suburb);
-        $('#city').val(Town);
-        $('#province').val(Province);
-      }})})})
-var JSON;
+// $('.list-group-item').click(function () {
+//   var ID = $(this).attr('id')
+//   $.getJSON('/getLocations', {}, function (data) {
+//     console.log(data);
+//     $.each(data.locations, function (key, val) {
+//       if (ID == val.AreaID) {
+//         var StreetNumber = val.StreetNumber;
+//         var StreetName = val.StreetName;
+//         var Town = val.Town;
+//         var Suburb = val.Suburb;
+//         var Province = val.Province;
+//         $('#streetNumber').val(StreetNum);
+//         $('#streetName').val(StreetName);
+//         $('#suburb').val(Suburb);
+//         $('#city').val(Town);
+//         $('#province').val(Province);
+//       }})})})
+
+
+var JSON;                                                       //populate list
 $.getJSON('/getLocations', {}, function (data) {
   console.log('posting')
   JSON = data;
   $.each(data.locations, createItem)
 })
 
-var createItem = function (key, val) {
+var createItem = function (key, val) {                            //creates item, appends to list, makes clickable, loads required info from json
   var item = $('<a/>', {
     'class': 'list-group-item',
     'id': val.AreaID,
@@ -69,6 +71,8 @@ var createItem = function (key, val) {
     $("#details").show();
   });
 };
+
+$('#deleteLocation').click
 
 // Google maps javascript api .........................................................................................................
 
