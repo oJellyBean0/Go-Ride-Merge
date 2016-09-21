@@ -1,15 +1,25 @@
 $(document).ready(function () {
 
+    $("#searchBar").on("input", function () {
+        var savedSearchTerm = $("#searchBar").val();
+        $.post("/event", { searchTerm: savedSearchTerm }, function (data) {
+            if (savedSearchTerm == $("#searchBar").val()) {
+                $("#eventList").empty();
+                $.each(data.events, createItem);
+            }
+        });
+    });
+
     $.post("/event", { searchTerm: "" }, function (data) {
         console.log("posting");
-        console.log(data.events);
-        $.each(data.events,function (key, val) {
-            $("<option/>", {
-                
-                "class": "my-new-list",
-                html: val.EventName
-            }).appendTo("#dropdownMenu");
+        $.each(data.events, createItem);
     });
-    }) 
 });
 
+var createItem = function (key, val) {
+    $("<a/>", {
+        "class": "list-group-item",
+        "href": "editEvent?eventName=" + val.EventName,
+        html: val.EventName
+    }).appendTo("#eventList");
+};
