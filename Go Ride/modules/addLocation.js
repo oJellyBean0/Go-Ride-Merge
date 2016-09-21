@@ -16,27 +16,36 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryDeleteEvent = function (eventID, callback) {
+exports.tryAddEvent = function (username, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
+        connObj.close();
         callback(false, error);
     };
 
-    var deleteEvent = function (eventID) {
-        var tableName = '[JN08].[dbo].[Event]';
-        var sql = "DELETE FROM " + tableName;
+    var getID = function () {
+        var tableName = '[JN08].[dbo].[User]';
+        var sql = 'SELECT UserID FROM ' + tableName;
         var request = new mssql.Request(connObj);
-        request.input("EventID", mssql.UniqueIdentifier, eventID);
-        sql += " WHERE EventID=@EventID";
+        request.input("Username", mssql.NVarChar, username);
+        sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else callback(true);
+            else getCategory(recordset[0].UserID);
         });
+    };
+
+    var testLocation = function (userID) {
+        var tableName = '[JN08].[dbo].[Location]';
+        var sql = 'SELECT * FROM ' + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("UserID", mssql.NVarChar, userID);
+        sql += " WHERE UserID=@UserID";
     };
 
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
-        else deleteEvent(eventID);
+        else getID();
     });
 };

@@ -60,6 +60,8 @@ app.get('/blocked', routes.getBlockedUsers);
 app.post('/editEvent', routes.editEventpost);
 app.get('/categories', routes.getCategories);
 app.get('/viewListOfRideshareGroups', routes.viewListOfRideshareGroups);
+app.get('/viewRideshareGroup', routes.viewRideshareGroup);
+app.get('/addRideshareGroup', routes.addRideshareGroup);
 app.get('/getLocations', routes.getLocations);
 app.post('/getProfile', routes.getProfile);
 

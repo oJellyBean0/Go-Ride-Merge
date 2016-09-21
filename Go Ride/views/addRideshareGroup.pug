@@ -1,0 +1,47 @@
+extends layout
+
+block content
+    link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/selectize.bootstrap3.css')
+    script(src = "/javascripts/selectize.js")
+    script(src = "/javascripts/rideshareGroupSelection.js")
+    
+      
+    div.row
+        form.form-group(action ="", method = "post")
+            div.col-md-4.inline.pull-left
+                div.col-md-7#searchBarDiv
+                    input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+
+                a(href="addRideshareGroup")
+                    button#addRideshareGroup.btn.btn-primary(type="button") Add Rideshare
+                    p
+                div
+                    .list-group.eventList(style ="max-height: 500px; overflow: auto")
+        
+        div.col-md-7
+            div.modal-dialog
+                div.col-md-2
+                div.modal-content(style="overflow:auto")
+                    div.modal-header
+                        h3.text-center#addDestination Add Rideshare Group
+                    div.modal-body
+                        label(for="destination") Name of Destination
+                        input#destination.form-control(type="text", name="destination", required)
+                        label(for="maxPassengers") Max Passengers
+                        input#streetName.form-control(type="text", name="streetName", required)
+                        label(for="suburb") Suburb
+                        input#suburb.form-control(type="text", name="suburb", required)
+
+                        label(for="eventsList") Event
+                        div.dropdown
+                            select.form-control#dropdownMenu(name = "eventsList",required) Select event
+                                span.caret
+                                option(disabled, selected) Select event
+                        p
+                        span.pull-right
+                            button#create.btn.btn-primary(type="submit") Create
+                        span.pull-left
+                            a(href="viewListOfRideshareGroups")
+                                button#cancel.btn.btn-primary(type="button") Cancel
+                        

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+    script(src = "/javascripts/rideshareGroupSearchBar.js")
+      
+    div.row
+        form.form-group(action ="", method = "post")
+            div.col-md-4.inline.pull-left
+                div.col-md-7#searchBarDiv
+                    input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+
+                a(href="addRideshareGroup")
+                    button#addRideshareGroup.btn.btn-primary(type="button") Add Rideshare
+                    p
+                div
+                    .list-group#eventList(style ="max-height: 500px; overflow: auto")
+        
+        div.col-md-7
+            div.modal-dialog
+                div.col-md-3
+                div.modal-content(style="overflow:auto")
+                    div.modal-header
+                        h3.text-center#destinationName Destination Name
+                    div.modal-body
+                        div.col-md-2
+                        div.col-md-3
+                            label(for="driver") Driver
+                            label(for="passengers") Passengers
+                            label(for="price/km") Price/km
+                        div.col-md-1
+                        div.col-md-4
+                            p#driver Driver Name
+                            p#passengerList Passenger 1
+                            p#price/km Price/km
+                        div.col-md-2
+                        
+                    a(href="viewListOfRideshareGroups")
+                        button#cancel.btn.btn-primary(type="button") Cancel
