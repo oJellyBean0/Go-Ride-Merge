@@ -35,25 +35,25 @@ block content
                     div.col-md-3
                         label(for="streetNumber") Street Number:
                     div.col-md-4
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="streetNumber", id="streetNumber") *place holder*
                 br
                 div.row
                     div.col-md-3
                         label(for="streetName") Street Name:
                     div.col-md-4
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="streetName", id="streetName") *place holder*
                 br
                 div.row
                     div.col-md-3
                         label(for="suburb") Suburb:
                     div.col-md-4
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="suburb", id="suburb") *place holder*
                 br
                 div.row
                     div.col-md-3
                         label(for="town") City:
                     div.col-md-4
-                        aria(type="text", name="streetName") *place holder*
+                        aria(type="text", name="town", id="town") *place holder*
             div.modal-footer
                 div.row
                     div.col-md-2.clearfix
@@ -129,23 +129,23 @@ block content
 block scripts
     script(src='/javascripts/manageLocations.js')
     script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBfLDPhDXlPR1BEv4xFjUPN5WYZ4OJhb1U&libraries=places&callback=initAutocomplete', async='', defer='')
-    script(type="text/javascript").
-        $( document ).ready(function() {
-            $.post( "/getLocations",{ AreaID: "#{AreaID}" }, function( data ) {
-                console.log(data.locations[0]);
-                var streetNum = data.locations[0].StreetNumber;
-                var streetName = data.locations[0].StreetName;
-                var suburb = data.locations[0].Suburb;
-                var town = data.locations[0].Town;
-                var AreaID = data.locations[0].AreaID;
+    //- script(type="text/javascript")
+        //- $( document ).ready(function() {
+        //-     $.get( "/getLocations",{ AreaID: "#{AreaID}" }, function( data ) {
+        //-         console.log(data.locations[0]);
+        //-         var streetNum = data.locations[0].StreetNumber;
+        //-         var streetName = data.locations[0].StreetName;
+        //-         var suburb = data.locations[0].Suburb;
+        //-         var town = data.locations[0].Town;
+        //-         var AreaID = data.locations[0].AreaID;
                 
-                $('#AreaID').val("#{AreaID}");
-                $('#streetNumber').val(streetNumber);
-                $('#streetName').val(streetName);
-                $('#suburb').val(suburb);
-                $('#town').val(town);
-            })
-        });
+        //-         $('#AreaID').val("#{AreaID}");
+        //-         $('#streetNumber').val(streetNumber);
+        //-         $('#streetName').val(streetName);
+        //-         $('#suburb').val(suburb);
+        //-         $('#town').val(town);
+        //-     })
+        //- });
 
 
     
