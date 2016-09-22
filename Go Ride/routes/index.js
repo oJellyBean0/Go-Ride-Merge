@@ -196,6 +196,15 @@ exports.unblockUser = function (req, res) {
   });
 };
 
+exports.editUser = function (req, res) {
+  var user = require("../modules/editUser.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  var password = req.body.password;
+  user.tryEditUser(username, password, function (success, err) {
+
+  });
+};
+
 exports.getUser = function (req, res) {
   var user = require("../modules/getUser.js");
   var username = cookie.parse(req.headers.cookie).user;
