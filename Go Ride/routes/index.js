@@ -196,6 +196,14 @@ exports.unblockUser = function (req, res) {
   });
 };
 
+exports.getUser = function (req, res) {
+  var user = require("../modules/getUser.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  user.tryGetUser(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
 exports.getRideshare = function (req, res) {
   var rideshare = require("../modules/getRideshare.js");
   var rideshareNo = req.body.rideshareNo;
