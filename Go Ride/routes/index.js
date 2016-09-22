@@ -128,7 +128,7 @@ exports.addEventpost = function (req, res) {
 exports.addRideshareGroupPost = function (req, res) {
   console.log(req.body);
   var areaID = req.body.startingLocation;
-  var recurring = req.body.recurringFrequency ;
+  var recurring = req.body.recurringFrequency;
   var pricePerkm = req.body.pricekm;
   var eventID = req.body.eventsList;
   var maxPassengers = req.body.maxPassengers;
@@ -141,7 +141,7 @@ exports.addRideshareGroupPost = function (req, res) {
       res.render('addRideshareGroup', { title: 'Add Rideshare Group', year: new Date().getFullYear(), message: error });
     }
   });
-  
+
 
 };
 
@@ -181,9 +181,25 @@ exports.deleteEvent = function (req, res) {
 
 exports.addRideshare = function (req, res) {
   var rideshare = require("../modules/addRideshare.js");
-  
+
   rideshare.tryAddRideshare(function (success, err) {
 
+  });
+};
+
+exports.getRideshare = function (req, res) {
+  var rideshare = require("../modules/getRideshare.js");
+  var rideshareNo = req.query.rideshareNo;
+  rideshare.getRideshare(rideshareNo, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
+exports.getParticipatingRideshares = function (req, res) {
+  var rideshare = require("../modules/getParticipatingRideshare.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  rideshare.getParticipatingRideshare(username, function (jsonObject) {
+    res.json(jsonObject);
   });
 };
 

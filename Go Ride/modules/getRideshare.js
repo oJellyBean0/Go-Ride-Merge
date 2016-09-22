@@ -27,74 +27,47 @@ exports.getRideshare = function (RideshareNo, callback) {
         rideshares: []
     };
 
-    var getPassengerNames = function (userIDs) {
-        if (inList == "()") { callback(false); return; }
-        var tableName = '[JN08].[dbo].[User]';
-        var sql = "SELECT * FROM " + tableName;
-        var request = new mssql.Request(connObj);
-        sql += " WHERE UserID in " + inList;
-        request.query(sql, function (err, recordset) {
-            if (err) errorHandler(err, sql);
-            else {
-                recordset.forEach(function (item) {
-                    jsonObject.rideshares[0].Passengers.push({
-                        FullName: item.Name + " " + item.Surname
-                    });
+    var getDriver = function (recordset) {
+        var Driver = [];
+        recordset.forEach(function (element) {
+            if (element.Order == 1) {
+                Driver.push({
+                    Driver: element.Name[element.Order - 1] + " " + element.Surname[element.Order - 1]
                 });
-                callback(jsonObject);
-                connObj.close();
             }
         });
+        return Driver;
     };
 
-    var getPassengers = function (rideshareNo) {
-        var tableName = '[JN08].[dbo].[RouteMarker]';
-        var sql = "SELECT UserID FROM " + tableName;
-        var request = new mssql.Request(connObj);
-        request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
-        sql += " WHERE RideshareNo=@RideshareNo";
-        request.query(sql, function (err, recordset) {
-            if (err) errorHandler(err, sql);
-            else getPassengerNames("(\'" + recordset.map(function (item) { return item.UserID; }).join("\',\'") + "\')");
-        });
-    };
-
-    var getDriverName = function (userID, rideshareNo) {
-        var tableName = '[JN08].[dbo].[User]';
-        var sql = "SELECT * FROM " + tableName;
-        var request = new mssql.Request(connObj);
-        request.input("UserID", mssql.UniqueIdentifier, userID);
-        sql += " WHERE UserID=@UserID";
-        request.query(sql, function (err, recordset) {
-            if (err) errorHandler(err, sql);
-            else {
-                jsonObject.rideshares[0].Driver.push({
-                    FullName: recordset[0].Name + " " + recordset[0].Surname
+    var getPassengers = function (recordset) {
+        var Passengers = [];
+        recordset.forEach(function (element) {
+            if (element.Order != 1) {
+                Passengers.push({
+                    Passenger: element.Name[element.Order - 1] + " " + element.Surname[element.Order - 1]
                 });
-                getPassengers(rideshareNo);
             }
         });
+        return Passengers;
     };
 
     var getRideshare = function (rideshareNo) {
-        var tableName = '[JN08].[dbo].[RouteMarker]';
-        var sql = 'SELECT * FROM ' + tableName;
+        var sql = "SELECT ri.RideshareNo, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order]";
+        sql += " FROM [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[Event] as e, [JN08].[dbo].[User] as d, [JN08].[dbo].[User] as p";
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
-        sql += " Where RideshareNo=@RideshareNo";
+        sql += " WHERE ro.RideshareNo=@RideshareNo and ro.UserID=p.UserID and ro.RideshareNo=ri.RideshareNo and ri.EventID=e.EventID and ri.DriverID=d.UserID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
-                recordset.forEach(function (element) {
-                    jsonObject.rideshares.push({
-                        RideshareNo: element.RideshareNo,
-                        Destination: getLocationName(element.EventID),
-                        Price: element.PricePerkm,
-                        Driver: [],
-                        Passengers: []
-                    });
+                jsonObject.rideshares.push({
+                    RideshareNo: recordset[0].RideshareNo,
+                    Destination: recordset[0].StreetNumber + " " + recordset[0].StreetName + ", " + recordset[0].Town,
+                    Price: recordset[0].PricePerkm,
+                    Driver: getDriver(recordset),
+                    Passengers: getPassengers(recordset)
                 });
-                getDriverName(element.DriverID, element.RideshareNo);
+                callback(jsonObject);
             }
         });
     };
