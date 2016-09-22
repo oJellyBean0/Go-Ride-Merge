@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryAddEvent = function (username, maxPassengers, pricePerkm, recurring, areaID, callback) {
+exports.tryAddRideshare = function (username, maxPassengers, pricePerkm, recurring, areaID, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
