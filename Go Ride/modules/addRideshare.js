@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryAddEvent = function (username, maxPassengers, pricePerkm, recurring, areaID, callback) {
+exports.tryAddRideshare = function (username, maxPassengers, pricePerkm, eventID, recurring, areaID, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -43,6 +43,7 @@ exports.tryAddEvent = function (username, maxPassengers, pricePerkm, recurring, 
         request.input("DriverID", mssql.UniqueIdentifier, userID);
         request.input("MaxPassengers", mssql.Int, maxPassengers);
         request.input("PricePerkm", mssql.Float, pricePerkm);
+        request.input("EventID", mssql.UniqueIdentifier, eventID);
         request.input("LockStatus", mssql.Bit, false);
         request.input("RecurringFrequency", mssql.NCHAR, recurring);
         sql += " DriverID, MaxPassengers, PricePerkm, LockStatus, RecurringFrequency";
