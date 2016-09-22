@@ -63,7 +63,7 @@ exports.editEvent = function (req, res) {
   res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: '', event: req.query.eventName });
 };
 exports.viewProfile = function (req, res) {
-  res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '',UserID: req.query.user});
+  res.render('viewProfile', { title: 'View Profile', year: new Date().getFullYear(), message: '', UserID: req.query.user });
 };
 exports.viewListOfRideshareGroups = function (req, res) {
   res.render('viewListOfRideshareGroups', { title: 'View Participating Rideshare Groups', year: new Date().getFullYear(), message: '' });
@@ -160,8 +160,12 @@ exports.deleteEvent = function (req, res) {
   });
 };
 
-exports.addRideshare = function (req, res){
+exports.addRideshare = function (req, res) {
   var rideshare = require("../modules/addRideshare.js");
+  
+  rideshare.tryAddRideshare(function (success, err) {
+
+  });
 };
 
 
