@@ -32,7 +32,7 @@ exports.tryAddEvent = function (username, callback) {
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getCategory(recordset[0].UserID);
+            else testLocation(recordset[0].UserID);
         });
     };
 
