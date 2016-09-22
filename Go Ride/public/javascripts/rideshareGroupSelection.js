@@ -13,3 +13,14 @@ $(document).ready(function () {
     }) 
 });
 
+$.getJSON("/getLocations", function (data) {
+    console.log(data.locations)
+    $.each(data.locations, function (key, val) {
+        $("<option/>", {
+            "class": "my-new-list",
+            "value": val.AreaID,
+            html: val.StreetNumber + " "+ val.StreetName +", "+ val.Town
+        }).appendTo("#dropdownMenu2");
+    });
+});
+
