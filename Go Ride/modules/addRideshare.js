@@ -46,9 +46,9 @@ exports.tryAddRideshare = function (username, maxPassengers, pricePerkm, eventID
         request.input("EventID", mssql.UniqueIdentifier, eventID);
         request.input("LockStatus", mssql.Bit, false);
         request.input("RecurringFrequency", mssql.NCHAR, recurring);
-        sql += " (DriverID, MaxPassengers, PricePerkm, LockStatus, RecurringFrequency)";
+        sql += " (DriverID, MaxPassengers, PricePerkm, EventID, LockStatus, RecurringFrequency)";
         sql += " OUTPUT Inserted.[RideshareNo]";
-        sql += " VALUES (@DriverID, @MaxPassengers, @PricePerkm, @LockStatus, @RecurringFrequency)";
+        sql += " VALUES (@DriverID, @MaxPassengers, @PricePerkm, @EventID, @LockStatus, @RecurringFrequency)";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else addRouteMarker(userID, recordset[0].RideshareNo);
@@ -56,14 +56,14 @@ exports.tryAddRideshare = function (username, maxPassengers, pricePerkm, eventID
     };
 
     var addRouteMarker = function (userID, rideshareNo) {
-        var tableName = '[JN08].[dbo].[RideshareGroup]';
+        var tableName = '[JN08].[dbo].[RouteMarker]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
         request.input("UserID", mssql.UniqueIdentifier, userID);
         request.input("AreaID", mssql.UniqueIdentifier, areaID);
         request.input("Order", mssql.Int, 1);
-        sql += " RideshareNo, UserID, AreaID, Order";
+        sql += " (RideshareNo, UserID, AreaID, [Order])";
         sql += " VALUES (@RideshareNo, @UserID, @AreaID, @Order)";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
