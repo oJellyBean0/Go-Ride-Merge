@@ -160,6 +160,10 @@ exports.deleteEvent = function (req, res) {
   });
 };
 
+exports.addRideshare = function (req, res){
+  var rideshare = require("../modules/addRideshare.js");
+};
+
 
 exports.searchEvents = function (req, res) {
   var events = require("../modules/searchEvents.js");
