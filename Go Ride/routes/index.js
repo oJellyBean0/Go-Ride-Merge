@@ -127,7 +127,6 @@ exports.addEventpost = function (req, res) {
 };
 exports.addRideshareGroupPost = function (req, res) {
   console.log(req.body);
-  var destination = req.body.destination;
   var areaID = req.body.startingLocation;
   var recurringFrequency = req.body.recurringFrequency ;
   var pricePerkm = req.body.pricekm;

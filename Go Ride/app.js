@@ -62,6 +62,7 @@ app.get('/categories', routes.getCategories);
 app.get('/viewListOfRideshareGroups', routes.viewListOfRideshareGroups);
 app.get('/viewRideshareGroup', routes.viewRideshareGroup);
 app.get('/addRideshareGroup', routes.addRideshareGroup);
+app.post('/addRideshareGroup', routes.addRideshareGroupPost);
 app.get('/getLocations', routes.getLocations);
 app.post('/getProfile', routes.getProfile);
 app.post('/addRideshare', routes.addRideshare);

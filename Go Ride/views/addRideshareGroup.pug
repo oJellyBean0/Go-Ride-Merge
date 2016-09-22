@@ -19,29 +19,44 @@ block content
                 div
                     .list-group.eventList(style ="max-height: 500px; overflow: auto")
         
-        div.col-md-7
-            div.modal-dialog
-                div.col-md-2
-                div.modal-content(style="overflow:auto")
-                    div.modal-header
-                        h3.text-center#addDestination Add Rideshare Group
-                    div.modal-body
-                        label(for="destination") Name of Destination
-                        input#destination.form-control(type="text", name="destination", required)
-                        label(for="maxPassengers") Max Passengers
-                        input#streetName.form-control(type="text", name="streetName", required)
-                        label(for="suburb") Suburb
-                        input#suburb.form-control(type="text", name="suburb", required)
+            div.col-md-7
+                div.modal-dialog
+                    div.col-md-2
+                    div.modal-content(style="overflow:auto")
+                        div.modal-header
+                            h3.text-center#addDestination Add Rideshare Group
+                        div.modal-body
+                            label(for="destination") Name of Destination
+                            input#destination.form-control(type="text", name="destination", required)
+                            label(for="startingLocation") Starting Location
+                            div.dropdown
+                                select.form-control#dropdownMenu2(name = "startingLocation",required) Starting Location
+                                    span.caret
+                                    option(disabled, selected) Select starting location
+                            label(for="recurring") Recurring Frequency
+                            div.dropdown
+                                select.form-control#dropdownMenu1(name = "recurringFrequency",required) Recurring Frequency
+                                    span.caret
+                                    option(disabled, selected) Select frequency
+                                    option Once off
+                                    option Daily
+                                    option Weekly
 
-                        label(for="eventsList") Event
-                        div.dropdown
-                            select.form-control#dropdownMenu(name = "eventsList",required) Select event
-                                span.caret
-                                option(disabled, selected) Select event
-                        p
-                        span.pull-right
-                            button#create.btn.btn-primary(type="submit") Create
-                        span.pull-left
-                            a(href="viewListOfRideshareGroups")
-                                button#cancel.btn.btn-primary(type="button") Cancel
+                            label(for="maxPassengers") Max Passengers
+                            input#maxPassengers.form-control(type="text", name="maxPassengers", required)
+                            label(for="price/km") Price/km
+                            input#pricekm.form-control(type="text", name="pricekm", required)
+
+                            label(for="eventsList") Event
+                            div.dropdown
+                                select.form-control#dropdownMenu(name = "eventsList",required) Select event
+                                    span.caret
+                                    option(disabled, selected) Select event
+                            p
+                            div
+                                span.pull-right
+                                    button#create.btn.btn-primary(type="submit") Create
+                                span.pull-left
+                                    a(href="viewListOfRideshareGroups")
+                                        button#cancel.btn.btn-primary(type="button") Cancel
                         
