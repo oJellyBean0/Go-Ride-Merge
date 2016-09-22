@@ -42,7 +42,6 @@ app.post('/login', upload.array(), routes.loginpost);
 app.get('/registerUser', routes.registerUser);
 app.post('/registerUser', upload.single('picture'), routes.registerpost);
 app.get('/manageLocations', routes.manageLocations);
-app.post('/manageLocations', routes.manageLocations);        //not sure if this needs to be here?
 app.get('/userDetails', routes.userDetails);
 app.get('/contacts', routes.contacts);
 app.post('/contacts', routes.contacts);

@@ -109,7 +109,7 @@ block content
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
-                    button.btn.btn-primary(type='button') Save
+                    button.btn.btn-primary(type='button', data-dismiss='modal') Save
 
 
     #modalDelete.modal.fade
@@ -121,31 +121,14 @@ block content
                 // dialog buttons
                 .modal-footer
                     button.btn(type='button', data-dismiss='modal') Cancel
-                    button.btn.btn-primary(type='button', id="acceptDeleteLocation") Delete
+                    button.btn.btn-primary(type='button', id="acceptDeleteLocation", data-dismiss='modal') Delete
     .col-md-12
         br
         div(id="map")
 
 block scripts
     script(src='/javascripts/manageLocations.js')
-    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBfLDPhDXlPR1BEv4xFjUPN5WYZ4OJhb1U&libraries=places&callback=initAutocomplete', async='', defer='')
-    //- script(type="text/javascript")
-        //- $( document ).ready(function() {
-        //-     $.get( "/getLocations",{ AreaID: "#{AreaID}" }, function( data ) {
-        //-         console.log(data.locations[0]);
-        //-         var streetNum = data.locations[0].StreetNumber;
-        //-         var streetName = data.locations[0].StreetName;
-        //-         var suburb = data.locations[0].Suburb;
-        //-         var town = data.locations[0].Town;
-        //-         var AreaID = data.locations[0].AreaID;
-                
-        //-         $('#AreaID').val("#{AreaID}");
-        //-         $('#streetNumber').val(streetNumber);
-        //-         $('#streetName').val(streetName);
-        //-         $('#suburb').val(suburb);
-        //-         $('#town').val(town);
-        //-     })
-        //- });
+    script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBfLDPhDXlPR1BEv4xFjUPN5WYZ4OJhb1U&libraries=places&callback=initAutocomplete&sensor=true', async='', defer='')
 
 
     

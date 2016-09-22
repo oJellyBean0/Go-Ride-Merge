@@ -22,30 +22,31 @@ $(document).ready(function () {
 // $('.list-group-item').click(function () {
 //   var ID = $(this).attr('id')
 //   $.getJSON('/getLocations', {}, function (data) {
-//     console.log(data);
+//     console.log(data)
 //     $.each(data.locations, function (key, val) {
 //       if (ID == val.AreaID) {
-//         var StreetNumber = val.StreetNumber;
-//         var StreetName = val.StreetName;
-//         var Town = val.Town;
-//         var Suburb = val.Suburb;
-//         var Province = val.Province;
-//         $('#streetNumber').val(StreetNum);
-//         $('#streetName').val(StreetName);
-//         $('#suburb').val(Suburb);
-//         $('#city').val(Town);
-//         $('#province').val(Province);
+//         var StreetNumber = val.StreetNumber
+//         var StreetName = val.StreetName
+//         var Town = val.Town
+//         var Suburb = val.Suburb
+//         var Province = val.Province
+//         $('#streetNumber').val(StreetNum)
+//         $('#streetName').val(StreetName)
+//         $('#suburb').val(Suburb)
+//         $('#city').val(Town)
+//         $('#province').val(Province)
 //       }})})})
 
-
-var JSON;                                                       //populate list
+var JSON
+var AreaID1
+// populate list
 $.getJSON('/getLocations', {}, function (data) {
   console.log('posting')
-  JSON = data;
+  JSON = data
   $.each(data.locations, createItem)
 })
 
-var createItem = function (key, val) {                            //creates item, appends to list, makes clickable, loads required info from json
+var createItem = function (key, val) { // creates item, appends to list, makes clickable, loads required info from json
   var item = $('<a/>', {
     'class': 'list-group-item',
     'id': val.AreaID,
@@ -54,25 +55,30 @@ var createItem = function (key, val) {                            //creates item
   })
   item.appendTo('#locationList')
   item.click(function () {
-  var ID = $(this).attr('id')
-  $.getJSON('/getLocations', {}, function (data) {
-    console.log(data);
-    $.each(data.locations, function (key, val) {
-      if (ID == val.AreaID) {
-        var StreetNumber = val.StreetNumber;
-        var StreetName = val.StreetName;
-        var Town = val.Town;
-        var Suburb = val.Suburb;
-        $('#streetNumber').text(StreetNumber);
-        $('#streetName').text(StreetName);
-        $('#suburb').text(Suburb);
-        $('#town').text(Town);
-      }})})
-    $("#details").show();
-  });
-};
+    var ID = $(this).attr('id')
+    $.getJSON('/getLocations', {}, function (data) {
+      console.log(data)
+      $.each(data.locations, function (key, val) {
+        if (ID == val.AreaID) {
+          AreaID1 = val.AreaID
+          var StreetNumber = val.StreetNumber
+          var StreetName = val.StreetName
+          var Town = val.Town
+          var Suburb = val.Suburb
+          $('#streetNumber').text(StreetNumber)
+          $('#streetName').text(StreetName)
+          $('#suburb').text(Suburb)
+          $('#town').text(Town)
+        }})})
+    $('#details').show()
+  })
+}
 
-$('#deleteLocation').click
+$('#acceptDeleteLocation').click(function () {
+  // $.post("/deleteLocation", AreaID1, {}, String)    //need logan to verify, dont want to delete my only test entry XD
+  $('#' + AreaID1).remove()
+  console.log(AreaID1)
+})
 
 // Google maps javascript api .........................................................................................................
 
@@ -88,9 +94,17 @@ function initAutocomplete () {
   var map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: -33.963373, lng: 25.616230},
     zoom: 13,
-    mapTypeId: 'roadmap'
+    mapTypeId: 'roadmap',
+    zoomControl: true,
+    panControl: true,
+    mapTypeControl: true,
+    scaleControl: true,
+    streetViewControl: true,
+    overviewMapControl: true,
+    rotateControl: true
   })
 
+  
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input')
   var searchBox = new google.maps.places.SearchBox(input)
@@ -150,4 +164,27 @@ function initAutocomplete () {
     map.fitBounds(bounds)
     setZoom(10)
   })
+}
+
+function geocodeLatLng(geocoder, map, infowindow) {
+  var input = document.getElementById('latlng').value;
+  var latlngStr = input.split(',', 2);
+  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
+  geocoder.geocode({'location': latlng}, function(results, status) {
+    if (status === 'OK') {
+      if (results[1]) {
+        map.setZoom(11);
+        var marker = new google.maps.Marker({
+          position: latlng,
+          map: map
+        });
+        infowindow.setContent(results[1].formatted_address);
+        infowindow.open(map, marker);
+      } else {
+        window.alert('No results found');
+      }
+    } else {
+      window.alert('Geocoder failed due to: ' + status);
+    }
+  });
 }

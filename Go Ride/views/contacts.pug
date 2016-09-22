@@ -1,11 +1,7 @@
 extends layout
-
-block head
-
+block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/contacts.css')
     script(src='/javascripts/contacts.js')
-
-block content
 
     .col-md-6
         .row
@@ -22,47 +18,22 @@ block content
                                     span.glyphicon.glyphicon-search.text-muted
                 |                 
                 |                 
-                .list-group
-                    a.list-group-item(href='#')
-                        .col-md-6.col-sm-1
-                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens', style="width: 40%; height: 40%;")
-                        |                         
-                        .col-md-6.col-sm-3
-                            span.name Scott Stevens
-                                                     
-                        .clearfix
-                    |                     
-                    a.list-group-item(href='#')
-                        .col-md-6.col-sm-1
-                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens', style="width: 40%; height: 40%;")
-                        |                         
-                        .col-md-6.col-sm-3
-                            span.name Scott Stevens
-                                                     
-                        .clearfix
-                    |                      
-                    a.list-group-item(href='#')
-                        .col-md-6.col-sm-1
-                            img.img-responsive.img-circle(src='http://api.randomuser.me/portraits/men/49.jpg', alt='Scott Stevens', style="width: 40%; height: 40%;")
-                        |                         
-                        .col-md-6.col-sm-3
-                            span.name Scott Stevens
-                                                     
-                        .clearfix
+                .list-group(id='blockedUserList')
 
-    .col-md-6
+
+    .col-md-6(id="details")
         form.div.modal-dialog(id="unblockUser", name="unblockUser", method="post", action="", autocomplete="off", enctype="text/plain", style="padding-top:0px")
             div.modal-header(style="padding-top:0px; margin-top:0px;")
-                h2(style="padding-top:0px; margin-top:0px", id="unblockUserHeading") *Name of selected user*
+                h2(style="padding-top:0px; margin-top:0px", id="unblockUserHeading", type="text")
             div.modal-body
                 br
                 label Would you like to unblock this user?
             div.modal-footer
                 div.row
                     div.col-md-2.clearfix
-                        button.btn.button-primary.pull-left(type="submit") Yes
+                        button.btn.button-primary.pull-left(type="submit", id="unblockUserButton") Yes
                     div.col-md-2.clearfix.text-center 
                     div.col-md-2.clearfix
-                        button.btn.button-primary.pull-right(type="submit") No
+                        button.btn.button-primary.pull-right(type="reset") No
                 
 
