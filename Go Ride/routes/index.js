@@ -187,9 +187,18 @@ exports.addRideshare = function (req, res) {
   });
 };
 
+exports.unblockUser = function (req, res) {
+  var user = require("../modules/unblockUser.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  var unblockID = req.body.unblockID;
+  user.tryUnblockUser(username, unblockID, function (success, err) {
+
+  });
+};
+
 exports.getRideshare = function (req, res) {
   var rideshare = require("../modules/getRideshare.js");
-  var rideshareNo = req.query.rideshareNo;
+  var rideshareNo = req.body.rideshareNo;
   rideshare.getRideshare(rideshareNo, function (jsonObject) {
     res.json(jsonObject);
   });
