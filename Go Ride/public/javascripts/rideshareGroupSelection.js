@@ -5,7 +5,7 @@ $(document).ready(function () {
         console.log(data.events);
         $.each(data.events,function (key, val) {
             $("<option/>", {
-                
+                "value": val.EventID,
                 "class": "my-new-list",
                 html: val.EventName
             }).appendTo("#dropdownMenu");

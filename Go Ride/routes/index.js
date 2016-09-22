@@ -128,13 +128,13 @@ exports.addEventpost = function (req, res) {
 exports.addRideshareGroupPost = function (req, res) {
   console.log(req.body);
   var areaID = req.body.startingLocation;
-  var recurringFrequency = req.body.recurringFrequency ;
+  var recurring = req.body.recurringFrequency ;
   var pricePerkm = req.body.pricekm;
-  var eventName = req.body.eventsList;
+  var eventID = req.body.eventsList;
+  var maxPassengers = req.body.maxPassengers;
   var username = cookie.parse(req.headers.cookie).user;
-  var events = require("../modules/addRideshareGroup.js");
-  events.tryAddRideshare(username, maxPassengers, pricePerkm, recurring, areaID, function (success, error) {
-
+  var events = require("../modules/addRideshare.js");
+  events.tryAddRideshare(username, maxPassengers, pricePerkm, eventID, recurring, areaID, function (success, error) {
     if (success) {
       res.redirect('/viewListOfRideshareGroups');
     } else {
