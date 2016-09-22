@@ -64,6 +64,7 @@ app.get('/viewRideshareGroup', routes.viewRideshareGroup);
 app.get('/addRideshareGroup', routes.addRideshareGroup);
 app.get('/getLocations', routes.getLocations);
 app.post('/getProfile', routes.getProfile);
+app.post('/addRideshare', routes.addRideshare);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
