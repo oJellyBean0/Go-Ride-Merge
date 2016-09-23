@@ -29,14 +29,13 @@ exports.searchParticipatingRideshare = function (username, searchTerm, callback)
 
     var searchRideshares = function () {
         var sql = "SELECT TOP 20, priority = CASE, ro.RideshareNo, d.Name, d.Surname, e.EventName";
+        sql += ' When e.EventName Like @frontmatch Then 1';
+        sql += ' When e.EventName Like @fullmatch Then 2 END';
         sql += " FROM [JN08].[dbo].[User] as a, [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[User] as d, [JN08].[dbo].[Event] as e";
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
         request.input('frontMatch', mssql.VarChar, searchTerm + "%");
         request.input('fullMatch', mssql.VarChar, "%" + searchTerm + "%");
-        sql += ' When e.EventName Like @frontmatch Then 1';
-        sql += ' When e.EventName Like @fullmatch Then 2';
-        sql += ' End FROM ' + tableName;
         sql += ' Where EventName Like @frontmatch Or EventName Like @fullmatch';
         sql += ' Order By priority, e.EventName, d.Name, d.Surname';
         sql += " WHERE a.Username=@Username";
