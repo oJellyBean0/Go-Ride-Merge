@@ -35,3 +35,11 @@ block content
                         
                 a(href="viewListOfRideshareGroups")
                     button#cancel.btn.btn-primary(type="button") Cancel
+
+        script(type="text/javascript").
+            $( document ).ready(function() {
+                $.post( '/getRideshare',{ userID: "#{UserID}" }, function( data ) {
+                    console.log(data);
+                    
+                })
+            });
