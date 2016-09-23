@@ -28,21 +28,22 @@ exports.searchParticipatingRideshare = function (username, searchTerm, callback)
     };
 
     var searchRideshares = function () {
-        var sql = "SELECT TOP 20, priority = CASE, ro.RideshareNo, d.Name, d.Surname, e.EventName";
+        var sql = "SELECT TOP 20 priority = CASE";
         sql += ' When e.EventName Like @frontmatch Then 1';
         sql += ' When e.EventName Like @fullmatch Then 2 END';
+        sql += ", ro.RideshareNo, d.Name, d.Surname, e.EventName"; 
         sql += " FROM [JN08].[dbo].[User] as a, [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[User] as d, [JN08].[dbo].[Event] as e";
         var request = new mssql.Request(connObj);
         request.input("Username", mssql.NVarChar, username);
         request.input('frontMatch', mssql.VarChar, searchTerm + "%");
         request.input('fullMatch', mssql.VarChar, "%" + searchTerm + "%");
-        sql += ' Where EventName Like @frontmatch Or EventName Like @fullmatch';
-        sql += ' Order By priority, e.EventName, d.Name, d.Surname';
         sql += " WHERE a.Username=@Username";
         sql += " and ro.UserID=a.UserID";
         sql += " and ro.RideshareNo=ri.RideshareNo";
         sql += " and ri.DriverID=d.UserID";
         sql += " and ri.EventID=e.EventID";
+        sql += ' and (e.EventName Like @frontmatch Or e.EventName Like @fullmatch)';
+        sql += ' Order By priority, e.EventName, d.[Name], d.Surname';
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
