@@ -205,6 +205,15 @@ exports.editUser = function (req, res) {
   });
 };
 
+exports.searchParticipatingRideshare = function (req, res) {
+  var rideshare = require("../modules/searchParticipatingRideshare.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  var searchTerm = req.body.searchTerm;
+  rideshare.getParticipatingRideshare(username, searchTerm, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
 exports.getUser = function (req, res) {
   var user = require("../modules/getUser.js");
   var username = cookie.parse(req.headers.cookie).user;
