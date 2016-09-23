@@ -209,7 +209,7 @@ exports.searchParticipatingRideshare = function (req, res) {
   var rideshare = require("../modules/searchParticipatingRideshare.js");
   var username = cookie.parse(req.headers.cookie).user;
   var searchTerm = req.body.searchTerm;
-  rideshare.getParticipatingRideshare(username, searchTerm, function (jsonObject) {
+  rideshare.searchParticipatingRideshare(username, searchTerm, function (jsonObject) {
     res.json(jsonObject);
   });
 };
