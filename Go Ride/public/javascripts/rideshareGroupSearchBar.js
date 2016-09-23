@@ -3,7 +3,7 @@ $(document).ready(function () {
     $("#searchBar").on("input", function () {
         var savedSearchTerm = $("#searchBar").val();
         $.post("/searchParticipatingRideshares", { searchTerm: savedSearchTerm }, function (data) {
-            console.log(data)
+            
             if (savedSearchTerm == $("#searchBar").val()) {
                 $("#eventList").empty();
                 $.each(data.events, createItem);
@@ -13,6 +13,7 @@ $(document).ready(function () {
 
     $.post("/searchParticipatingRideshares", { searchTerm: "" }, function (data) {
         console.log("posting");
+        console.log(data);
         $.each(data.events, createItem);
     });
 });
