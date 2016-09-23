@@ -36,6 +36,12 @@
     -o-transition: all 0.5s ease;
     transition: all 0.5s ease;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: 'Roboto', sans-serif;
+    
+}
+.sidebar-brand{
+    font-weight: 400;
+    font-size: 18px;
 }
 
 #wrapper.toggled #sidebar-wrapper {
@@ -62,6 +68,8 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    font-weight: 300;
+    font-size: 16px;
 }
 
 .sidebar-nav li {
