@@ -2,7 +2,8 @@ $(document).ready(function () {
 
     $("#searchBar").on("input", function () {
         var savedSearchTerm = $("#searchBar").val();
-        $.post("/event", { searchTerm: savedSearchTerm }, function (data) {
+        $.post("/searchParticipatingRideshares", { searchTerm: savedSearchTerm }, function (data) {
+            console.log(data)
             if (savedSearchTerm == $("#searchBar").val()) {
                 $("#eventList").empty();
                 $.each(data.events, createItem);
@@ -10,7 +11,7 @@ $(document).ready(function () {
         });
     });
 
-    $.post("/event", { searchTerm: "" }, function (data) {
+    $.post("/searchParticipatingRideshares", { searchTerm: "" }, function (data) {
         console.log("posting");
         $.each(data.events, createItem);
     });
