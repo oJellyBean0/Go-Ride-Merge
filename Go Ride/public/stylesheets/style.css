@@ -3,9 +3,7 @@
   padding-left: 15px;
   padding-right: 15px;
 }
-body{
-    background-color: #E3F2FD;
-}
+
 /* Set width on the form input elements since they're 100% wide by default */
 input,
 select,
