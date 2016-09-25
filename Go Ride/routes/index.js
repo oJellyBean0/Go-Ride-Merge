@@ -205,6 +205,15 @@ exports.editUser = function (req, res) {
   });
 };
 
+exports.editPetrolCost = function(req,res){
+  var rideshare = require("../modules/editPetrolCost.js");
+  var rideshareNo = req.body.rideshareNo;
+  var patrolCost = req.body.petrolCost;
+  rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err){
+
+  });
+};
+
 exports.searchParticipatingRideshare = function (req, res) {
   var rideshare = require("../modules/searchParticipatingRideshare.js");
   var username = cookie.parse(req.headers.cookie).user;
