@@ -42,9 +42,7 @@ exports.tryGetEvent = function (eventName, callback) {
                         'StreetNumber': item.StreetNumber,
                         'StreetName': item.StreetName,
                         'Town': item.Town,
-                        'Suburb': item.Suburb,
                         'Date': item.Date,
-                        'Province': item.Province,
                         'CategoryID': item.CategoryID
                     });
                 });

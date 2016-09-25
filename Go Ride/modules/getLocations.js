@@ -53,9 +53,7 @@ exports.tryGetLocations = function (username, callback) {
                         'AreaID': item.AreaID,
                         'StreetNumber': item.StreetNumber,
                         'StreetName': item.StreetName,
-                        'Suburb': item.Suburb,
                         'Town': item.Town,
-                        'Province': item.Province
                     });
                 });
                 callback(jsonObject);
