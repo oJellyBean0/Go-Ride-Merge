@@ -17,7 +17,7 @@ var dbConfig = {
 var connectionError = 'Unable to Connect to Server';
 
 
-exports.tryRegister = function (IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, callback) {
+exports.tryRegister = function (IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -105,7 +105,8 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('StreetNumber', mssql.Int, streetNumber);
         request.input('StreetName', mssql.NVarChar, streetName);
         request.input('Town', mssql.NVarChar, town);
-        request.query(sql + '(UserID, StreetNumber, StreetName, Town) VALUES (@UserID, @StreetNumber, @StreetName, @Town)', function (err, recordset) {
+        request.input('Nickname', mssql.NVarChar, nickname);
+        request.query(sql + '(UserID, StreetNumber, StreetName, Town, Nickname) VALUES (@UserID, @StreetNumber, @StreetName, @Town, @Nickname)', function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
                 callback(true);
