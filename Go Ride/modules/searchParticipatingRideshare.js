@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.searchParticipatingRideshare = function (username, searchTerm, callback) {
+exports.trySearchParticipatingRideshare = function (username, searchTerm, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);

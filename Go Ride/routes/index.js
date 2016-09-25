@@ -209,7 +209,7 @@ exports.searchParticipatingRideshare = function (req, res) {
   var rideshare = require("../modules/searchParticipatingRideshare.js");
   var username = cookie.parse(req.headers.cookie).user;
   var searchTerm = req.body.searchTerm;
-  rideshare.searchParticipatingRideshare(username, searchTerm, function (jsonObject) {
+  rideshare.trySearchParticipatingRideshare(username, searchTerm, function (jsonObject) {
     res.json(jsonObject);
   });
 };
@@ -226,7 +226,7 @@ exports.getRideshare = function (req, res) {
   var rideshare = require("../modules/getRideshare.js");
   var rideshareNo = req.body.rideshareNo;
   var username = cookie.parse(req.headers.cookie).user;
-  rideshare.getRideshare(username, rideshareNo, function (jsonObject) {
+  rideshare.tryGetRideshare(username, rideshareNo, function (jsonObject) {
     res.json(jsonObject);
   });
 };
@@ -234,7 +234,7 @@ exports.getRideshare = function (req, res) {
 exports.getParticipatingRideshares = function (req, res) {
   var rideshare = require("../modules/getParticipatingRideshare.js");
   var username = cookie.parse(req.headers.cookie).user;
-  rideshare.getParticipatingRideshare(username, function (jsonObject) {
+  rideshare.tryGetParticipatingRideshare(username, function (jsonObject) {
     res.json(jsonObject);
   });
 };
