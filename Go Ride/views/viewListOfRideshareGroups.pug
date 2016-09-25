@@ -2,7 +2,7 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(src = "/javascripts/rideshareGroupSearchBar.js")
+    script(src = '/javascripts/rideshareGroupSearchBar.js')
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
@@ -15,5 +15,44 @@ block content
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-      div.col-md-8(style="vertical-align: middle")
+        div.col-md-7#viewRideshareDetails
+            input#rideshareNo(type="hidden")
+            div.modal-dialog
+                div.col-md-3
+                div.modal-content(style="overflow:auto")
+                    div.modal-header
+                        h3.text-center#destinationName Destination Name
+                    div.modal-body
+                        br
+                        div.row
+                            div.col-md-3.col-md-offset-2
+                                label(for="destination") Destination
+                            div.col-md-7
+                                label#destination(type="text",style = "font-weight:normal")
+                        br
+                        div.row
+                            div.col-md-3.col-md-offset-2
+                                label(for="driver") Driver
+                            div.col-md-7
+                                label#driver(style = "font-weight:normal") 
+                        br
+                        div.row
+                            div.col-md-3.col-md-offset-2  
+                                label(for="passengers") Passengers
+                            div.col-md-7
+                                label#passengerList(style = "font-weight:normal") 
+                        br
+                        div.row
+                            div.col-md-3.col-md-offset-2    
+                                label(for="price/km") Price/km
+                            div.col-md-7                            
+                                label#pricekm(style = "font-weight:normal")
+                    .modal-footer
+                        a(href="viewListOfRideshareGroups").pull-left
+                            button#cancel.btn.btn-primary(type="button" data-dismiss="modal") Cancel
+
+      div.col-md-8#carIcon(style="vertical-align: middle")
         img.img-responsive.img-circle.center-block(src='https://lh6.ggpht.com/TzMkdj8C6dTcg_kDRxxGRBC3pM-UDiNL3t6VKNoMSumbhUeqZzs5PT3UfgkbJpORSV4=w300', alt='Profile Image')
+      
+
+        
