@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.getRideshare = function (RideshareNo, callback) {
+exports.getRideshare = function (username, RideshareNo, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -51,7 +51,19 @@ exports.getRideshare = function (RideshareNo, callback) {
         return Passengers;
     };
 
-    var getRideshare = function (rideshareNo) {
+    var getID = function (rideshareNo) {
+        var tableName = '[JN08].[dbo].[User]';
+        var sql = 'SELECT UserID FROM ' + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("Username", mssql.NVarChar, username);
+        sql += " WHERE Username=@Username";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else getRideshare(recordset[0].UserID, rideshareNo);
+        });
+    };
+
+    var getRideshare = function (userID, rideshareNo) {
         var sql = "SELECT ri.RideshareNo, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order]";
         sql += " FROM [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[Event] as e, [JN08].[dbo].[User] as d, [JN08].[dbo].[User] as p";
         var request = new mssql.Request(connObj);
@@ -65,7 +77,8 @@ exports.getRideshare = function (RideshareNo, callback) {
                     Destination: recordset[0].StreetNumber + " " + recordset[0].StreetName + ", " + recordset[0].Town,
                     Price: recordset[0].PricePerkm,
                     Driver: getDriver(recordset),
-                    Passengers: getPassengers(recordset)
+                    Passengers: getPassengers(recordset),
+                    isDriver: (userID == recordset[0].DriverID) ? true : false
                 });
                 callback(jsonObject);
             }
@@ -74,6 +87,6 @@ exports.getRideshare = function (RideshareNo, callback) {
 
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
-        else getRideshare(RideshareNo);
+        else getID(RideshareNo);
     });
 };
