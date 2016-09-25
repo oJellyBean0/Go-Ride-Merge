@@ -75,6 +75,7 @@ app.post('/editUser', routes.editUser);
 app.post('/editPetrolCost', routes.editPetrolCost);
 app.post('/getRouteMarker', routes.getRouteMarker);
 app.post('/getRoute', routes.getRoute);
+app.post('/editRouteMarker', routes.editRouteMarker);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
