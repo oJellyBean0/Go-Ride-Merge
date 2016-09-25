@@ -6,12 +6,6 @@
 		"module": "commonjs",
 		"allowSyntheticDefaultImports": true
 	},
-	"jshint.enable": true,
-	"jshint.options": {
-		"esversion": 6,
-		"esnext": true,
-		"moz": true
-	},
 	"exclude": [
 		"node_modules",
 		"bower_components",
