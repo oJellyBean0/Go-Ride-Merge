@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORVenueName, streetName, suburb, city, province, datetime, callback) {
+exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORVenueName, streetName, city, datetime, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -58,10 +58,8 @@ exports.tryAddEvent = function (username, eventName, eventCategory, streetNumORV
         request.input("StreetNumber", mssql.Int, streetNumORVenueName);
         request.input("StreetName", mssql.NVarChar, streetName);
         request.input("Town", mssql.NVarChar, city);
-        request.input("Suburb", mssql.NVarChar, suburb);
-        request.input("Province", mssql.NVarChar, province);
         request.input("Date", mssql.VarChar, datetime);
-        sql += ' (EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Suburb,Province,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Suburb,@Province,@Date)';
+        sql += ' (EventName,CreatorID,CategoryID,StreetNumber,StreetName,Town,Date) VALUES (@EventName, @CreatorID,@CategoryID,@StreetNumber,@StreetName,@Town,@Date)';
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
