@@ -225,7 +225,8 @@ exports.getUser = function (req, res) {
 exports.getRideshare = function (req, res) {
   var rideshare = require("../modules/getRideshare.js");
   var rideshareNo = req.body.rideshareNo;
-  rideshare.getRideshare(rideshareNo, function (jsonObject) {
+  var username = cookie.parse(req.headers.cookie).user;
+  rideshare.getRideshare(username, rideshareNo, function (jsonObject) {
     res.json(jsonObject);
   });
 };
