@@ -56,6 +56,7 @@ var createItem = function (key, val) {
             $('#destination').text(destination);
             $('#driver').text(driver);
             $('#pricekm').text(price);
+            $('#pricekmDialog').val(price);
         });
-  });
+    });
 };
