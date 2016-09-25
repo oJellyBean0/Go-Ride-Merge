@@ -73,7 +73,7 @@ var createItem = function (key, val) { // creates item, appends to list, makes c
 }
 
 $('#unblockUserButton').click(function () {
-  $.post("/deleteLocation", Username, {}, String)    //need logan to verify, dont want to delete my only test entry XD
+  $.post("/unblockUser", Username, {}, String)    //need logan to verify, dont want to delete my only test entry XD
   $('#' + Username).remove()
   console.log(Username)
 })
