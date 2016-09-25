@@ -87,7 +87,7 @@ exports.registerpost = function (req, res) {
   var streetNumber = req.body.streetNum;
   var streetName = req.body.streetName;
   var town = req.body.town;
-  var nickname = req.body.Nickname
+  var nickname = req.body.Nickname;
   var register = require("../modules/register.js");
   register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, function (success, error) {
     if (success) {
