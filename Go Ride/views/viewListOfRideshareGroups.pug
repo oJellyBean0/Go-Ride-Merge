@@ -53,19 +53,17 @@ block content
                         a.pull-right
                             button#changePetrolCost.btn.btn-default(type="button", data-toggle="modal", data-target="#changePetrolCost") Change Petrol Cost
                         a.pull-right
-                            button#requestEditRoute.btn.btn-default(type="button" , data-toggle="modal", data-target="#editRouteDialog") Edit Pick-up Point
+                            button#editPickupPoint.btn.btn-default(type="button" , data-toggle="modal", data-target="#editRouteDialog") Edit Pick-up Point
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
                                 $.getJSON( "/getLocations", function(data) {
-                                    console.log("posting");
-                                    console.log(data);
+                                    $('#dropdownMenu').empty();
                                     $.each(data.locations, function (key, val) {
                                         var item2 = $("<option/>", {
                                             "class": "my-new-list",
-                                            html: "test"
+                                            html: val.Nickname
                                         });
                                         item2.appendTo('#dropdownMenu');
-                                        
                                     });
                                 });
                             });
