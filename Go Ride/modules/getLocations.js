@@ -54,6 +54,7 @@ exports.tryGetLocations = function (username, callback) {
                         'StreetNumber': item.StreetNumber,
                         'StreetName': item.StreetName,
                         'Town': item.Town,
+                        'Nickname': item.Nickname
                     });
                 });
                 callback(jsonObject);
