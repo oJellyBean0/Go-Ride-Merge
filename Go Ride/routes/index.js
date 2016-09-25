@@ -69,7 +69,7 @@ exports.viewListOfRideshareGroups = function (req, res) {
   res.render('viewListOfRideshareGroups', { title: 'View Participating Rideshare Groups', year: new Date().getFullYear(), message: '' });
 };
 exports.viewRideshareGroup = function (req, res) {
-  res.render('viewRideshareGroup', { title: 'View Rideshare Groups', year: new Date().getFullYear(), message: '' , UserID: req.query.user});
+  res.render('viewRideshareGroup', { title: 'View Rideshare Groups', year: new Date().getFullYear(), message: '', UserID: req.query.user });
 };
 exports.addRideshareGroup = function (req, res) {
   res.render('addRideshareGroup', { title: 'Add Rideshare Groups', year: new Date().getFullYear(), message: '' });
@@ -200,11 +200,11 @@ exports.editUser = function (req, res) {
   });
 };
 
-exports.editPetrolCost = function(req,res){
+exports.editPetrolCost = function (req, res) {
   var rideshare = require("../modules/editPetrolCost.js");
   var rideshareNo = req.body.rideshareNo;
   var patrolCost = req.body.petrolCost;
-  rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err){
+  rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err) {
 
   });
 };
@@ -287,6 +287,15 @@ exports.getProfile = function (req, res) {
   var user = req.body.userID;
   var profile = require("../modules/getProfile.js");
   profile.tryGetProfile(user, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
+exports.getRouteMarker = function (req, res) {
+  var route = require("../modules/getRouteMarker.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  var rideshareNo = req.body.rideshareNo;
+  route.tryGetRouteMarker(username, rideshareNo, function (jsonObject) {
     res.json(jsonObject);
   });
 };
