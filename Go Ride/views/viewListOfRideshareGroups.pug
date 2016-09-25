@@ -49,7 +49,44 @@ block content
                                 label#pricekm(style = "font-weight:normal")
                     .modal-footer
                         a(href="viewListOfRideshareGroups").pull-left
-                            button#cancel.btn.btn-primary(type="button" data-dismiss="modal") Cancel
+                            button#cancel.btn.btn-default(type="button" data-dismiss="modal") Cancel
+                        a.pull-right
+                            button#changePetrolCost.btn.btn-default(type="button", data-toggle="modal", data-target="#myModal") Change Petrol Cost
+                        a.pull-right
+                            button#requestEditRoute.btn.btn-default(type="button") Edit Route
+                        script(type="text/javascript").
+                            $( "#requestEditRoute").click(function() {
+                                $.getJSON( "/getLocations", function( key, val ) {
+                                    console.log(data);
+                                    $.each(data.locations, function (key, val) {
+                                        var item2 = $("<option/>", {
+                                            "class": "my-new-list",
+                                            html: "test"
+                                        });
+                                        item2.appendTo('#dropdownMenu');
+                                        
+                                    });
+                                });
+                            });
+                    
+                    div.modal.fade(id="myModal" role="dialog")
+                        div.modal-dialog
+
+                            div.modal-content
+                                div.modal-header
+                                    button.close(type="button" data-dismiss="modal") &times;
+                                    h4.modal-title Edit Petrol Cost
+
+                                div.modal-body
+                                    div.row
+                                        div.col-md-3.col-md-offset-2    
+                                            label(for="price/km") Price/km
+                                        div.col-md-7                            
+                                            input.form-control#pricekmDialog(style = "font-weight:normal")
+
+                                div.modal-footer
+                                    button.btn.btn-default#savePetrolCost(type="submit" ) Save
+                                    button.btn.btn-default(type="button"  data-dismiss="modal") Close
 
       div.col-md-8#carIcon(style="vertical-align: middle")
         img.img-responsive.img-circle.center-block(src='https://lh6.ggpht.com/TzMkdj8C6dTcg_kDRxxGRBC3pM-UDiNL3t6VKNoMSumbhUeqZzs5PT3UfgkbJpORSV4=w300', alt='Profile Image')
