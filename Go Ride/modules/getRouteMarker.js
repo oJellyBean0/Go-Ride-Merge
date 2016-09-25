@@ -49,7 +49,7 @@ exports.tryGetRouteMarker = function (username, rideshareNo, callback) {
             if (err) errorHandler(err, sql);
             else {
                 recordset.forEach(function (item) {
-                    jsonObject.locations.push({
+                    jsonObject.marker.push({
                         'RouteMarkerID': item.RouteMarkerID,
                         'AreaID': item.AreaID,
                         'Order': item.Order
