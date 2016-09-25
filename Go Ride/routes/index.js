@@ -299,3 +299,11 @@ exports.getRouteMarker = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getRoute = function (req, res) {
+  var route = require("../modules/getRoute.js");
+  var rideshareNo = req.body.rideshareNo;
+  route.tryGetRoute(rideshareNo, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
