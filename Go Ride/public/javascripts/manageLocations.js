@@ -19,24 +19,6 @@ $(document).ready(function () {
   })
 })
 
-// $('.list-group-item').click(function () {
-//   var ID = $(this).attr('id')
-//   $.getJSON('/getLocations', {}, function (data) {
-//     console.log(data)
-//     $.each(data.locations, function (key, val) {
-//       if (ID == val.AreaID) {
-//         var StreetNumber = val.StreetNumber
-//         var StreetName = val.StreetName
-//         var Town = val.Town
-//         var Suburb = val.Suburb
-//         var Province = val.Province
-//         $('#streetNumber').val(StreetNum)
-//         $('#streetName').val(StreetName)
-//         $('#suburb').val(Suburb)
-//         $('#city').val(Town)
-//         $('#province').val(Province)
-//       }})})})
-
 var JSON
 var AreaID1
 // populate list

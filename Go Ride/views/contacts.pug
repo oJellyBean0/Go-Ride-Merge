@@ -22,7 +22,7 @@ block content
 
 
     .col-md-6(id="details")
-        form.div.modal-dialog(id="unblockUser", name="unblockUser", method="post", action="", autocomplete="off", enctype="text/plain", style="padding-top:0px")
+        form.modal-dialog(id="unblockUser", name="unblockUser", method="post", action="", autocomplete="off", enctype="text/plain", style="padding-top:0px")
             div.modal-header(style="padding-top:0px; margin-top:0px;")
                 h2(style="padding-top:0px; margin-top:0px", id="unblockUserHeading", type="text")
             div.modal-body
@@ -31,7 +31,7 @@ block content
             div.modal-footer
                 div.row
                     div.col-md-2.clearfix
-                        button.btn.button-primary.pull-left(type="submit", id="unblockUserButton") Yes
+                        button.btn.button-primary.pull-left(id="unblockUserButton") Yes
                     div.col-md-2.clearfix.text-center 
                     div.col-md-2.clearfix
                         button.btn.button-primary.pull-right(type="reset") No
