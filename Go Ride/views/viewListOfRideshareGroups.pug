@@ -87,6 +87,14 @@ block content
 
                                 div.modal-footer
                                     button.btn.btn-default#savePetrolCost(type="button" ) Save
+                                        script(type="text/javascript").
+                                            $( "#savePetrolCost").click(function() {
+                                                console.log($("#pricekmDialog").val());
+                                                console.log($("#rideshareNo").val());
+                                                $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() }, {petrolCost : $("#pricekmDialog").val() }, function (data) {
+                                                    console.log("posting to editPetrolCost");
+                                                });
+                                            });
                                     button.btn.btn-default(type="button"  data-dismiss="modal") Close
 
                     div.modal.fade(id="editRouteDialog" role="dialog")

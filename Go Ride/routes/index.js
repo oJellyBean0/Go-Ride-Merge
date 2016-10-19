@@ -203,7 +203,7 @@ exports.editUser = function (req, res) {
 exports.editPetrolCost = function (req, res) {
   var rideshare = require("../modules/editPetrolCost.js");
   var rideshareNo = req.body.rideshareNo;
-  var patrolCost = req.body.petrolCost;
+  var petrolCost = req.body.petrolCost;
   rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err) {
 
   });
