@@ -39,6 +39,7 @@ var createItem = function (key, val) {
             console.log(data);
             var destination = data.rideshares[0].Destination;
             var driver = data.rideshares[0].Driver[0].Driver;
+            var rideshareNo = data.rideshares[0].RideshareNo;
             $('#passengerList').empty();
             $.each(data.rideshares[0].Passengers, function (key, val) {
                 var item1 = $("<p/>", {
@@ -53,6 +54,7 @@ var createItem = function (key, val) {
             
             var price = data.rideshares[0].Price;
             console.log(destination)
+            $('#rideshareNo').text(rideshareNo);
             $('#destination').text(destination);
             $('#driver').text(driver);
             $('#pricekm').text(price);
