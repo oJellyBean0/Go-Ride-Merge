@@ -2,5 +2,6 @@
 {
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 3000,
-    "puglint.enable": true
+    "puglint.enable": true,
+    "editor.formatOnSave": true
 }
