@@ -71,6 +71,7 @@ exports.tryEditRouteMarker = function (username, rideshareNo, areaID, callback) 
         var request = new mssql.Request(connObj);
         request.input("AreaID", mssql.UniqueIdentifier, areaID);
         request.input("UserID", mssql.UniqueIdentifier, userID);
+        request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
         sql += " SET AreaID=@AreaID";
         sql += " WHERE RideshareNo=@RideshareNo AND UserID=@UserID";
         request.query(sql, function (err, recordset) {
