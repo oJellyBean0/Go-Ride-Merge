@@ -51,13 +51,14 @@ block content
                         a(href="viewListOfRideshareGroups").pull-left
                             button#cancel.btn.btn-default(type="button" data-dismiss="modal") Cancel
                         a.pull-right
-                            button#changePetrolCost.btn.btn-default(type="button", data-toggle="modal", data-target="#changePetrolCost") Change Petrol Cost
+                            button#changePetrolCost.btn.btn-default(type="button", data-toggle="modal", data-target="#changePertolCost") Change Petrol Cost
                         a.pull-right
                             button#editPickupPoint.btn.btn-default(type="button" , data-toggle="modal", data-target="#editRouteDialog") Edit Pick-up Point
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
                                 $.getJSON( "/getLocations", function(data) {
                                     $('#dropdownMenu').empty();
+                                    console.log(data);
                                     $.each(data.locations, function (key, val) {
                                         var item2 = $("<option/>", {
                                             "class": "my-new-list",
@@ -98,7 +99,7 @@ block content
                                 div.modal-body
                                     div.row
                                         div.col-md-3.col-md-offset-2    
-                                            label(for="price/km") Pick-up point
+                                            label(for="pickupPoint") Pick-up point
                                         div.col-md-7                            
                                             div.dropdown
                                                 select.form-control#dropdownMenu(name = "pickupPoint",required) Select pick-up point
