@@ -62,6 +62,7 @@ block content
                                     $.each(data.locations, function (key, val) {
                                         var item2 = $("<option/>", {
                                             "class": "my-new-list",
+                                            "data-AreaID": val.AreaID,
                                             html: val.Nickname
                                         });
                                         item2.appendTo('#editPickupPoint');
@@ -85,7 +86,7 @@ block content
                                             input.form-control#pricekmDialog(style = "font-weight:normal")
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePetrolCost(type="submit" ) Save
+                                    button.btn.btn-default#savePetrolCost(type="button" ) Save
                                     button.btn.btn-default(type="button"  data-dismiss="modal") Close
 
                     div.modal.fade(id="editRouteDialog" role="dialog")
@@ -107,7 +108,19 @@ block content
                                                     option(disabled, selected) Select pick-up point
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePickupPoint(type="submit" ) Save
+                                    button.btn.btn-default#savePickupPoint(type="button" ) Save
+                                        script(type="text/javascript").
+                                            $( "#savePickupPoint").click(function() {
+                                                var e = document.getElementById("editPickupPoint");
+                                                console.log(e);
+                                                var value = e.options[e.selectedIndex];
+                                                console.log(value.getAttribute("data-AreaID"));
+                                                var AreaID = value.getAttribute("data-AreaID");
+                                                    $.post("/editRouteMarker", { rideshareNo: $("#rideshareNo").val() }, {areaID : AreaID }, function (data) {
+                                                        console.log("posting");
+                                                    });
+                                            });
+                                    input#rideshareNo(type="hidden")
                                     button.btn.btn-default(type="button"  data-dismiss="modal") Close
 
 
