@@ -53,8 +53,8 @@ var createItem = function (key, val) {
             };
             
             var price = data.rideshares[0].Price;
-            console.log(destination)
-            $('#rideshareNo').text(rideshareNo);
+            
+            $('#rideshareNo').val(rideshareNo);
             $('#destination').text(destination);
             $('#driver').text(driver);
             $('#pricekm').text(price);
