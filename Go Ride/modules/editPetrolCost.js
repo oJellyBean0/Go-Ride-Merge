@@ -64,7 +64,7 @@ exports.tryEditPetrolCost = function (rideshareNo, petrolCost, callback) {
         sql += " VALUES (@NotificationMessage, @Trigger)";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else notifyUsers(recordset[0].NotificationID);
+            else getPassengers(recordset[0].NotificationID);
         });
     };
 
