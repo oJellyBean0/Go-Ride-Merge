@@ -204,6 +204,7 @@ exports.editPetrolCost = function (req, res) {
   var rideshare = require("../modules/editPetrolCost.js");
   var rideshareNo = req.body.rideshareNo;
   var petrolCost = req.body.petrolCost;
+  console.log(req.body);
   rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err) {
 
   });

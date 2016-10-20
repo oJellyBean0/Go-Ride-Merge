@@ -91,7 +91,7 @@ block content
                                             $( "#savePetrolCost").click(function() {
                                                 console.log($("#pricekmDialog").val());
                                                 console.log($("#rideshareNo").val());
-                                                $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() }, {petrolCost : $("#pricekmDialog").val() }, function (data) {
+                                                $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() , petrolCost : $("#pricekmDialog").val() }, function (data) {
                                                     console.log("posting to editPetrolCost");
                                                 });
                                             });
@@ -124,7 +124,7 @@ block content
                                                 var value = e.options[e.selectedIndex];
                                                 console.log(value.getAttribute("data-AreaID"));
                                                 var AreaID = value.getAttribute("data-AreaID");
-                                                    $.post("/editRouteMarker", { rideshareNo: $("#rideshareNo").val() }, {areaID : AreaID }, function (data) {
+                                                    $.post("/editRouteMarker", { rideshareNo: $("#rideshareNo").val(), areaID : AreaID }, function (data) {
                                                         console.log("posting");
                                                     });
                                             });
