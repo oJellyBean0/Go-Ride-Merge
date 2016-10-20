@@ -54,7 +54,7 @@ exports.tryEditRouteMarker = function (username, rideshareNo, areaID, callback) 
     };
 
     var getDriver = function (userID, name, surname) {
-        var tableName = '[JN08].[dbo].[Rideshare]';
+        var tableName = '[JN08].[dbo].[RideshareGroup]';
         var sql = 'SELECT DriverID FROM ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
