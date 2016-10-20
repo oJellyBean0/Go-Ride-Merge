@@ -24,7 +24,7 @@ exports.tryEditRouteMarker = function (username, rideshareNo, areaID, callback) 
         callback(false, error);
     };
 
-    var notifyUsers = function (notificationID, userID) {
+    var notifyUser = function (notificationID, userID) {
         var tableName = '[JN08].[dbo].[NotifiedUser]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
