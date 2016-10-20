@@ -86,9 +86,11 @@ block content
                                             input.form-control#pricekmDialog(style = "font-weight:normal")
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePetrolCost(type="button" ) Save
+                                    button.btn.btn-default#savePetrolCost(type="button" data-dismiss="modal" ) Save
                                         script(type="text/javascript").
                                             $( "#savePetrolCost").click(function() {
+                                                var newPriceperkm = $("#pricekmDialog").val();
+                                                $("#pricekm").text(newPriceperkm);
                                                 console.log($("#pricekmDialog").val());
                                                 console.log($("#rideshareNo").val());
                                                 $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() , petrolCost : $("#pricekmDialog").val() }, function (data) {
@@ -116,7 +118,7 @@ block content
                                                     option(disabled, selected) Select pick-up point
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePickupPoint(type="button" ) Save
+                                    button.btn.btn-default#savePickupPoint(type="button" data-dismiss="modal") Save
                                         script(type="text/javascript").
                                             $( "#savePickupPoint").click(function() {
                                                 var e = document.getElementById("editPickupPoint");
