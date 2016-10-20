@@ -44,7 +44,9 @@ exports.tryGetRouteMarker = function (username, rideshareNo, callback) {
         var sql = "SELECT * FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("UserID", mssql.UniqueIdentifier, userID);
+        request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
         sql += "WHERE UserID=@UserID";
+        sql += " AND RideshareNo=@RideshareNo";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
