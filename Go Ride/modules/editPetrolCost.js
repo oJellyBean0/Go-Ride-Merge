@@ -25,20 +25,25 @@ exports.tryEditPetrolCost = function (rideshareNo, petrolCost, callback) {
     };
 
     var notifyUsers = function (notificationID, userIDs) {
-        var tableName = '[JN08].[dbo].[NotifiedUser]';
-        var sql = 'INSERT INTO ' + tableName;
-        var request = new mssql.Request(connObj);
-        sql += " (NotificationID, UserID) VALUES ";
-        request.input("NotificationID", mssql.UniqueIdentifier, notificationID);
-        userIDs.forEach(function (element, index) {
-            request.input("UserID" + index, mssql.UniqueIdentifier, element);
-            sql += "(@NotificationID, @UserID" + index + "), ";
-        });
-        sql = sql.slice(0, -2);
-        request.query(sql, function (err, recordset) {
-            if (err) errorHandler(err, sql);
-            else callback(true);
-        });
+        if (userIDs.length > 0) {
+            var tableName = '[JN08].[dbo].[NotifiedUser]';
+            var sql = 'INSERT INTO ' + tableName;
+            var request = new mssql.Request(connObj);
+            sql += " (NotificationID, UserID) VALUES ";
+            request.input("NotificationID", mssql.UniqueIdentifier, notificationID);
+            userIDs.forEach(function (element, index) {
+                request.input("UserID" + index, mssql.UniqueIdentifier, element);
+                sql += "(@NotificationID, @UserID" + index + "), ";
+            });
+            sql = sql.slice(0, -2);
+            request.query(sql, function (err, recordset) {
+                if (err) errorHandler(err, sql);
+                else callback(true);
+            });
+        }
+        else {
+            callback(true);
+        }
     };
 
     var getPassengers = function (notificationID) {
