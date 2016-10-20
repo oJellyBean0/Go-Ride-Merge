@@ -57,16 +57,22 @@ block content
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
                                 $.getJSON( "/getLocations", function(data) {
-                                    $('#editPickupPoint').empty();
-                                    console.log(data);
-                                    $.each(data.locations, function (key, val) {
-                                        var item2 = $("<option/>", {
-                                            "class": "my-new-list",
-                                            "data-AreaID": val.AreaID,
-                                            html: val.Nickname
+                                    $.post("/getRoutemarker", { rideshareNo: $("#rideshareNo").val() }, function(json){
+                                        console.log(json);
+                                        areaID = json.marker[0].AreaID;
+                                        $('#editPickupPoint').empty();
+                                        console.log(data);
+                                        $.each(data.locations, function (key, val) {
+                                            if ( val.AreaID != areaID ) {
+                                                var item2 = $("<option/>", {
+                                                    "class": "my-new-list",
+                                                    "data-AreaID": val.AreaID,
+                                                    html: val.Nickname
+                                                });
+                                                item2.appendTo('#editPickupPoint');
+                                            }
                                         });
-                                        item2.appendTo('#editPickupPoint');
-                                    });
+                                    })
                                 });
                             });
                     
