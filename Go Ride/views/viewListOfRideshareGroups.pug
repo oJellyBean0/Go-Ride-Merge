@@ -86,7 +86,7 @@ block content
 
                                 div.modal-body
                                     div.row
-                                        div.col-md-3.col-md-offset-2    
+                                        div.col-md-3.col-md-offset-1    
                                             label(for="price/km") Price/km
                                         div.col-md-7                            
                                             input.form-control#pricekmDialog(style = "font-weight:normal")
@@ -115,7 +115,7 @@ block content
 
                                 div.modal-body
                                     div.row
-                                        div.col-md-3.col-md-offset-2    
+                                        div.col-md-3.col-md-offset-1    
                                             label(for="pickupPoint") Pick-up point
                                         div.col-md-7                            
                                             div.dropdown
@@ -124,7 +124,7 @@ block content
                                                     option(disabled, selected) Select pick-up point
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePickupPoint(type="button" data-dismiss="modal") Save
+                                    button.btn.btn-default#savePickupPoint(type="button" data-dismiss="modal" data-toggle="modal" data-target="#routeChangeConfirm") Save
                                         script(type="text/javascript").
                                             $( "#savePickupPoint").click(function() {
                                                 var e = document.getElementById("editPickupPoint");
@@ -138,6 +138,22 @@ block content
                                             });
                                     input#rideshareNo(type="hidden")
                                     button.btn.btn-default(type="button"  data-dismiss="modal") Close
+
+                    div.modal.fade(id="routeChangeConfirm" role="dialog")
+                        div.modal-dialog
+
+                            div.modal-content
+                                div.modal-header
+                                    button.close(type="button" data-dismiss="modal") &times;
+                                    h4.modal-title Request to Edit Route
+
+                                div.modal-body
+                                    div.row
+                                        div.col-md-offset-1    
+                                            p A request to edit the route has been sent to the driver for confirmation.
+                                                            
+                                div.modal-footer
+                                    button.btn.btn-default#ok(type="button" data-dismiss="modal") Ok
 
 
       div.col-md-8#carIcon(style="vertical-align: middle")
