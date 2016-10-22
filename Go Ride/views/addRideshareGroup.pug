@@ -4,7 +4,7 @@ block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/selectize.bootstrap3.css')
     script(src = "/javascripts/selectize.js")
-    script(src = "/javascripts/rideshareGroupSelection.js")
+    script(src = '/javascripts/rideshareGroupSearchBar.js')
     
     
       
@@ -18,7 +18,7 @@ block content
                     button#addRideshareGroup.btn.btn-primary(type="button") Add Rideshare
                     p
                 div
-                    .list-group.eventList(style ="max-height: 500px; overflow: auto")
+                    .list-group#eventList(style ="max-height: 500px; overflow: auto")
         
             div.col-md-7
                 div.modal-dialog
