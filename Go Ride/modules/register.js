@@ -17,7 +17,7 @@ var dbConfig = {
 var connectionError = 'Unable to Connect to Server';
 
 
-exports.tryRegister = function (IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, callback) {
+exports.tryRegister = function (IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, cellphone, driver, registration, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -107,6 +107,27 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('Town', mssql.NVarChar, town);
         request.input('Nickname', mssql.NVarChar, nickname);
         request.query(sql + '(UserID, StreetNumber, StreetName, Town, Nickname) VALUES (@UserID, @StreetNumber, @StreetName, @Town, @Nickname)', function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else
+                if (driver == "on")
+                { DriverInsert(UserID); }
+                else {
+                    callback(true);
+                    connObj.close();
+                }
+        });
+    };
+
+    var DriverInsert = function (UserID) {
+        var tableName = '[JN08].[dbo].[Driver]';
+        var sql = 'INSERT INTO ' + tableName;
+        var request = new mssql.Request(connObj);
+        request.input('UserID', mssql.UniqueIdentifier, UserID);
+        request.input('CarRegistrationNo', mssql.NVarChar, registration);
+        request.input('Rating', mssql.Float, 0);
+        request.input('CellphoneNo', mssql.Char, cellphone);
+        sql += " VALUES (@UserID, @CarRegistrationNo, @Rating, @CellphoneNo)";
+        request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
                 callback(true);

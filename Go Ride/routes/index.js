@@ -88,8 +88,11 @@ exports.registerpost = function (req, res) {
   var streetName = req.body.streetName;
   var town = req.body.town;
   var nickname = req.body.Nickname;
+  var cellphone = req.body.cellphone;
+  var driver = req.body.driver;
+  var registration = req.body.registrationNum;
   var register = require("../modules/register.js");
-  register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, function (success, error) {
+  register.tryRegister(IDnumber, name, surname, username, password, picture, streetNumber, streetName, town, nickname, cellphone, driver, registration, function (success, error) {
     if (success) {
       res.redirect('/login');
     } else {
@@ -113,7 +116,6 @@ exports.addEventpost = function (req, res) {
   var username = cookie.parse(req.headers.cookie).user;
   var events = require("../modules/addEvent.js");
   events.tryAddEvent(username, eventName, eventCategory, streetNumORVenueName, streetName, city, datetime, function (success, error) {
-
     if (success) {
       res.redirect('/manageEvent');
     } else {
@@ -138,8 +140,6 @@ exports.addRideshareGroupPost = function (req, res) {
       res.render('addRideshareGroup', { title: 'Add Rideshare Group', year: new Date().getFullYear(), message: error });
     }
   });
-
-
 };
 
 
@@ -163,7 +163,6 @@ exports.editEventpost = function (req, res) {
       res.render('editEvent', { title: 'Edit Event', year: new Date().getFullYear(), message: error });
     }
   });
-
 };
 
 exports.deleteEvent = function (req, res) {
