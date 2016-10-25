@@ -64,7 +64,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
     };
 
     var getRideshare = function (userID, rideshareNo) {
-        var sql = "SELECT ri.RideshareNo, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order]";
+        var sql = "SELECT ri.RideshareNo, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order], ri.[DriverID]";
         sql += " FROM [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[Event] as e, [JN08].[dbo].[User] as d, [JN08].[dbo].[User] as p";
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
