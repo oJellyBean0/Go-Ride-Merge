@@ -59,6 +59,13 @@ var createItem = function (key, val) {
             $('#driver').text(driver);
             $('#pricekm').text(price);
             $('#pricekmDialog').val(price);
+            
+            var isDriver = data.rideshares[0].isDriver;
+            console.log(isDriver);
+            if(!isDriver)
+                $("#changePetrolCost").hide();
+            else
+                $("#requestEditRoute").hide();
         });
     });
 };
