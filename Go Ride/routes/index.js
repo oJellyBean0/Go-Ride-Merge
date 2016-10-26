@@ -228,6 +228,14 @@ exports.searchParticipatingRideshare = function (req, res) {
   });
 };
 
+exports.searchRideshare = function (req, res) {
+  var rideshare = require("../modules/searchRideshare.js");
+  var searchTerm = req.body.searchTerm;
+  rideshare.trySearchRideshare(searchTerm, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
 exports.getUser = function (req, res) {
   var user = require("../modules/getUser.js");
   var username = cookie.parse(req.headers.cookie).user;
