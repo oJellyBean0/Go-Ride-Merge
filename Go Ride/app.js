@@ -67,6 +67,7 @@ app.post('/getProfile', routes.getProfile);
 app.post('/addRideshare', routes.addRideshare);
 app.get('/getParticipatingRideshares', routes.getParticipatingRideshares);
 app.post('/searchParticipatingRideshares', routes.searchParticipatingRideshare);
+app.post('/searchRideshares', routes.searchRideshare);
 app.post('/getRideshare', routes.getRideshare);
 app.post('/unblockUser', routes.unblockUser);
 app.get('/getUser', routes.getUser);
