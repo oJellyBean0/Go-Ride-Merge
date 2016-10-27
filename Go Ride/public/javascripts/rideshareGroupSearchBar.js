@@ -110,10 +110,18 @@ var createItem = function (key, val) {
 
             var isDriver = data.rideshares[0].isDriver;
             console.log(isDriver);
-            if (!isDriver)
-                $("#changePetrolCost").hide();
-            else
+            var filterType = $("#filterRideshareGroups").attr("data-filterType");
+            if(filterType="all")
+            {
                 $("#requestEditRoute").hide();
+                $("#changePetrolCost").hide();
+            }
+            else if (!isDriver){
+                $("#changePetrolCost").hide();
+            }
+            else{
+                $("#requestEditRoute").hide();
+            }
         });
     });
 };
