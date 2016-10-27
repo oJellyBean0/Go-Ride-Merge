@@ -44,7 +44,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
         recordset.forEach(function (element) {
             if (element.Order != 1) {
                 Passengers.push({
-                    Passenger: element.Name[element.Order - 1] + " " + element.Surname[element.Order - 1]
+                    Passenger: element.Name[1] + " " + element.Surname[1]
                 });
             }
         });
@@ -80,6 +80,22 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
                     Passengers: getPassengers(recordset),
                     isDriver: (userID == recordset[0].DriverID) ? true : false
                 });
+                isPartofRideshare(userID, recordset);
+            }
+        });
+    };
+
+    var isPartofRideshare = function (userID, results) {
+        var tableName = '[JN08].[dbo].[RouteMarker]';
+        var sql = "SELECT UserID FROM " + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("RideshareNo", mssql.UniqueIdentifier, results[0].RideshareNo);
+        request.input("UserID", mssql.UniqueIdentifier, userID);
+        sql += " WHERE RideshareNo=@RideshareNo and UserID=@UserID";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else {
+                jsonObject.rideshares[0].isPartofRideshare = (recordset.length > 0) ? true : false;
                 callback(jsonObject);
             }
         });
