@@ -78,6 +78,10 @@ exports.processRideshareRequest = function (req, res) {
   res.render('processRideshareRequest', { title: 'Process Rideshare Request', year: new Date().getFullYear(), message: '' });
 };
 
+exports.viewCalender = function (req, res) {
+  res.render('viewCalender', { title: 'View Calender', year: new Date().getFullYear(), message: '' });
+};
+
 
 
 exports.registerpost = function (req, res) {
