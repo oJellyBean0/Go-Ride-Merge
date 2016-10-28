@@ -42,7 +42,7 @@ exports.tryEditRouteMarker = function (username, rideshareNo, areaID, callback) 
         var tableName = '[JN08].[dbo].[Notification]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
-        request.input("NotificationMessage", mssql.Text, name + " " + surname + "has requested to Change their Pick-up Point");
+        request.input("NotificationMessage", mssql.Text, name + " " + surname + " has requested to Change their Pick-up Point");
         request.input("Trigger", mssql.VarChar, "");
         sql += " (NotificationMessage, [Trigger])";
         sql += " OUTPUT INSERTED.NotificationID";
