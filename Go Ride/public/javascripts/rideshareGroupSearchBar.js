@@ -68,6 +68,28 @@ $(document).ready(function () {
 
     $('#viewRideshareDetails').hide();
 
+    $.post("/event", { searchTerm: "" }, function (data) {
+        console.log("posting");
+        console.log(data.events);
+        $.each(data.events,function (key, val) {
+            $("<option/>", {
+                "value": val.EventID,
+                "class": "my-new-list",
+                html: val.EventName
+            }).appendTo("#dropdownMenu");
+    });
+    });
+    $.getJSON("/getLocations", function (data) {
+    console.log(data.locations)
+    $.each(data.locations, function (key, val) {
+        $("<option/>", {
+            "class": "my-new-list",
+            "value": val.AreaID,
+            html: val.StreetNumber + " "+ val.StreetName +", "+ val.Town
+        }).appendTo("#dropdownMenu2");
+    });
+    });
+
 });
 
 var createItem = function (key, val) {
@@ -109,9 +131,10 @@ var createItem = function (key, val) {
             $('#pricekmDialog').val(price);
 
             var isDriver = data.rideshares[0].isDriver;
+            var isPartofRideshare = data.rideshares[0].isPartofRideshare;
             console.log(isDriver);
             var filterType = $("#filterRideshareGroups").attr("data-filterType");
-            if(filterType="all")
+            if(filterType="all" && !isPartofRideshare)
             {
                 $("#requestEditRoute").hide();
                 $("#changePetrolCost").hide();
@@ -125,3 +148,4 @@ var createItem = function (key, val) {
         });
     });
 };
+
