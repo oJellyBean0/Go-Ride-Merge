@@ -64,7 +64,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
     };
 
     var getRideshare = function (userID, rideshareNo) {
-        var sql = "SELECT ri.RideshareNo, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order], ri.[DriverID]";
+        var sql = "SELECT ri.RideshareNo, ri.MaxPassengers, e.StreetNumber, e.StreetName, e.Town, ri.PricePerkm, d.[Name], d.Surname, p.[Name], p.Surname, ro.[Order], ri.[DriverID]";
         sql += " FROM [JN08].[dbo].RouteMarker as ro, [JN08].[dbo].RideshareGroup as ri, [JN08].[dbo].[Event] as e, [JN08].[dbo].[User] as d, [JN08].[dbo].[User] as p";
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
@@ -80,6 +80,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
                     Passengers: getPassengers(recordset),
                     isDriver: (userID == recordset[0].DriverID) ? true : false
                 });
+                jsonObject.rideshares[0].OpenSeats = recordset[0].MaxPassengers - jsonObject.rideshares[0].Passengers.length;
                 isPartofRideshare(userID, recordset);
             }
         });
