@@ -9,16 +9,18 @@ block content
     
     div.row
         form.form-group(action ="", method = "post")
-            div.col-md-4.inline.pull-left
-                div.col-md-7#searchBarDiv
-                    input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+            div.col-md-4.pull-left
+                row
+                    div.col-md-9#searchBarDiv
+                        input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
-                a(href="addRideshareGroup")
-                    button#addRideshareGroup.btn.btn-primary(type="button") Add Rideshare
-                    p
-                div
+                    div.col-md-3.pull-left
+                        button#filterRideshareGroups.btn.btn-primary(type="button" style="position:relative; left:-10" data-filterType="own") 
+                            span Filter All
+                        p
+                div(style = "clear:both")
                     .list-group#eventList(style ="max-height: 500px; overflow: auto")
-        
+                
             div.col-md-7
                 div.modal-dialog
                     div.col-md-2
