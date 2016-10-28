@@ -74,6 +74,9 @@ exports.viewRideshareGroup = function (req, res) {
 exports.addRideshareGroup = function (req, res) {
   res.render('addRideshareGroup', { title: 'Add Rideshare Groups', year: new Date().getFullYear(), message: '' });
 };
+exports.processRideshareRequest = function (req, res) {
+  res.render('processRideshareRequest', { title: 'Process Rideshare Request', year: new Date().getFullYear(), message: '' });
+};
 
 
 
