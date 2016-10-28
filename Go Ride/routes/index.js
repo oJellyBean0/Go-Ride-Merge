@@ -226,6 +226,16 @@ exports.editRouteMarker = function (req, res) {
   });
 };
 
+exports.requesttoJoinRideshare = function (req, res) {
+  var rideshare = require("../modules/requesttoJoinRideshare.js");
+  var rideshareNo = req.body.rideshareNo;
+  var areaID = req.body.areaID;
+  var username = cookie.parse(req.headers.cookie).user;
+  rideshare.tryRequesttoJoinRideshare(username, rideshareNo, areaID, function (success, err) {
+
+  });
+};
+
 exports.searchParticipatingRideshare = function (req, res) {
   var rideshare = require("../modules/searchParticipatingRideshare.js");
   var username = cookie.parse(req.headers.cookie).user;
