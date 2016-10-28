@@ -53,7 +53,7 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         });
     };
 
-    var getEvent = function (userID, name, surname, driverID) {
+    var getEventName = function (userID, name, surname, driverID) {
         var tableName = '[JN08].[dbo].[Event]';
         var sql = 'SELECT EventName FROM ' + tableName;
         var request = new mssql.Request(connObj);
@@ -73,7 +73,7 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         sql += " WHERE RideshareNo=@RideshareNo";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getEvent(userID, name, surname, recordset[0].DriverID);
+            else getEventName(userID, name, surname, recordset[0].DriverID);
         });
     };
 
@@ -92,6 +92,48 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         });
     };
 
+    var getEventID = function (userID, name, surname, events, pendingEvents) {
+        var tableName = '[JN08].[dbo].[RideshareGroup]';
+        var sql = 'SELECT EventID FROM ' + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
+        sql += " WHERE RideshareNo=@RideshareNo";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else if (events.indexOf(recordset[0].EventID) > -1 || pendingEvents.indexOf(recordset[0].EventID) > -1) {
+                connObj.close();
+                callback(false, "User is already going to this event");
+            }
+            else addPendingRouterMarker(userID, name, surname);
+        });
+    };
+
+    var getPendingEvents = function (userID, name, surname, events) {
+        var sql = 'SELECT ri.EventID FROM ';
+        sql += "[JN08].[dbo].[PendingMarker] as ro ,";
+        sql += "[JN08].[dbo].[RideshareGroup] as ri ";
+        var request = new mssql.Request(connObj);
+        request.input("UserID", mssql.UniqueIdentifier, userID);
+        sql += "WHERE ro.UserID=@UserID and ri.RideshareNo=ro.RideshareNo";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else getEventID(userID, name, surname, events, recordset.map(function (item) { return item.EventID; }));
+        });
+    };
+
+    var getEvents = function (userID, name, surname) {
+        var sql = 'SELECT ri.EventID FROM ';
+        sql += "[JN08].[dbo].[RouteMarker] as ro ,";
+        sql += "[JN08].[dbo].[RideshareGroup] as ri ";
+        var request = new mssql.Request(connObj);
+        request.input("UserID", mssql.UniqueIdentifier, userID);
+        sql += "WHERE ro.UserID=@UserID and ri.RideshareNo=ro.RideshareNo";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else getPendingEvents(userID, name, surname, recordset.map(function (item) { return item.EventID; }));
+        });
+    };
+
     var getID = function () {
         var tableName = '[JN08].[dbo].[User]';
         var sql = 'SELECT UserID, Name, Surname FROM ' + tableName;
@@ -100,7 +142,7 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else addPendingRouterMarker(recordset[0].UserID, name, surname);
+            else getEvents(recordset[0].UserID, recordset[0].Name, recordset[0].Surname);
         });
     };
 
