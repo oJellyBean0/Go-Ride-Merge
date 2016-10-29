@@ -132,19 +132,41 @@ var createItem = function (key, val) {
 
             var isDriver = data.rideshares[0].isDriver;
             var isPartofRideshare = data.rideshares[0].isPartofRideshare;
-            console.log(isDriver);
+            var openSeats = data.rideshares[0].OpenSeats;
+            
             var filterType = $("#filterRideshareGroups").attr("data-filterType");
-            if(filterType="all" && !isPartofRideshare)
+            console.log(isPartofRideshare);
+            if(isPartofRideshare && isDriver)
+            {
+                $("#requestEditRoute").hide();
+                $("#joinRideshare").hide();
+                $("#changePetrolCost").show();
+                
+            }
+            else if (isPartofRideshare && !isDriver)
+            {
+                $("#changePetrolCost").hide();
+                $("#joinRideshare").hide();
+                $("#requestEditRoute").show();
+            }
+            else if(!isPartofRideshare)
             {
                 $("#requestEditRoute").hide();
                 $("#changePetrolCost").hide();
+                $("#joinRideshare").show();
             }
-            else if (!isDriver){
-                $("#changePetrolCost").hide();
+            if(openSeats==0)
+            {
+                $("#joinRideshare").hide();
+
             }
             else{
-                $("#requestEditRoute").hide();
+                $("#carFull").text("There are "+ openSeats +" open seats.");
             }
+            
+            
+            
+            
         });
     });
 };
