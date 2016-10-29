@@ -84,6 +84,7 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         request.input("IDNumber", mssql.UniqueIdentifier, userID);
         request.input("AreaID", mssql.UniqueIdentifier, areaID);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
+        sql += " (IDNumber, AreaID, RideshareNo)";
         sql += " OUTPUT INSERTED.RouteMarkerID";
         sql += " VALUES (@IDNumber, @AreaID, @RideshareNo)";
         request.query(sql, function (err, recordset) {
