@@ -81,12 +81,12 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
         var tableName = '[JN08].[dbo].[PendingMarker]';
         var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
-        request.input("IDNumber", mssql.UniqueIdentifier, userID);
+        request.input("UserID", mssql.UniqueIdentifier, userID);
         request.input("AreaID", mssql.UniqueIdentifier, areaID);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
-        sql += " (IDNumber, AreaID, RideshareNo)";
+        sql += " (UserID, AreaID, RideshareNo)";
         sql += " OUTPUT INSERTED.RouteMarkerID";
-        sql += " VALUES (@IDNumber, @AreaID, @RideshareNo)";
+        sql += " VALUES (@UserID, @AreaID, @RideshareNo)";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else getDriver(recordset[0].UserID, name, surname);
