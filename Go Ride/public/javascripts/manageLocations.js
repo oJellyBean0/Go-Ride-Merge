@@ -33,7 +33,7 @@ var createItem = function (key, val) { // creates item, appends to list, makes c
     'class': 'list-group-item',
     'id': val.AreaID,
     'href': '#',
-    html: val.StreetNumber + ' ' + val.StreetName + ' , ' + val.Suburb
+    html: val.StreetNumber + ' ' + val.StreetName
   })
   item.appendTo('#locationList')
   item.click(function () {
@@ -46,12 +46,14 @@ var createItem = function (key, val) { // creates item, appends to list, makes c
           var StreetNumber = val.StreetNumber
           var StreetName = val.StreetName
           var Town = val.Town
-          var Suburb = val.Suburb
-          $('#streetNumber').text(StreetNumber)
-          $('#streetName').text(StreetName)
-          $('#suburb').text(Suburb)
-          $('#town').text(Town)
-        }})})
+          var Province = val.Province
+          $('#street_number').text(StreetNumber)
+          $('#route').text(StreetName)
+          $('#locality').text(Town)
+          $('#administrative_area_level_1').text(Province)
+        }
+      })
+    })
     $('#details').show()
   })
 }
@@ -73,27 +75,27 @@ $('#acceptDeleteLocation').click(function () {
 // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
 var placeSearch, autocomplete;
-      var componentForm = {
-        street_number: 'short_name',
-        route: 'long_name',
-        locality: 'long_name',
-        administrative_area_level_1: 'short_name',
-        country: 'long_name',
-        postal_code: 'short_name'
-      };
+var componentForm = {
+  street_number: 'short_name',
+  route: 'long_name',
+  locality: 'long_name',
+  administrative_area_level_1: 'short_name',
+  country: 'long_name',
+  postal_code: 'short_name'
+};
 
-function initAutocomplete () {
+function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
   /** @type {!HTMLInputElement} */(document.getElementById('pac-input')),
-  {types: ['geocode']});
+    { types: ['geocode'] });
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -33.963373, lng: 25.616230},
+    center: { lat: -33.963373, lng: 25.616230 },
     zoom: 13,
     mapTypeId: 'roadmap',
     zoomControl: true,
@@ -105,27 +107,28 @@ function initAutocomplete () {
     rotateControl: true
   })
 
-function fillInAddress() {
-      // Get the place details from the autocomplete object.
-      var place = autocomplete.getPlace();
+  function fillInAddress() {
+    // Get the place details from the autocomplete object.
+    var place = autocomplete.getPlace();
 
-      for (var component in componentForm) {
-        document.getElementById(component).value = '';
-        document.getElementById(component).disabled = false;
-      }
-
-      // Get each component of the address from the place details
-      // and fill the corresponding field on the form.
-      for (var i = 0; i < place.address_components.length; i++) {
-        var addressType = place.address_components[i].types[0];
-        if (componentForm[addressType]) {
-          var val = place.address_components[i][componentForm[addressType]];
-          document.getElementById(addressType).value = val;
-        }
-      }
+    for (var component in componentForm) {
+      document.getElementById(component).value = '';
+      document.getElementById(component).disabled = false;
     }
 
-  
+    // Get each component of the address from the place details
+    // and fill the corresponding field on the form.
+    for (var i = 0; i < place.address_components.length; i++) {
+      var addressType = place.address_components[i].types[0];
+      if (componentForm[addressType]) {
+        var val = place.address_components[i][componentForm[addressType]];
+        document.getElementById(addressType).value = val;
+      }
+    $('#details').show()
+    }
+  }
+
+
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input')
   var searchBox = new google.maps.places.SearchBox(input)
@@ -190,8 +193,8 @@ function fillInAddress() {
 function geocodeLatLng(geocoder, map, infowindow) {
   var input = document.getElementById('latlng').value;
   var latlngStr = input.split(',', 2);
-  var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
-  geocoder.geocode({'location': latlng}, function(results, status) {
+  var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+  geocoder.geocode({ 'location': latlng }, function (results, status) {
     if (status === 'OK') {
       if (results[1]) {
         map.setZoom(11);
