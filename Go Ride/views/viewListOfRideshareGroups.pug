@@ -62,6 +62,7 @@ block content
                             button#requestEditRoute.btn.btn-default(type="button" , data-toggle="modal", data-target="#editRouteDialog") Edit Pick-up Point
                         a.pull-right
                             button#joinRideshare.btn.btn-default(type="button" , data-toggle="modal", data-target="#joinRideshare") Join Rideshare
+                                
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
                                 $.getJSON( "/getLocations", function(data) {
@@ -146,7 +147,7 @@ block content
                                             });
                                     input#rideshareNo(type="hidden")
                                     button.btn.btn-default(type="button"  data-dismiss="modal") Close
-
+                                        
                     div.modal.fade(id="routeChangeConfirm" role="dialog")
                         div.modal-dialog
 
@@ -178,7 +179,17 @@ block content
                                                             
                                 div.modal-footer
                                     button.btn.btn-default#ok(type="button" data-dismiss="modal") Ok
-
+                                script(type="text/javascript").
+                                    $( "#joinRideshare").click(function() {
+                                        $.getJSON( "/getLocations", function(data) {
+                                            console.log(data);
+                                            AreaID = data.locations[0].AreaID;
+                                            $.post("/requesttoJoinRideshare", { rideshareNo: $("#rideshareNo").val(), areaID : AreaID }, function (data) {
+                                                console.log("posting to join rideshare group");
+                                            });
+                                        });
+                                    });
+                                    
 
       div.col-md-8#carIcon(style="vertical-align: middle")
         img.img-responsive.img-circle.center-block(src='https://lh6.ggpht.com/TzMkdj8C6dTcg_kDRxxGRBC3pM-UDiNL3t6VKNoMSumbhUeqZzs5PT3UfgkbJpORSV4=w300', alt='Carpool Image')
