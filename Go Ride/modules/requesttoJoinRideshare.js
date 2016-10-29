@@ -54,7 +54,7 @@ exports.tryRequesttoJoinRideshare = function (username, rideshareNo, areaID, cal
     };
 
     var getEventName = function (userID, name, surname, driverID) {
-        var tableName = '[JN08].[dbo].[Event]';
+        var tableName = '[JN08].[dbo].[RideshareGroup]';
         var sql = 'SELECT EventName FROM ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
