@@ -133,10 +133,19 @@ var createItem = function (key, val) {
             var isDriver = data.rideshares[0].isDriver;
             var isPartofRideshare = data.rideshares[0].isPartofRideshare;
             var openSeats = data.rideshares[0].OpenSeats;
+            var joinPending = data.rideshares[0].isPending;
             
             var filterType = $("#filterRideshareGroups").attr("data-filterType");
             console.log(isPartofRideshare);
-            if(isPartofRideshare && isDriver)
+            if (joinPending)
+            {
+                $("#requestEditRoute").hide();
+                $("#joinRideshare").hide();
+                $("#changePetrolCost").hide();
+                $("#joinPending").text("Request to join rideshare was sent to driver");
+
+            }
+            else if(isPartofRideshare && isDriver)
             {
                 $("#requestEditRoute").hide();
                 $("#joinRideshare").hide();

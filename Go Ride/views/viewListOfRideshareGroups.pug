@@ -51,8 +51,10 @@ block content
                                 label#pricekm(style = "font-weight:normal")
                         br
                         div.row
-                            div.col-md-6.col-md-offset-2
+                            div.col-md-9.col-md-offset-2
                                 label#carFull(style = "font-weight:normal") The car is full
+                                p
+                                label#joinPending(style = "font-weight:normal")
                     .modal-footer
                         a(href="viewListOfRideshareGroups").pull-left
                             button#cancel.btn.btn-default(type="button" data-dismiss="modal") Cancel
@@ -190,6 +192,7 @@ block content
                                         });
                                         $( "#rideshareOk").click(function() {
                                             $("#joinRideshare").hide();
+                                            $("#joinPending").text("Request to join rideshare was sent to driver.");
                                             
 
                                         });
