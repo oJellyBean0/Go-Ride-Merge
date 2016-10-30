@@ -51,7 +51,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
         return Passengers;
     };
 
-    var getID = function (rideshareNo) {
+    var getID = function () {
         var tableName = '[JN08].[dbo].[User]';
         var sql = 'SELECT UserID FROM ' + tableName;
         var request = new mssql.Request(connObj);
@@ -59,7 +59,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else getRideshare(recordset[0].UserID, rideshareNo);
+            else getRideshare(recordset[0].UserID, RideshareNo);
         });
     };
 
@@ -120,6 +120,6 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
 
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
-        else getID(RideshareNo);
+        else getID();
     });
 };
