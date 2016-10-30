@@ -97,6 +97,22 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
             if (err) errorHandler(err, sql);
             else {
                 jsonObject.rideshares[0].isPartofRideshare = (recordset.length > 0) ? true : false;
+                isPending(userID, results[0].RideshareNo);
+            }
+        });
+    };
+
+    var isPending = function (userID, results) {
+        var tableName = '[JN08].[dbo].[PendingMarker]';
+        var sql = "SELECT UserID FROM " + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("RideshareNo", mssql.UniqueIdentifier, results[0].RideshareNo);
+        request.input("UserID", mssql.UniqueIdentifier, userID);
+        sql += " WHERE RideshareNo=@RideshareNo and UserID=@UserID";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else {
+                jsonObject.rideshares[0].isPending = (recordset.length > 0) ? true : false;
                 callback(jsonObject);
             }
         });
