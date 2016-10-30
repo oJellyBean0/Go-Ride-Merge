@@ -342,3 +342,11 @@ exports.getRoute = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getNotifications = function (req, res) {
+  var notifications = require("../modules/getNotifications.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  notifications.tryGetNotifications(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
