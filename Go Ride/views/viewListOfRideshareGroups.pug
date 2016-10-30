@@ -61,8 +61,8 @@ block content
                         a.pull-right
                             button#requestEditRoute.btn.btn-default(type="button" , data-toggle="modal", data-target="#editRouteDialog") Edit Pick-up Point
                         a.pull-right
-                            button#joinRideshare.btn.btn-default(type="button" , data-toggle="modal", data-target="#joinRideshare") Join Rideshare
-                                
+                            button#joinRideshare.btn.btn-default(type="button" , data-toggle="modal", data-target="#joinRideshareDialog")
+                                span Join Rideshare
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
                                 $.getJSON( "/getLocations", function(data) {
@@ -164,7 +164,7 @@ block content
                                 div.modal-footer
                                     button.btn.btn-default#ok(type="button" data-dismiss="modal") Ok
 
-                    div.modal.fade(id="joinRideshare" role="dialog")
+                    div.modal.fade(id="joinRideshareDialog" role="dialog")
                         div.modal-dialog
 
                             div.modal-content
@@ -178,7 +178,7 @@ block content
                                             p A request to join the rideshare group has been sent to the driver for confirmation.
                                                             
                                 div.modal-footer
-                                    button.btn.btn-default#ok(type="button" data-dismiss="modal") Ok
+                                    button.btn.btn-default#rideshareOk(type="button" data-dismiss="modal") Ok
                                 script(type="text/javascript").
                                     $( "#joinRideshare").click(function() {
                                         $.getJSON( "/getLocations", function(data) {
@@ -187,6 +187,11 @@ block content
                                             $.post("/requesttoJoinRideshare", { rideshareNo: $("#rideshareNo").val(), areaID : AreaID }, function (data) {
                                                 console.log("posting to join rideshare group");
                                             });
+                                        });
+                                        $( "#rideshareOk").click(function() {
+                                            $("#joinRideshare").hide();
+                                            
+
                                         });
                                     });
                                     
