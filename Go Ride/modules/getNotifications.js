@@ -37,8 +37,7 @@ exports.tryGetNotifications = function (username, callback) {
                 jsonObject.notifications.push({
                     NotificationID: recordset[0].NotificationID,
                     NotificationMessage: recordset[0].NotificationMessage,
-                    Trigger: recordset[0].Trigger,
-                    Read: recordset[0].Read
+                    Trigger: recordset[0].Trigger
                 });
                 callback(jsonObject);
             }
