@@ -350,3 +350,11 @@ exports.getNotifications = function (req, res) {
     res.json(jsonObject);
   });
 };
+
+exports.getCalendar = function (req, res) {
+  var calendar = require("../modules/getCalendar.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  calendar.tryGetCalendar(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
