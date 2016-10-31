@@ -39,7 +39,7 @@ block content
           input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
         a(href="addEvent")
-          button#addEvent.btn.btn-primary(type="addEvent") Add event
+          button#addEvent.btn.btn-raised.btn-info(type="addEvent") Add event
           p
         div
           .list-group#eventList(style ="max-height: 500px; overflow: auto")
@@ -74,11 +74,11 @@ block content
 
         div.form.form-group(action ="", method = "post")
           span.pull-right
-              button#edit.btn.btn-primary(type="submit") Save
+              button#edit.btn.btn-raised.btn-info(type="submit") Save
           span
-              button#delete.btn.btn-primary(type="button", data-toggle="modal", data-target="#myModal") Delete
+              button#delete.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#myModal") Delete
               a(href="addEvent")
-                button#cancel.btn.btn-primary(type="button") Cancel
+                button#cancel.btn.btn-raised(type="button") Cancel
               div.modal.fade(id="myModal" role="dialog")
                 div.modal-dialog
 
@@ -92,8 +92,8 @@ block content
 
                     div.modal-footer
                       input#eventID(type="hidden")
-                      button.btn.btn-default#deleteEvent(type="submit" ) Delete
-                      button.btn.btn-default(type="button"  data-dismiss="modal") Close
+                      button.btn.btn-raised.btn-info#deleteEvent(type="submit" ) Delete
+                      button.btn.btn-raised(type="button"  data-dismiss="modal") Close
                       script(type="text/javascript").
                         $( "#deleteEvent").click(function() {
                               $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
