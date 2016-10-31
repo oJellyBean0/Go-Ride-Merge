@@ -17,7 +17,7 @@ var createItem = function (key, val) {
         html: 
         "<div class='row'>"+
             "<div class='col-md-6'>"+
-               "<label style = 'font-weight:normal'> Date: "+ date + " Time: " +time +"</label>"+
+               "<label style = 'font-weight:normal'>"+date + ", " +time +"</label>"+
             "</div>"+
             "<div class='col-md-3'>"+
                 "<label style = 'font-weight:normal'>"+ val.EventName +"</label>"+
