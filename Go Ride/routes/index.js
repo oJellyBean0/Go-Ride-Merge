@@ -212,7 +212,9 @@ exports.editPetrolCost = function (req, res) {
   var petrolCost = req.body.petrolCost;
   console.log(req.body);
   rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err) {
-
+  if (err)
+        res.send(err);
+      else res.send(true);
   });
 };
 
@@ -222,7 +224,9 @@ exports.editRouteMarker = function (req, res) {
   var areaID = req.body.areaID;
   var username = cookie.parse(req.headers.cookie).user;
   rideshare.tryEditRouteMarker(username, rideshareNo, areaID, function (success, err) {
-
+  if (err)
+      res.send(err);
+    else res.send(true);
   });
 };
 
@@ -232,6 +236,9 @@ exports.requesttoJoinRideshare = function (req, res) {
   var areaID = req.body.areaID;
   var username = cookie.parse(req.headers.cookie).user;
   rideshare.tryRequesttoJoinRideshare(username, rideshareNo, areaID, function (success, err) {
+    if (err)
+      res.send(err);
+    else res.send(true);
 
   });
 };
