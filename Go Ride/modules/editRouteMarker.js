@@ -66,14 +66,14 @@ exports.tryEditRouteMarker = function (username, rideshareNo, areaID, callback) 
     };
 
     var changeRouteMarker = function (userID, name, surname) {
-        var tableName = '[JN08].[dbo].[RouteMarker]';
-        var sql = 'UPDATE ' + tableName;
+        var tableName = '[JN08].[dbo].[PendingMarker]';
+        var sql = 'INSERT INTO ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("AreaID", mssql.UniqueIdentifier, areaID);
         request.input("UserID", mssql.UniqueIdentifier, userID);
         request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
-        sql += " SET AreaID=@AreaID";
-        sql += " WHERE RideshareNo=@RideshareNo AND UserID=@UserID";
+        sql += " (UserID, AreaID, RideshareNo)";
+        sql += " VALUES (@UserID, @AreaID, @RideshareNo)";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else getDriver(userID, name, surname);
