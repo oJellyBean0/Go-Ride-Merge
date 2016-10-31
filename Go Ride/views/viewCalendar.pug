@@ -1,11 +1,13 @@
 extends layout
 
 block content
+    script(src = '/javascripts/calendar.js')
     div.modal-dialog
         
-        div.col-md-6
+        div.col-md-7
         div.modal-content
             div.modal-header
                 h3.text-center
-                    label Calendar
+                    label Agenda
             div.modal-body
+                .list-group#agendaList(style ="max-height: 500px; overflow: auto")
