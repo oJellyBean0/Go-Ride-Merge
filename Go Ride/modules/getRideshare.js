@@ -87,7 +87,7 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
     };
 
     var isPartofRideshare = function (userID, results) {
-        var tableName = '[JN08].[dbo].[RouteMarker]';
+        var tableName = '[JN08].[dbo].[PendingMarker]';
         var sql = "SELECT UserID FROM " + tableName;
         var request = new mssql.Request(connObj);
         request.input("RideshareNo", mssql.UniqueIdentifier, results[0].RideshareNo);
