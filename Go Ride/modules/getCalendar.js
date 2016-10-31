@@ -36,11 +36,13 @@ exports.tryGetCalendar = function (username, callback) {
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
-                jsonObject.agenda.push({
-                    EventName: recordset[0].EventName,
-                    Date: recordset[0].Date,
-                    DriverName: recordset[0].Name,
-                    DriverSurname: recordset[0].Surname
+                recordset.forEach(function (item) {
+                    jsonObject.agenda.push({
+                        EventName: item.EventName,
+                        Date: item.Date,
+                        DriverName: item.Name,
+                        DriverSurname: item.Surname
+                    });
                 });
                 callback(jsonObject);
             }
