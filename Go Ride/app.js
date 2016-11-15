@@ -82,6 +82,7 @@ app.get('/viewCalendar', routes.viewCalendar);
 app.post('/requesttoJoinRideshare', routes.requesttoJoinRideshare);
 app.get('/getNotifications', routes.getNotifications);
 app.get('/getCalendar', routes.getCalendar);
+app.get('/queryOutstandingJoin', routes.queryOutstandingJoin);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

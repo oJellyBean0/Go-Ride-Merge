@@ -27,7 +27,7 @@ exports.loginpost = function (req, res) {
   login.tryLogin(username, password, function (success, err) {
     if (success) {
       res.cookie('user', username);
-      if (err===true) res.cookie('isAdministrator', true);
+      if (err === true) res.cookie('isAdministrator', true);
       res.redirect('/');
     } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
   });
@@ -213,9 +213,9 @@ exports.editPetrolCost = function (req, res) {
   var petrolCost = req.body.petrolCost;
   console.log(req.body);
   rideshare.tryEditPetrolCost(rideshareNo, petrolCost, function (success, err) {
-  if (err)
-        res.send(err);
-      else res.send(true);
+    if (err)
+      res.send(err);
+    else res.send(true);
   });
 };
 
@@ -225,7 +225,7 @@ exports.editRouteMarker = function (req, res) {
   var areaID = req.body.areaID;
   var username = cookie.parse(req.headers.cookie).user;
   rideshare.tryEditRouteMarker(username, rideshareNo, areaID, function (success, err) {
-  if (err)
+    if (err)
       res.send(err);
     else res.send(true);
   });
@@ -363,6 +363,13 @@ exports.getCalendar = function (req, res) {
   var calendar = require("../modules/getCalendar.js");
   var username = cookie.parse(req.headers.cookie).user;
   calendar.tryGetCalendar(username, function (jsonObject) {
+    res.json(jsonObject);
+  });
+};
+
+exports.queryOutstandingJoin = function (req, res) {
+  var query = require("../modules/queryOutstandingJoin.js");
+  query.tryQueryOutstandingJoin(function (jsonObject) {
     res.json(jsonObject);
   });
 };
