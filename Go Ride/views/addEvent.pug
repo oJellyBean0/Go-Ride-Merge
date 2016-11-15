@@ -11,7 +11,7 @@ block content
             input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
                         
           a(href="addEvent")
-            button#addEvent.btn.btn-primary(type="addEvent") Add event
+            button#addEvent.btn.btn-raised.btn-info(type="addEvent") Add event
             p
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")
@@ -45,7 +45,7 @@ block content
           input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
 
           span.pull-right
-            button#create.btn.btn-primary(type="submit") Create
+            button#create.btn.btn-raised.btn-info(type="submit") Create
           span.pull-left
             a(href="manageEvent")
-              button#cancel.btn.btn-primary(type="button") Cancel
+              button#cancel.btn.btn-raised(type="button") Cancel
