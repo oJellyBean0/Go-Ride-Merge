@@ -27,6 +27,7 @@ exports.loginpost = function (req, res) {
   login.tryLogin(username, password, function (success, err) {
     if (success) {
       res.cookie('user', username);
+      if (err===true) res.cookie('isAdministrator', true);
       res.redirect('/');
     } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
   });

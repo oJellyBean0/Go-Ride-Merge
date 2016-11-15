@@ -45,7 +45,7 @@ exports.tryGetUser = function (username, callback) {
                     });
                 });
                 connObj.close();
-                callback(jsonObject);
+                callback(jsonObject, (item.UserType == "Adminstrator") ? true : false);
             }
         });
     };
