@@ -1,5 +1,4 @@
-﻿
-/**
+﻿/**
  * Module dependencies.
  */
 
@@ -10,7 +9,9 @@ var path = require('path');
 var sql = require('node-mssql');
 var cookieParser = require('cookie-parser');
 var multer = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var upload = multer({
+    dest: 'uploads/'
+});
 
 var app = express();
 
@@ -82,6 +83,7 @@ app.post('/requesttoJoinRideshare', routes.requesttoJoinRideshare);
 app.get('/getNotifications', routes.getNotifications);
 app.get('/getCalendar', routes.getCalendar);
 app.get('/queryOutstandingJoin', routes.queryOutstandingJoin);
+app.get('/viewQuery', routes.viewQuery);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

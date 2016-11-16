@@ -83,6 +83,10 @@ exports.viewCalendar = function (req, res) {
   res.render('viewCalendar', { title: 'View Calendar', year: new Date().getFullYear(), message: '' });
 };
 
+exports.viewQuery = function (req, res) {
+  res.render('viewQuery', { title: 'View Query', year: new Date().getFullYear(), message: '' });
+};
+
 
 
 exports.registerpost = function (req, res) {
