@@ -23,10 +23,16 @@
           li.sidebar-brand
             a(href='/') Go Ride
           li
-            a(href='/login') Login
+            span
+              i.material-icons(style="font-size:36;") vpn_key
+              a(href='/login') Login
           li
             span
               i.material-icons(style="font-size:36;") account_box
+              a(href='/viewProfile') View Profile
+          li
+            span
+              i.material-icons(style="font-size:36;") person
               a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
               ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
                 ul
@@ -46,19 +52,34 @@
                     i.material-icons(style="font-size:36;") delete_forever
                     a(href='/userDelete') Delete User
           li
-            a(href='/viewCalendar') Agenda
+            span
+              i.material-icons(style="font-size:36;") today
+              a(href='/viewCalendar') Agenda
           li
-            a(href='/manageEvent') Events
+            span
+              i.material-icons(style="font-size:36;") date_range
+              a(href='/manageEvent') Events
           li
-            a(href='/viewProfile') View Profile
+            span
+              i.material-icons(style="font-size:36;") directions_car
+              a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manRideshareSubmenu") Rideshare
+              ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manRideshareSubmenu")
+                ul
+                  span
+                    i.material-icons(style="font-size:36;") people
+                    a(href='/viewListOfRideshareGroups') View Groups
+                ul
+                  span
+                    i.material-icons(style="font-size:36;") person
+                    a(href="addRideshareGroup") Add Rideshare
+                ul
+                  span
+                    i.material-icons(style="font-size:36;") person_add
+                    a(href="processRideshareRequest") Ride Requests
           li
-            a(href='/viewListOfRideshareGroups') Rideshare
-              ul
-                a(href="addRideshareGroup") Add Rideshare
-              ul
-                a(href="processRideshareRequest") Rideshare Requests
-          li
-            a(href='/viewQuery') view Query
+            span
+              i.material-icons(style="font-size:36;") insert_chart
+              a(href='/viewQuery') view Query
 
       #page-content-wrapper
         .container-fluid
