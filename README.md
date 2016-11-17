@@ -34,3 +34,12 @@ Hit the Play button
 
 Open Chrome to [http://localhost:3000/](http://localhost:3000/)
 
+## Login Details
+* Administrator
+  * effleurager
+  * password
+
+* Test User
+  * Testing1
+  * 123
+
