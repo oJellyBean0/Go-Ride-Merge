@@ -11,8 +11,6 @@ block content
                   var streetNum = data.events[0].StreetNumber;
                   var streetName = data.events[0].StreetName;
                   var town = data.events[0].Town;
-                  var suburb = data.events[0].Suburb;
-                  var province = data.events[0].Province;
                   var category = data.events[0].CategoryDescr;
                   var dateAndTime = data.events[0].Date;
                   var arr = dateAndTime.split('T');
@@ -61,12 +59,8 @@ block content
         input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
         label(for="streetName") Street Name
         input#streetName.form-control(type="text", name="streetName", required)
-        label(for="suburb") Suburb
-        input#suburb.form-control(type="text", name="suburb", required)
         label(for="city") City
         input#city.form-control(type="text", name="city", required)
-        label(for="province") Province
-        input#province.form-control(type="text", name="province", required)
         label(for="date") Date (dd/mm/yyyy)
         input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
         label(for="time") Time (hh:mm)
