@@ -24,7 +24,7 @@
             a(href='/') Go Ride
           li
             a(href='/login') Login
-          li
+          //-li
             span
               i.material-icons(style="font-size:36;") account_box
               a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
@@ -49,15 +49,18 @@
             a(href='/viewCalendar') Agenda
           li
             a(href='/manageEvent') Events
-          li
+          //-li
             a(href='/viewProfile') View Profile
           li
             a(href='/viewListOfRideshareGroups') Rideshare
               ul
                 a(href="addRideshareGroup") Add Rideshare
-              ul
+          //- ul
                 a(href="processRideshareRequest") Rideshare Requests
-
+          li
+            div(style = "color:white") Admin Reports
+              ul
+                a(href='/pendingJoinQuery') Pending Join Requests
       #page-content-wrapper
         .container-fluid
           a(href="#menu-toggle").btn-sm.hidden-lg.hidden-md#menu-toggle

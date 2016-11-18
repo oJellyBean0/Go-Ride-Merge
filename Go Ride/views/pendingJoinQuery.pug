@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    script(src = '/javascripts/query.js')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/query.css')
+    div.modal-dialog
+        
+        div.col-md-9
+        div.modal-content
+            div.modal-header
+                h3.text-center
+                    label(style="color:black") Pending Join Requests
+            div.modal-body
+                .list-group#pendingJoinRequests(style ="max-height: 500px; overflow: auto")
+            div.modal-footer
+                div.row
+                    div.col-md-5.clearfix
+                    div.col-md-2.text-center
+                        a.text-center(href="home")
+                            button.btn.button-primary.pull-left(type="button") Cancel
+                    div.col-md-5.clearfix
