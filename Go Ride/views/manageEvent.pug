@@ -7,11 +7,12 @@ block content
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
-          div.col-md-8#searchBarDiv
+          div.col-md-7#searchBarDiv
             input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
-
+          
           a(href="addEvent")
-            button#addEvent.btn.btn-raised.btn-info(type="button") Add event
+            button#addEvent.btn.btn-raised.btn-info(type="button" style="padding: 8 20 8 20") Add event
             p
+          
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")

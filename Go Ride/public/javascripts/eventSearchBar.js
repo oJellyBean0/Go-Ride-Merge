@@ -18,7 +18,7 @@ $(document).ready(function () {
 
 var createItem = function (key, val) {
     $("<a/>", {
-        "class": "list-group-item",
+        "class": "list-group-item changeElement",
         "href": "editEvent?eventName=" + val.EventName,
         html: val.EventName
     }).appendTo("#eventList");
