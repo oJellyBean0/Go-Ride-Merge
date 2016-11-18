@@ -1,8 +1,15 @@
-.changeElement{
-  background-color: #EEE;  
+.changeElement:last-child{
+  background-color: hsl(0, 0%, 97%);  
   padding: 10 25 10 25;
   
 }
+.changeElement:not(:last-child){
+  background-color: hsl(0, 0%, 97%);  
+  padding: 10 25 10 25;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  
+}
+
 .modal-dialog {
     width: 700px;
 }

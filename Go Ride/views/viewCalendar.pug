@@ -2,12 +2,19 @@ extends layout
 
 block content
     script(src = '/javascripts/calendar.js')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/query.css')
     div.modal-dialog
         
         div.col-md-7
         div.modal-content
             div.modal-header
-                h3.text-center
-                    label Agenda
+                h2.text-center Agenda
             div.modal-body
                 .list-group#agendaList(style ="max-height: 500px; overflow: auto")
+            div.modal-footer
+                div.row
+                    div.col-md-5.clearfix
+                    div.col-md-2.text-center
+                        a.text-center(href="/" style="display:table; margin:0 auto")
+                            button.btn.button-primary.pull-left(type="button") Cancel
+                    div.col-md-5.clearfix
