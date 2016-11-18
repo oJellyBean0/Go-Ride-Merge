@@ -1,59 +1,64 @@
 extends layout
 
 block content
-  
-  form(action="", method="post", enctype="multipart/form-data")
-    h3.text-center User Registeration
-    div.row
-      .form-group
-        .col-md-2
-        .col-md-5
-          h4 Personal details
-          h5
-          label(for="IDnumber") ID Number
-          input#IDnumber.form-control(type="number – number input control", name="IDnumber", required)
-          label(for="name") Name
-          input#name.form-control(type="text", name="name", required)
-          label(for="surname") Surname
-          input#surname.form-control(type="text", name="surname", required)
-          label(for="username") Username
-          input#username.form-control(type="text", name="username", required)
-          label(for="password") Password
-          input#password.form-control(type="password", name="password", required)
-          label(for="picture") Picture
-          input#picture.btn.btn-default(type="file", name="picture", accept="image/*")
-        
-        div.col-md-5
-          h4 Saved Location
-
-          label(for="streetNum") Street Number
-          input#streetNum.form-control(type="number – number input control", name="streetNum", required)
-          label(for="streetName") Street Name
-          input#streetName.form-control(type="text", name="streetName", required)
-          label(for="town") City/Town
-          input#town.form-control(type="text", name="town", required)
-          label(for="locationNickname") Nickname for location
-          input#locationNickname.form-control(type="text", name="locationNickname", required)
-
-          h4 Car
-
-          input#isDriver(type="checkbox", name="driver") 
-          span I have a car
-          p
-          label.toggleDisable(for="registrationNum", disabled) Car Registration Number
-          input#registrationNum.form-control.toggleDisable(type="text", name="registrationNum", required, disabled)
-          label.toggleDisable(for="cellphone", disabled) Cellphone Number
-          input#cellphone.form-control.toggleDisable(type="text", name="cellphone", required, disabled)
-          
-          script(type="text/javascript").
-            $("#isDriver").click(function() {
-              console.log(document.getElementById('isDriver').checked);
-              if (document.getElementById('isDriver').checked){
-                $(".toggleDisable").removeAttr('disabled');
-              }
-              else $(".toggleDisable").attr('disabled', 'disabled');
-              
-            });
+  div.modal-dialog(style="width:800px")
+    div.modal-content
             
-          p.text-danger #{message} 
-          button#submitRegistration.btn.btn-raised.btn-info(type="submit") Submit
+      form(action="", method="post", enctype="multipart/form-data")
+        div.modal-header
+          h3.text-center User Registeration
+        div.modal-body(style="padding-bottom: 24px")
+          div.row
+            .form-group
+              .col-md-1
+              .col-md-5
+                h4 Personal details
+                h5
+                label(for="IDnumber") ID Number
+                input#IDnumber.form-control(type="number – number input control", name="IDnumber", required)
+                label(for="name") Name
+                input#name.form-control(type="text", name="name", required)
+                label(for="surname") Surname
+                input#surname.form-control(type="text", name="surname", required)
+                label(for="username") Username
+                input#username.form-control(type="text", name="username", required)
+                label(for="password") Password
+                input#password.form-control(type="password", name="password", required)
+                label(for="picture") Picture
+                input#picture.btn.btn-default(type="file", name="picture", accept="image/*")
+              
+              div.col-md-5
+                h4 Saved Location
+
+                label(for="streetNum") Street Number
+                input#streetNum.form-control(type="number – number input control", name="streetNum", required)
+                label(for="streetName") Street Name
+                input#streetName.form-control(type="text", name="streetName", required)
+                label(for="town") City/Town
+                input#town.form-control(type="text", name="town", required)
+                label(for="locationNickname") Nickname for location
+                input#locationNickname.form-control(type="text", name="locationNickname", required)
+
+                h4 Car
+
+                input#isDriver(type="checkbox", name="driver") 
+                span I have a car
+                p
+                label.toggleDisable(for="registrationNum", disabled) Car Registration Number
+                input#registrationNum.form-control.toggleDisable(type="text", name="registrationNum", required, disabled)
+                label.toggleDisable(for="cellphone", disabled) Cellphone Number
+                input#cellphone.form-control.toggleDisable(type="text", name="cellphone", required, disabled)
+              
+                script(type="text/javascript").
+                  $("#isDriver").click(function() {
+                    console.log(document.getElementById('isDriver').checked);
+                    if (document.getElementById('isDriver').checked){
+                      $(".toggleDisable").removeAttr('disabled');
+                    }
+                    else $(".toggleDisable").attr('disabled', 'disabled');
+                    
+                  });
+                  
+                p.text-danger #{message} 
+                button#submitRegistration.btn.btn-raised.btn-info(type="submit") Submit
+              .col-md-1
