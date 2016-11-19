@@ -95,12 +95,17 @@ var createItem = function (key, val) {
     var item = $("<a/>", {
         "class": "list-group-item changeElement",
         "data-RideshareNo": val.RideshareNo,
-        html: "<span>" + val.Title + "</span><span style='text-align:right; float:right; color:#d3d3d3'> View </span>"
+        "data-Title":val.Title,
+        html: "<span class='getTitle'>" + val.Title + "</span><span style='text-align:right; float:right; color:#d3d3d3'> View </span>"
     });
     console.log(val);
     item.appendTo("#eventList");
     item.click(function (e) {
         var RideshareNo = e.target.getAttribute("data-RideshareNo");
+        var RideshareName = e.target.getAttribute("data-Title");
+       
+        console.log(e.target);
+        $('#destinationName').text(RideshareName);
         $('#carIcon').hide();
         $('#viewRideshareDetails').show();
         console.log(e.target.getAttribute("data-RideshareNo"));
