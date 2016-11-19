@@ -7,7 +7,7 @@ $(document).ready(function () {
             $("#filterRideshareGroups span").text('Filter All');
             $("#filterRideshareGroups").attr("data-filterType", "own");
             console.log($("#filterRideshareGroups").attr("data-filterType"));
-            $("#filterRideshareGroups").css({ position: "relative", left: "-10" });
+            
             var savedSearchTerm = $("#searchBar").val();
             $.post("/searchParticipatingRideshares", { searchTerm: savedSearchTerm }, function (data) {
 
@@ -21,7 +21,7 @@ $(document).ready(function () {
             $("#filterRideshareGroups span").text("Filter Own List")
             $("#filterRideshareGroups").attr("data-filterType", "all");
             console.log($("#filterRideshareGroups").attr("data-filterType"));
-            $("#filterRideshareGroups").css({ position: "relative", left: "-50" });
+            
             var savedSearchTerm = $("#searchBar").val();
             $.post("/searchRideshares", { searchTerm: savedSearchTerm }, function (data) {
 
@@ -94,9 +94,9 @@ $(document).ready(function () {
 
 var createItem = function (key, val) {
     var item = $("<a/>", {
-        "class": "list-group-item",
+        "class": "list-group-item changeElement",
         "data-RideshareNo": val.RideshareNo,
-        html: val.Title
+        html: "<span>"+val.Title+"</span><span style='text-align:right; float:right; color:#d3d3d3'> View </span>"
     });
     console.log(val);
     item.appendTo("#eventList");
