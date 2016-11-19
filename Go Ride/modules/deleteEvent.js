@@ -16,14 +16,14 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryDeleteEvent = function (eventID, callback) {
+exports.tryDeleteEvent = function (eventID, username, isAdministrator, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
         callback(false, error);
     };
 
-    var deleteEvent = function (eventID) {
+    var deleteEvent = function () {
         var tableName = '[JN08].[dbo].[Event]';
         var sql = "DELETE FROM " + tableName;
         var request = new mssql.Request(connObj);
@@ -35,8 +35,22 @@ exports.tryDeleteEvent = function (eventID, callback) {
         });
     };
 
+    var testPermissions = function () {
+        if (isAdministrator) { deleteEvent(); return; }
+        var sql = 'SELECT null FROM [JN08].[dbo].[User] U, [JN08].[dbo].[Event] E';
+        var request = new mssql.Request(connObj);
+        request.input("Username", mssql.NVarChar, username);
+        request.input("EventID", mssql.UniqueIdentifier, eventID);
+        sql += " WHERE U.Username=@Username AND E.CreatorID=U.UserID AND E.EventID=@EventID";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else if (recordset.length > 0) deleteEvent();
+            else callback(false, "Insufficient Permissions");
+        });
+    };
+
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
-        else deleteEvent(eventID);
+        else testPermissions();
     });
 };

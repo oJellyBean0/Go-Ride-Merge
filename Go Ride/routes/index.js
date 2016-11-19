@@ -183,8 +183,10 @@ exports.editEventpost = function (req, res) {
 exports.deleteEvent = function (req, res) {
   var events = require("../modules/deleteEvent.js");
   var eventID = req.body.eventID;
-  events.tryDeleteEvent(eventID, function (success, error) {
-
+  var username = cookie.parse(req.headers.cookie).user;
+  var isAdministrator = cookie.parse(req.headers.cookie).isAdministrator;
+  events.tryDeleteEvent(eventID, username, isAdministrator, function (success, error) {
+    res.send(success);
   });
 };
 
