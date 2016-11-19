@@ -1,6 +1,7 @@
 extends layout
 block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/viewQuery.css')
+    script(src='/javascripts/getQuery.js')
 block content
     
     div.col-md-5
@@ -19,23 +20,9 @@ block content
     .col-md-7(id='details')
         div.modal-dialog(style="padding-top:11px;")
             div.modal-header
-                h3(id="queryName") Query Name
+                h3(id="queryName") Outstanding Joins
             div.modal-body
                 br
                 div(id="textbox")
-                    p this text is a place holder
                 br
-            div.modal-footer
-                div.row
-                    div.col-md-2.clearfix
-                        button.btn.button-primary.pull-left(type="submit") Cancel
-                    div.col-md-3.clearfix.text-center
-                        button.btn.button-primary(type='submit', data-toggle='modal', data-target='#modalEdit', id="editButton") Edit
-                    div.col-md-2.clearfix
-                        button.btn.button-primary.pull-right(type='submit', data-toggle='modal', data-target='#modalDelete', id="deleteButton") Delete
-
-block scripts
-    script(src='/javascripts/viewQuery.js')
-
-
     
