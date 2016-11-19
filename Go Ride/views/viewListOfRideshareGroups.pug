@@ -21,7 +21,7 @@ block content
 
         div.col-md-6#viewRideshareDetails
             input#rideshareNo(type="hidden")
-            div.modal-dialog
+            div.modal-dialog(style="margin: 0 0 0 0")
                 div.col-md-3
                 div.modal-content(style="overflow:auto")
                     div.modal-header
@@ -54,18 +54,18 @@ block content
                         br
                         div.row
                             div.col-md-9.col-md-offset-2
-                                label#carFull(style = "font-weight:normal") The car is full
+                                label#carFull(style = "font-weight:normal; display: none") The car is full
                                 p
                                 label#joinPending(style = "font-weight:normal")
                     .modal-footer
                         a(href="viewListOfRideshareGroups").pull-left
-                            button#cancel.btn.btn-raised.btn-default(type="button" data-dismiss="modal",style="margin-bottom:15px") Cancel
+                            button#cancel.btn.btn-raised.btn-default(type="button" data-dismiss="modal",style="margin-bottom:15px; margin-left:20px") Cancel
                         a.pull-right
-                            button#changePetrolCost.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#changePertolCost",style="margin-bottom:15px; display: none") Change Petrol Cost
+                            button#changePetrolCost.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#changePertolCost",style="margin-bottom:15px; display: none; margin-right:20px") Change Petrol Cost
                         a.pull-right
-                            button#requestEditRoute.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#editRouteDialog",style="margin-bottom:15px; display: none") Edit Pick-up Point
+                            button#requestEditRoute.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#editRouteDialog",style="margin-bottom:15px; display: none; margin-right:20px") Edit Pick-up Point
                         a.pull-right
-                            button#joinRideshare.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#joinRideshareDialog",style="margin-bottom:15px; display: none")
+                            button#joinRideshare.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#joinRideshareDialog",style="margin-bottom:15px; display: none; margin-right:20px")
                                 span Join Rideshare
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
