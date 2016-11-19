@@ -17,31 +17,31 @@ block content
               div
                 .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-        div.col-md-2  
-        div.col-md-3
+        div.col-md-1  
+        div.col-md-4
           div.modal-dialog(style="margin: 0 0 0 0")
-              div.modal-content.col-md-6(style="overflow:auto; padding:20 20 10 20")
-                h3#addEventHeading Event Details
-                label(for="eventName") Event Name
-                input#eventName.form-control(type="text", name="eventName", required)
-                label(for="eventCategory") Event Category
+              div.modal-content.col-md-9(style="overflow:auto; padding:20 20 10 20")
+                h3(style="text-align:center")#addEventHeading Event Details
+                label(for="eventName", style="margin-bottom:0") Event Name
+                input#eventName.form-control(type="text", name="eventName", required, style="max-width: 450px; padding:0 0 0 0 ; margin-bottom:15px; height: 28px")
+                label(for="eventCategory", style="margin-bottom:0") Event Category
                 div.dropdown
-                  select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
+                  select.form-control#dropdownMenu(name = "eventCategory",required, style="max-width: 450px; padding:0 0 0 0; margin-bottom:15px; height: 35px") Pick Event Catagory
                     span.caret
                     option(disabled, selected) Select Event
                     
                   
 
-                label(for="streetNumORVenueName") Street Number
-                input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
-                label(for="streetName") Street Name
-                input#streetName.form-control(type="text", name="streetName", required)
-                label(for="city") City
-                input#city.form-control(type="text", name="city", required)
-                label(for="date") Date (dd/mm/yyyy)
-                input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
-                label(for="time") Time (hh:mm)
-                input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
+                label(for="streetNumORVenueName", style="margin-bottom:0") Street Number
+                input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required, style="max-width: 450px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
+                label(for="streetName", style="margin-bottom:0") Street Name
+                input#streetName.form-control(type="text", name="streetName", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="city", style="margin-bottom:0") City
+                input#city.form-control(type="text", name="city", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="date", style="margin-bottom:0") Date (dd/mm/yyyy)
+                input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="time", style="margin-bottom:0") Time (hh:mm)
+                input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
 
                 span.pull-right
                   button#create.btn.btn-raised.btn-info(type="submit") Create
