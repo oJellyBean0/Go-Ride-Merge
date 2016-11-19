@@ -97,13 +97,15 @@ block content
                           span.pull-left
                             button.btn.btn-raised(type="button"  data-dismiss="modal" style="margin:0 0 15 15") Close
                           span.pull-right
-                            button.btn.btn-raised.btn-danger#deleteEvent(type="submit" style="margin:0 15 15 0") Delete
+                            a(href="manageEvent")
+                              button.btn.btn-raised.btn-danger#deleteEvent(type="button" style="margin:0 15 15 0") Delete
                           
                           script(type="text/javascript").
-                            $( "#deleteEvent").click(function() {
-                                  $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
-                                    window.location.href = "/manageEvent";
-                                  })
+                            $("#deleteEvent").click(function() {
+                                  $.post("/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
+                                    //window.location.replace(manageEvent);
+                                    console.log('asasas');
+                                  });                                  
                             });
                   
                 
