@@ -6,59 +6,62 @@ block content
             
       form(action="", method="post", enctype="multipart/form-data")
         div.modal-header
-          h3.text-center User Registeration
-        div.modal-body(style="padding-bottom: 24px")
+          h3.text-center(style="margin-top:10px") User Registeration
+        div.modal-body(style="padding: 0 25 24px 25")
           div.row
-            .form-group
-              .col-md-1
-              .col-md-5
+            .form-group(style="margin-top:15px")
+              
+              .col-md-6(style="padding:0 40 0 40")
                 h4 Personal details
                 h5
                 label(for="IDnumber") ID Number
-                input#IDnumber.form-control(type="number – number input control", name="IDnumber", required)
+                input#IDnumber.form-control(type="number – number input control", name="IDnumber", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="name") Name
-                input#name.form-control(type="text", name="name", required)
+                input#name.form-control(type="text", name="name", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="surname") Surname
-                input#surname.form-control(type="text", name="surname", required)
+                input#surname.form-control(type="text", name="surname", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="username") Username
-                input#username.form-control(type="text", name="username", required)
+                input#username.form-control(type="text", name="username", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="password") Password
-                input#password.form-control(type="password", name="password", required)
-                label(for="picture") Picture
-                input#picture.btn.btn-default(type="file", name="picture", accept="image/*")
+                input#password.form-control(type="password", name="password", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
+                button.btn.btn-info(for="picture", style="padding:0 0 0 0") Add Picture
+                input#picture.btn.btn-info(type="file", name="picture", accept="image/*")
               
-              div.col-md-5
+              div.col-md-6(style="padding:0 40 0 40")
                 h4 Saved Location
 
                 label(for="streetNum") Street Number
-                input#streetNum.form-control(type="number – number input control", name="streetNum", required)
+                input#streetNum.form-control(type="number – number input control", name="streetNum", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="streetName") Street Name
-                input#streetName.form-control(type="text", name="streetName", required)
+                input#streetName.form-control(type="text", name="streetName", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="town") City/Town
-                input#town.form-control(type="text", name="town", required)
+                input#town.form-control(type="text", name="town", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
                 label(for="locationNickname") Nickname for location
-                input#locationNickname.form-control(type="text", name="locationNickname", required)
+                input#locationNickname.form-control(type="text", name="locationNickname", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
 
                 h4 Car
 
                 input#isDriver(type="checkbox", name="driver") 
                 span I have a car
                 p
-                label.toggleDisable(for="registrationNum", disabled) Car Registration Number
-                input#registrationNum.form-control.toggleDisable(type="text", name="registrationNum", required, disabled)
-                label.toggleDisable(for="cellphone", disabled) Cellphone Number
-                input#cellphone.form-control.toggleDisable(type="text", name="cellphone", required, disabled)
+                label.toggleDisable.showAtr(for="registrationNum", disabled, style="display: none") Car Registration Number
+                input#registrationNum.showAtr.form-control.toggleDisable(type="text", name="registrationNum", required, disabled, style="max-width: 600px; display: none; padding:0 0 0 0; margin-bottom:15px; height: 28px")
+                label.toggleDisable.showAtr(for="cellphone", disabled, style="display: none") Cellphone Number
+                input#cellphone.showAtr.form-control.toggleDisable(type="text", name="cellphone", required, disabled, style="max-width: 600px; display: none; padding:0 0 0 0; margin-bottom:15px; height: 28px")
               
                 script(type="text/javascript").
                   $("#isDriver").click(function() {
                     console.log(document.getElementById('isDriver').checked);
                     if (document.getElementById('isDriver').checked){
                       $(".toggleDisable").removeAttr('disabled');
+                      $(".showAtr").show();
+                      
                     }
-                    else $(".toggleDisable").attr('disabled', 'disabled');
+                    else {$(".toggleDisable").attr('disabled', 'disabled');
+                    $(".showAtr").hide();}
                     
                   });
                   
                 p.text-danger #{message} 
                 button#submitRegistration.btn.btn-raised.btn-info(type="submit") Submit
-              .col-md-1
+              
