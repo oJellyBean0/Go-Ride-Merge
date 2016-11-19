@@ -10,7 +10,7 @@ block content
                 div.modal-content.col-md-9(style="overflow:auto; padding:20 20 10 20")
                     row
                         div.col-md-8#searchBarDiv
-                            input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+                            input#searchBar.form-control(type="text", name="searchBar", placeholder="Search", style=" max-width: 600px")
 
                         div.col-md-4(style="padding-left:0; padding-right:0")
                             button.pull-right#filterRideshareGroups.btn.btn-info(type="button" style="position:relative; left:-10; padding:8 15 8 15" data-filterType="own") 
@@ -29,43 +29,43 @@ block content
                     div.modal-body
                         br
                         div.row
-                            div.col-md-3.col-md-offset-2
-                                label(for="destination") Destination
+                            div.col-md-5
+                                label(for="destination", style="padding-left:20px; color:black") Destination:
                             div.col-md-7
                                 label#destination(type="text",style = "font-weight:normal")
                         br
                         div.row
-                            div.col-md-3.col-md-offset-2
-                                label(for="driver") Driver
+                            div.col-md-5
+                                label(for="driver", style="padding-left:20px; color:black") Driver:
                             div.col-md-7
                                 label#driver(style = "font-weight:normal") 
                         br
                         div.row
-                            div.col-md-3.col-md-offset-2  
-                                label(for="passengers") Passengers
+                            div.col-md-5 
+                                label(for="passengers", style="padding-left:20px; color:black") Passengers:
                             div.col-md-7
                                 label#passengerList(style = "font-weight:normal") 
                         br
                         div.row
-                            div.col-md-3.col-md-offset-2    
-                                label(for="price/km") Price/km
+                            div.col-md-5    
+                                label(for="price/km", style="padding-left:20px; color:black") Price/km:
                             div.col-md-7                            
                                 label#pricekm(style = "font-weight:normal")
                         br
                         div.row
-                            div.col-md-9.col-md-offset-2
-                                label#carFull(style = "font-weight:normal; display: none") The car is full
+                            div.col-md-9
+                                label#carFull(style = "font-weight:normal; padding-left:20px; color:red; display: none") The car is full
                                 p
                                 label#joinPending(style = "font-weight:normal")
                     .modal-footer
                         a(href="viewListOfRideshareGroups").pull-left
-                            button#cancel.btn.btn-raised.btn-default(type="button" data-dismiss="modal",style="margin-bottom:15px; margin-left:20px") Cancel
+                            button#cancel.btn.btn-raised.btn-default(type="button" data-dismiss="modal",style="margin-bottom:15px; margin-left:30px") Cancel
                         a.pull-right
-                            button#changePetrolCost.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#changePertolCost",style="margin-bottom:15px; display: none; margin-right:20px") Change Petrol Cost
+                            button#changePetrolCost.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#changePertolCost",style="margin-bottom:15px; display: none; margin-right:30px") Change Petrol Cost
                         a.pull-right
-                            button#requestEditRoute.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#editRouteDialog",style="margin-bottom:15px; display: none; margin-right:20px") Edit Pick-up Point
+                            button#requestEditRoute.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#editRouteDialog",style="margin-bottom:15px; display: none; margin-right:30px") Edit Pick-up Point
                         a.pull-right
-                            button#joinRideshare.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#joinRideshareDialog",style="margin-bottom:15px; display: none; margin-right:20px")
+                            button#joinRideshare.btn.btn-raised.btn-info(type="button" , data-toggle="modal", data-target="#joinRideshareDialog",style="margin-bottom:15px; display: none; margin-right:30px")
                                 span Join Rideshare
                         script(type="text/javascript").
                             $( "#requestEditRoute").click(function() {
