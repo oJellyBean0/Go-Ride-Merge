@@ -4,20 +4,22 @@ block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     script(src = '/javascripts/rideshareGroupSearchBar.js')
     div.row
-      form.form-group(action ="", method = "post")
-        div.col-md-4.pull-left
-          row
-            div.col-md-9#searchBarDiv
-                input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+      form.form-group(action ="", method = "post" style="margin-top:20px")
+        div.col-md-5.in-line.pull-left
+            div.modal-dialog(style="margin: 0 0 0 0")
+                div.modal-content.col-md-9(style="overflow:auto; padding:20 20 10 20")
+                    row
+                        div.col-md-8#searchBarDiv
+                            input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
-            div.col-md-3.pull-left
-                button#filterRideshareGroups.btn.btn-primary(type="button" style="position:relative; left:-10" data-filterType="own") 
-                    span Filter All
-                p
-          div(style = "clear:both")
-            .list-group#eventList(style ="max-height: 500px; overflow: auto")
+                        div.col-md-4(style="padding:0 0 0 0")
+                            button.pull-right#filterRideshareGroups.btn.btn-info(type="button" style="position:relative; left:-10; padding:8 15 8 15" data-filterType="own") 
+                                span Filter All
+                            p
+                        div(style = "clear:both")
+                            .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-        div.col-md-7#viewRideshareDetails
+        div.col-md-6#viewRideshareDetails
             input#rideshareNo(type="hidden")
             div.modal-dialog
                 div.col-md-3
@@ -199,8 +201,8 @@ block content
                                     });
                                     
 
-      div.col-md-8#carIcon(style="vertical-align: middle")
-        img.img-responsive.img-circle.center-block(src="/images/ShareCarRide.jpg", alt='Carpool Image')
-      
+        div.col-md-7#carIcon(style="vertical-align: middle")
+            img.img-responsive.img-circle.center-block(src="/images/ShareCarRide.jpg", alt='Carpool Image')
+        
 
         
