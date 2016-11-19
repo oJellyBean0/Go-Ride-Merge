@@ -5,6 +5,8 @@ block content
     script(src = "/javascripts/eventSearchBar.js")
     script(type="text/javascript").
           $( document ).ready(function() {
+            var test = "#{event}";
+              if (test.length>0)
                 $.post( "/getEvent",{ eventName: "#{event}" }, function( data ) {
                   console.log(data.events[0]);
                   var eventID = data.events[0].EventID;
