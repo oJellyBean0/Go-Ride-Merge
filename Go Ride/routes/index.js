@@ -5,9 +5,9 @@
 var cookie = require('cookie');
 
 exports.index = function (req, res) {
-  if (!req.headers.cookie) {
+  if (!cookie.parse(req.headers.cookie)) {
     res.redirect('/login');
-  } else if (!req.headers.cookie.includes("user=")) res.redirect('/login');
+  } else if (!cookie.parse(req.headers.cookie).user) res.redirect('/login');
   res.render('index', { title: 'Home', year: new Date().getFullYear() });
 };
 
