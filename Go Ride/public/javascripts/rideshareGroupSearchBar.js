@@ -31,7 +31,7 @@ $(document).ready(function () {
                 }
             });
         } else {
-            console.log("You fucked up");
+            console.log("You messed up");
         }
     })
 
