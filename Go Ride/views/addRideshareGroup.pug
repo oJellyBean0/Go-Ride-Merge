@@ -8,21 +8,23 @@ block content
     
     
     div.row
-        form.form-group(action ="", method = "post")
-            div.col-md-4.pull-left
-                row
-                    div.col-md-9#searchBarDiv
-                        input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
+        form.form-group(action ="", method = "post" style="margin-top:20px")
+            div.col-md-5.in-line.pull-left
+                div.modal-dialog(style="margin: 0 0 0 0")
+                    div.modal-content.col-md-9(style="overflow:auto; padding:20 20 10 20")
+                        row
+                            div.col-md-8#searchBarDiv
+                                input#searchBar.form-control(type="text", name="searchBar", placeholder="Search")
 
-                    div.col-md-3.pull-left
-                        button#filterRideshareGroups.btn.btn-raised.btn-info(type="button" style="position:relative; left:-10" data-filterType="own") 
-                            span Filter All
-                        p
-                div(style = "clear:both")
-                    .list-group#eventList(style ="max-height: 500px; overflow: auto")
+                            div.col-md-4(style="padding:0 0 0 0")
+                                button.pull-right#filterRideshareGroups.btn.btn-info(type="button" style="position:relative; left:-10; padding:8 15 8 15" data-filterType="own") 
+                                    span Filter All
+                                p
+                            div(style = "clear:both")
+                                .list-group#eventList(style ="max-height: 500px; overflow: auto")
                 
             div.col-md-7
-                div.modal-dialog
+                div.modal-dialog(style="margin: 0 0 0 0")
                     div.col-md-2
                     div.modal-content(style="overflow:auto")
                         div.modal-header
@@ -31,12 +33,12 @@ block content
                     
                             label(for="startingLocation") Starting Location
                             div.dropdown
-                                select.form-control#dropdownMenu2(name = "startingLocation",required) Starting Location
+                                select.form-control#dropdownMenu2(name = "startingLocation",required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 35px") Starting Location
                                     span.caret
                                     option(disabled, selected) Select starting location
                             label(for="recurring") Recurring Frequency
                             div.dropdown
-                                select.form-control#dropdownMenu1(name = "recurringFrequency",required) Recurring Frequency
+                                select.form-control#dropdownMenu1(name = "recurringFrequency",required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 35px") Recurring Frequency
                                     span.caret
                                     option(disabled, selected) Select frequency
                                     option Once off
@@ -44,20 +46,20 @@ block content
                                     option Weekly
 
                             label(for="maxPassengers") Max Passengers
-                            input#maxPassengers.form-control(type="text", name="maxPassengers", required)
+                            input#maxPassengers.form-control(type="text", name="maxPassengers", required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 28px")
                             label(for="price/km") Price/km
-                            input#pricekm.form-control(type="text", name="pricekm", required)
+                            input#pricekm.form-control(type="text", name="pricekm", required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 28px")
 
                             label(for="eventsList") Event
                             div.dropdown
-                                select.form-control#dropdownMenu(name = "eventsList",required) Select event
+                                select.form-control#dropdownMenu(name = "eventsList",required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 35px") Select event
                                     span.caret
                                     option(disabled, selected) Select event
                             p
                             div
-                                span.pull-right
+                                span.pull-right(style="margin-bottom:15px")
                                     button#create.btn.btn-raised.btn-info(type="submit") Create
-                                span.pull-left
+                                span.pull-left(style="margin-bottom:15px")
                                     a(href="viewListOfRideshareGroups")
                                         button#cancel.btn.btn-raised(type="button") Cancel
                         
