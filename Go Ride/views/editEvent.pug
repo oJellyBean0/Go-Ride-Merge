@@ -75,31 +75,34 @@ block content
                         a(href="manageEvent")
                           button#cancel.btn.btn-raised(type="button") Cancel
                     div.col-md-4.text-center.clearfix
-                      button#delete.btn.btn-raised.btn-info(type="button", data-toggle="modal") Delete
+                      button#delete.btn.btn-raised.btn-danger(type="button", data-toggle="modal" data-target="#myModal") Delete
                     div.col-md-4.clearfix(style="padding-right:0")
                       span.pull-right
                         button#edit.btn.btn-raised.btn-info(type="submit") Save
-                        div.modal.fade(id="myModal" role="dialog")
-                          div.modal-dialog
+                  div.modal.fade(id="myModal" role="dialog")
+                    div.modal-dialog
 
-                            div.modal-content
-                              div.modal-header
-                                button.close(type="button" data-dismiss="modal") &times;
-                                h4.modal-title Delete Event
+                      div.modal-content
+                        div.modal-header
+                          button.close(type="button" data-dismiss="modal") &times;
+                          h4.modal-title Delete Event
 
-                              div.modal-body
-                                p Are you sure you would like to delete this event?
+                        div.modal-body
+                          p Are you sure you would like to delete this event?
 
-                              div.modal-footer
-                                input#eventID(type="hidden")
-                                button.btn.btn-raised.btn-info#deleteEvent(type="submit" ) Delete
-                                button.btn.btn-raised(type="button"  data-dismiss="modal") Close
-                                script(type="text/javascript").
-                                  $( "#deleteEvent").click(function() {
-                                        $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
-                                          window.location.href = "/manageEvent";
-                                        })
-                                  });
+                        div.modal-footer
+                          input#eventID(type="hidden")
+                          span.pull-left
+                            button.btn.btn-raised(type="button"  data-dismiss="modal" style="margin:0 0 15 15") Close
+                          span.pull-right
+                            button.btn.btn-raised.btn-danger#deleteEvent(type="submit" style="margin:0 15 15 0") Delete
+                          
+                          script(type="text/javascript").
+                            $( "#deleteEvent").click(function() {
+                                  $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
+                                    window.location.href = "/manageEvent";
+                                  })
+                            });
                   
                 
                       
