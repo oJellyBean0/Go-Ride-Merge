@@ -5,7 +5,10 @@
 var cookie = require('cookie');
 
 exports.index = function (req, res) {
-  res.render('index', { title: 'Express', year: new Date().getFullYear() });
+  if (!req.headers.cookie) {
+    res.redirect('/login');
+  } else if (!req.headers.cookie.includes("user=")) res.redirect('/login');
+  res.render('index', { title: 'Home', year: new Date().getFullYear() });
 };
 
 exports.about = function (req, res) {
@@ -17,7 +20,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '' });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true });
 };
 
 exports.loginpost = function (req, res) {
