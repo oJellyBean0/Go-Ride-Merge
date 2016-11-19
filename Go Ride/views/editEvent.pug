@@ -41,59 +41,62 @@ block content
               div
                 .list-group#eventList(style ="max-height: 500px; overflow: auto")
 
-        div.col-md-2  
-        div.col-md-3
-          //The text boxes underneath need to recieve data from the database. Agnes
-          h3#addEventHeading Event Details
-          label(for="eventName") Event Name
-          input#eventName.form-control(type="text", name="eventName", required)
-          label(for="eventCategory") Event Catagory
-          div.dropdown
-            select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
-              span.caret
-              option(disabled, selected) Select Event
-          
+        div.col-md-1  
+        div.col-md-4
+          div.modal-dialog(style="margin: 0 0 0 0")
+              div.modal-content.col-md-9(style="overflow:auto; padding:20 20 10 20")
+                //The text boxes underneath need to recieve data from the database. Agnes
+                h3(style="text-align:center")#addEventHeading Event Details
+                label(for="eventName", style="margin-bottom:0") Event Name
+                input#eventName.form-control(type="text", name="eventName", required, style="max-width: 450px; padding:0 0 0 0 ; margin-bottom:15px; height: 28px")
+                label(for="eventCategory", style="margin-bottom:0") Event Category
+                div.dropdown
+                  select.form-control#dropdownMenu(name = "eventCategory",required, style="max-width: 450px; padding:0 0 0 0; margin-bottom:15px; height: 35px") Pick Event Catagory
+                    span.caret
+                    option(disabled, selected) Select Event
+                    
+                  
 
-          label(for="streetNumORVenueName") Street Number
-          input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
-          label(for="streetName") Street Name
-          input#streetName.form-control(type="text", name="streetName", required)
-          label(for="city") City
-          input#city.form-control(type="text", name="city", required)
-          label(for="date") Date (dd/mm/yyyy)
-          input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
-          label(for="time") Time (hh:mm)
-          input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
+                label(for="streetNumORVenueName", style="margin-bottom:0") Street Number
+                input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required, style="max-width: 450px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
+                label(for="streetName", style="margin-bottom:0") Street Name
+                input#streetName.form-control(type="text", name="streetName", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="city", style="margin-bottom:0") City
+                input#city.form-control(type="text", name="city", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="date", style="margin-bottom:0") Date (dd/mm/yyyy)
+                input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
+                label(for="time", style="margin-bottom:0") Time (hh:mm)
+                input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required, style="max-width: 450px; padding-top:0; margin-bottom:15px; height: 28px")
 
-          div.form.form-group(action ="", method = "post")
-            span.pull-right
-                button#edit.btn.btn-raised.btn-info(type="submit") Save
-            span
-                button#delete.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#myModal") Delete
-                a(href="manageEvent")
-                  button#cancel.btn.btn-raised(type="button") Cancel
-                div.modal.fade(id="myModal" role="dialog")
-                  div.modal-dialog
+                div.form.form-group(action ="", method = "post")
+                  span.pull-right
+                      button#edit.btn.btn-raised.btn-info(type="submit") Save
+                  span
+                      button#delete.btn.btn-raised.btn-info(type="button", data-toggle="modal", data-target="#myModal") Delete
+                      a(href="manageEvent")
+                        button#cancel.btn.btn-raised(type="button") Cancel
+                      div.modal.fade(id="myModal" role="dialog")
+                        div.modal-dialog
 
-                    div.modal-content
-                      div.modal-header
-                        button.close(type="button" data-dismiss="modal") &times;
-                        h4.modal-title Delete Event
+                          div.modal-content
+                            div.modal-header
+                              button.close(type="button" data-dismiss="modal") &times;
+                              h4.modal-title Delete Event
 
-                      div.modal-body
-                        p Are you sure you would like to delete this event?
+                            div.modal-body
+                              p Are you sure you would like to delete this event?
 
-                      div.modal-footer
-                        input#eventID(type="hidden")
-                        button.btn.btn-raised.btn-info#deleteEvent(type="submit" ) Delete
-                        button.btn.btn-raised(type="button"  data-dismiss="modal") Close
-                        script(type="text/javascript").
-                          $( "#deleteEvent").click(function() {
-                                $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
-                                  window.location.href = "/manageEvent";
-                                })
-                          });
-            span.pull-left
-                a(href="manageEvent")
-           
+                            div.modal-footer
+                              input#eventID(type="hidden")
+                              button.btn.btn-raised.btn-info#deleteEvent(type="submit" ) Delete
+                              button.btn.btn-raised(type="button"  data-dismiss="modal") Close
+                              script(type="text/javascript").
+                                $( "#deleteEvent").click(function() {
+                                      $.post( "/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
+                                        window.location.href = "/manageEvent";
+                                      })
+                                });
+                  span.pull-left
+                      a(href="manageEvent")
                 
+                      
