@@ -29,7 +29,7 @@ exports.tryEditEvent = function (eventID, eventName, eventCategory, streetNumORV
         var sql = 'SELECT CategoryID FROM ' + tableName;
         var request = new mssql.Request(connObj);
         request.input("CategoryDescr", mssql.Text, eventCategory);
-        sql += " WHERE CategoryDescr=@CategoryDescr";
+        sql += " WHERE CategoryDescr LIKE @CategoryDescr";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else editEvent(recordset[0].CategoryID);
