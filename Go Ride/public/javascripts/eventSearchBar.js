@@ -20,7 +20,7 @@ var createItem = function (key, val) {
     $("<a/>", {
         "class": "list-group-item changeElement",
         "href": "editEvent?eventName=" + val.EventName,
-        html: val.EventName
+        html: "<span>"+val.EventName+"</span><span style='text-align:right; float:right; color:#d3d3d3'> Edit </span>" 
     }).appendTo("#eventList");
 };
 

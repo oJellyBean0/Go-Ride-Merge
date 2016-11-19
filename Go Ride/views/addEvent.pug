@@ -5,13 +5,13 @@ block content
     script(src = "/javascripts/eventSearchBar.js")
       
     div.row
-      form.form-group(action ="", method = "post" style="margin-top:20px")
-        div.col-md-4.inline.pull-left
+      form.form-group(action ="", method = "post" style="margin-top:10px")
+        div.col-md-5.inline.pull-left
           div.modal-dialog(style="margin: 0 0 0 0")
-            div.modal-content.col-md-6(style="overflow:auto; padding:0 20 10 20")
+            div.modal-content.col-md-8(style="overflow:auto; padding:0 20 10 20")
               br
               div.col-md-12(style="padding-left:10px")#searchBarDiv
-                input#searchBar.form-control(type="text", name="searchBar", placeholder="Search", style="padding-left:10px")
+                input#searchBar.form-control(type="text", name="searchBar", placeholder="Search", style="padding-left:10px; max-width: 360px")
               br
               .clearfix
               div
@@ -19,30 +19,32 @@ block content
 
         div.col-md-2  
         div.col-md-3
-          h3#addEventHeading Event Details
-          label(for="eventName") Event Name
-          input#eventName.form-control(type="text", name="eventName", required)
-          label(for="eventCategory") Event Category
-          div.dropdown
-            select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
-              span.caret
-              option(disabled, selected) Select Event
-              
-            
+          div.modal-dialog(style="margin: 0 0 0 0")
+              div.modal-content.col-md-6(style="overflow:auto; padding:20 20 10 20")
+                h3#addEventHeading Event Details
+                label(for="eventName") Event Name
+                input#eventName.form-control(type="text", name="eventName", required)
+                label(for="eventCategory") Event Category
+                div.dropdown
+                  select.form-control#dropdownMenu(name = "eventCategory",required) Pick Event Catagory
+                    span.caret
+                    option(disabled, selected) Select Event
+                    
+                  
 
-          label(for="streetNumORVenueName") Street Number
-          input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
-          label(for="streetName") Street Name
-          input#streetName.form-control(type="text", name="streetName", required)
-          label(for="city") City
-          input#city.form-control(type="text", name="city", required)
-          label(for="date") Date (dd/mm/yyyy)
-          input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
-          label(for="time") Time (hh:mm)
-          input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
+                label(for="streetNumORVenueName") Street Number
+                input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required)
+                label(for="streetName") Street Name
+                input#streetName.form-control(type="text", name="streetName", required)
+                label(for="city") City
+                input#city.form-control(type="text", name="city", required)
+                label(for="date") Date (dd/mm/yyyy)
+                input#date.form-control(type="date", name="date", placeholder="(dd/mm/yyyy)", required)
+                label(for="time") Time (hh:mm)
+                input#time.form-control(type="time", name="time", placeholder ="(hh:mm)", required)
 
-          span.pull-right
-            button#create.btn.btn-raised.btn-info(type="submit") Create
-          span.pull-left
-            a(href="manageEvent")
-              button#cancel.btn.btn-raised(type="button") Cancel
+                span.pull-right
+                  button#create.btn.btn-raised.btn-info(type="submit") Create
+                span.pull-left
+                  a(href="manageEvent")
+                    button#cancel.btn.btn-raised(type="button") Cancel
