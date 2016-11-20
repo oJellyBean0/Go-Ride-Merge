@@ -5,14 +5,13 @@
 var cookie = require('cookie');
 
 var admin = function (req) {
-  return (cookie.parse(req.headers.cookie).isAdministrator === true) ? true : false;
+  return (cookie.parse(req.headers.cookie).isAdministrator == "true") ? true : false;
 };
 
 exports.index = function (req, res) {
-  if (!cookie.parse(req.headers.cookie)) {
+  if (!req.headers.cookie || !cookie.parse(req.headers.cookie) || !cookie.parse(req.headers.cookie).user) {
     res.redirect('/login');
-  } else if (!cookie.parse(req.headers.cookie).user) res.redirect('/login');
-  res.render('index', { title: 'Home', year: new Date().getFullYear(), admin: admin(req) });
+  } else res.render('index', { title: 'Home', year: new Date().getFullYear(), admin: admin(req) });
 };
 
 exports.about = function (req, res) {
@@ -24,7 +23,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', Sidebar: true });
 };
 
 exports.loginpost = function (req, res) {
@@ -37,12 +36,12 @@ exports.loginpost = function (req, res) {
       if (err === true) res.cookie('isAdministrator', true);
       else res.cookie('isAdministrator', false);
       res.redirect('/');
-    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
+    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err, Sidebar: true }); }
   });
 };
 
 exports.registerUser = function (req, res) {
-  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: '' });
+  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: '', Sidebar: true });
 };
 
 exports.userDetails = function (req, res) {
