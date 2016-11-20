@@ -4,7 +4,7 @@
 
 var cookie = require('cookie');
 
-var admin = function () {
+var admin = function (req) {
   return (cookie.parse(req.headers.cookie).isAdministrator) ? true : false;
 };
 
@@ -12,7 +12,7 @@ exports.index = function (req, res) {
   if (!cookie.parse(req.headers.cookie)) {
     res.redirect('/login');
   } else if (!cookie.parse(req.headers.cookie).user) res.redirect('/login');
-  res.render('index', { title: 'Home', year: new Date().getFullYear() });
+  res.render('index', { title: 'Home', year: new Date().getFullYear(), admin: admin(req) });
 };
 
 exports.about = function (req, res) {

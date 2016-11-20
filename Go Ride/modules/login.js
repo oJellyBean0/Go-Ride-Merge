@@ -28,7 +28,7 @@ exports.tryLogin = function (username, password, callback) {
     var connObj = mssql.connect(dbConfig, function (err) {
         if (err) errorHandler(err, connectionError);
         else {
-            var sql = 'SELECT Password FROM ' + tableName;
+            var sql = 'SELECT Password, UserType FROM ' + tableName;
             var request = new mssql.Request(connObj);
             request.input('Username', mssql.NVarChar, username);
             sql += 'Where Username=@Username';
@@ -40,7 +40,7 @@ exports.tryLogin = function (username, password, callback) {
                         callback(false, err);
                     }
                     else {
-                        callback(true);
+                        callback(true, (recordset[0].UserType == "Administrator") ? true : false);
                         connObj.close();
                     }
                 }
