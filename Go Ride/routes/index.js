@@ -23,7 +23,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', Sidebar: true });
 };
 
 exports.loginpost = function (req, res) {
@@ -36,12 +36,12 @@ exports.loginpost = function (req, res) {
       if (err === true) res.cookie('isAdministrator', true);
       else res.cookie('isAdministrator', false);
       res.redirect('/');
-    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err, login: true }); }
+    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err, Sidebar: true }); }
   });
 };
 
 exports.registerUser = function (req, res) {
-  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: '' });
+  res.render('registerUser', { title: 'Register User', year: new Date().getFullYear(), message: '', Sidebar: true });
 };
 
 exports.userDetails = function (req, res) {
