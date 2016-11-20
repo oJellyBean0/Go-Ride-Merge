@@ -2,8 +2,7 @@ extends layout
 
 block content
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(src = "/javascripts/eventSearchBar.js")
-      
+   
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.inline.pull-left
@@ -15,3 +14,6 @@ block content
             p
           div
             .list-group#eventList(style ="max-height: 500px; overflow: auto")
+
+block scripts
+    script(src = "/javascripts/eventSearchBar.js")

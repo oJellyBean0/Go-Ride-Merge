@@ -1,11 +1,8 @@
 extends layout
-
-block content
+block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/selectize.bootstrap3.css')
-    script(src = "/javascripts/selectize.js")
-    script(src = '/javascripts/rideshareGroupSearchBar.js')
-    
+block content
     
     div.row
         form.form-group(action ="", method = "post")
@@ -60,4 +57,7 @@ block content
                                 span.pull-left
                                     a(href="viewListOfRideshareGroups")
                                         button#cancel.btn.btn-raised(type="button") Cancel
-                        
+block scripts
+    script(src = "/javascripts/selectize.js")
+    script(src = '/javascripts/rideshareGroupSearchBar.js')
+    script(src = '/javascripts/addRideshareGroup.js')

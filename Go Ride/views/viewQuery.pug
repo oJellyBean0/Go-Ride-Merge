@@ -1,7 +1,6 @@
 extends layout
 block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/viewQuery.css')
-    script(src='/javascripts/getQuery.js')
 block content
     
     div.col-md-5
@@ -25,4 +24,5 @@ block content
                 br
                 div(id="textbox")
                 br
-    
+block scripts
+    script(src='/javascripts/getQuery.js')

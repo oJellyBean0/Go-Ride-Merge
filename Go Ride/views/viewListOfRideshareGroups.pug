@@ -1,8 +1,8 @@
 extends layout
-
-block content
+block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(src = '/javascripts/rideshareGroupSearchBar.js')
+block content
+    
     div.row
       form.form-group(action ="", method = "post")
         div.col-md-4.pull-left
@@ -202,5 +202,6 @@ block content
       div.col-md-8#carIcon(style="vertical-align: middle")
         img.img-responsive.img-circle.center-block(src="/images/ShareCarRide.jpg", alt='Carpool Image')
       
-
+block scripts
+    script(src = '/javascripts/rideshareGroupSearchBar.js')
         

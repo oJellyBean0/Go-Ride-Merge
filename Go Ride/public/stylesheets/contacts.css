@@ -100,3 +100,8 @@ ul.c-controls li a:hover {
     padding: 5px 10px;
     font-size: 1.25em;
 }
+
+#details {
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+}

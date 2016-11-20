@@ -1,4 +1,4 @@
-$("#headerText").html("Blocked Users");
+$("#headerText").html("Unblock Users");
 
 $('#details').hide()
 

@@ -1,7 +1,6 @@
 extends layout
 block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/contacts.css')
-    script(src='/javascripts/contacts.js')
 block content
 
     .col-md-6
@@ -20,8 +19,6 @@ block content
                 |                 
                 |                 
                 .list-group(id='blockedUserList')
-
-
     .col-md-6(id="details")
         form.modal-dialog(id="unblockUser", name="unblockUser", method="post", action="", autocomplete="off", enctype="text/plain", style="padding-top:0px")
             div.modal-header(style="padding-top:0px; margin-top:0px;")
@@ -37,4 +34,6 @@ block content
                     div.col-md-2.clearfix
                         button.btn.button-primary.pull-right(type="reset") No
                 
+block scripts
+    script(src='/javascripts/contacts.js')
 
