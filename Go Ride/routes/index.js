@@ -4,6 +4,10 @@
 
 var cookie = require('cookie');
 
+var admin = function () {
+  return (cookie.parse(req.headers.cookie).isAdministrator) ? true : false;
+};
+
 exports.index = function (req, res) {
   if (!cookie.parse(req.headers.cookie)) {
     res.redirect('/login');
