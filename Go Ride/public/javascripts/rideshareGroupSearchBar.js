@@ -90,15 +90,15 @@ var createItem = function (key, val) {
     var item = $("<a/>", {
         "class": "list-group-item changeElement",
         "data-RideshareNo": val.RideshareNo,
-        "data-Title":val.Title,
+        "data-Title": val.Title,
         html: "<span class='getTitle'>" + val.Title + "</span><span style='text-align:right; float:right; color:#d3d3d3'> View </span>"
     });
     console.log(val);
     item.appendTo("#eventList");
     item.click(function (e) {
-        var RideshareNo = e.target.getAttribute("data-RideshareNo");
-        var RideshareName = e.target.getAttribute("data-Title");
-       
+        var RideshareNo = e.target.getAttribute("data-RideshareNo") || e.target.parentNode.getAttribute("data-RideshareNo");
+        var RideshareName = e.target.getAttribute("data-Title") || e.target.parentNode.getAttribute("data-Title");
+
         console.log(e.target);
         $('#destinationName').text(RideshareName);
         $('#carIcon').hide();
@@ -137,28 +137,43 @@ var createItem = function (key, val) {
 
                 var filterType = $("#filterRideshareGroups").attr("data-filterType");
                 console.log(isPartofRideshare);
-                if (joinPending) {
+                if (joinPending && !isPartofRideshare) {
                     $("#requestEditRoute").hide();
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").hide();
                     $("#joinPending").text("Request to join rideshare was sent to driver");
+                    $("#pickupPointEdited").hide();
 
+                }
+                else if(joinPending && isPartofRideshare)
+                {
+                    $("#requestEditRoute").hide();
+                    $("#joinRideshare").hide();
+                    $("#changePetrolCost").hide();
+                    $("#joinPending").hide();
+                    $("#pickupPointEdited").text("A request to edit the pick-up point has been sent to the driver");
                 }
                 else if (isPartofRideshare && isDriver) {
                     $("#requestEditRoute").hide();
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").show();
+                    $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
 
                 }
                 else if (isPartofRideshare && !isDriver) {
                     $("#changePetrolCost").hide();
                     $("#joinRideshare").hide();
                     $("#requestEditRoute").show();
+                    $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
                 }
                 else if (!isPartofRideshare) {
                     $("#requestEditRoute").hide();
                     $("#changePetrolCost").hide();
                     $("#joinRideshare").show();
+                    $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
                 }
                 if (openSeats === 0) {
                     $("#joinRideshare").hide();

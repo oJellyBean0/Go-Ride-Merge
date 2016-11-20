@@ -56,10 +56,12 @@ block content
                                 label#pricekm(style = "font-weight:normal")
                         br
                         div.row
-                            div.col-md-9
+                            div.col-md-9(style="padding-left:36px")
                                 label#carFull(style = "font-weight:normal; padding-left:20px; color:red; display: none") The car is full
                                 p
                                 label#joinPending(style = "font-weight:normal")
+                                p
+                                label#pickupPointEdited(style = "font-weight:normal") 
                     .modal-footer
                         a(href="viewListOfRideshareGroups").pull-left
                             button#cancel.btn.btn-raised.btn-default(type="button" data-dismiss="modal",style="margin-bottom:15px; margin-left:30px") Cancel
@@ -135,7 +137,6 @@ block content
                                     div.row
                                         div.col-md-3.col-md-offset-1    
                                             label(for="pickupPoint" style="margin-bottom:0; margin-top:10px") Pick-up point
-                                            label(for="pickupPoint") Pick-up point
                                         div.col-md-7                            
                                             div.dropdown
                                                 select.form-control#editPickupPoint(name = "pickupPoint",required) Select pick-up point

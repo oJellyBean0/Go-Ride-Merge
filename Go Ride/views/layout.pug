@@ -103,7 +103,7 @@
                     ul
                       span
                         i.material-icons(style="font-size:36;") insert_chart
-                        a(href="pendingJoinQuery") PendingJoins
+                        a(href="pendingJoinQuery") Pending Joins
 
         //- div(id="headerBar")
         //-   h1(id="headerText") 
@@ -119,8 +119,10 @@
             footer
             p &copy; #{year} - Go Ride
     else
-      block login
+      block notContent
       hr
+      br
+      br
       footer
       p &copy; #{year} - Go Ride
 

@@ -48,7 +48,7 @@ block content
 
                             label(for="maxPassengers") Max Passengers
                             input#maxPassengers.form-control(type="text", name="maxPassengers", required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 28px")
-                            label(for="price/km") Price/km
+                            label(for="price/km") Price/km (R)
                             input#pricekm.form-control(type="text", name="pricekm", required, style="max-width: 600px; padding-top:0; margin-bottom:15px; height: 28px")
 
                             label(for="eventsList") Event
@@ -58,3 +58,8 @@ block content
                                     option(disabled, selected) Select event
                             p
                             div
+                                span.pull-right(style="margin-bottom:15px")
+                                        button#create.btn.btn-raised.btn-info(type="submit") Create
+                                span.pull-left(style="margin-bottom:15px")
+                                    a(href="viewListOfRideshareGroups")
+                                        button#cancel.btn.btn-raised(type="button") Cancel
