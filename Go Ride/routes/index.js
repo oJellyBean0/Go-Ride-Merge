@@ -91,7 +91,7 @@ exports.viewCalendar = function (req, res) {
 };
 
 exports.pendingJoinQuery = function (req, res) {
-  res.render('pendingJoinQuery', { title: 'Pending Join Query', year: new Date().getFullYear(), message: '' });
+  res.render('pendingJoinQuery', { title: 'Pending Join Query', year: new Date().getFullYear(), message: '', admin: admin(req) });
 };
 
 
