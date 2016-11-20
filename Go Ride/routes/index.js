@@ -9,10 +9,9 @@ var admin = function (req) {
 };
 
 exports.index = function (req, res) {
-  if (!cookie.parse(req.headers.cookie)) {
+  if (!req.headers.cookie || !cookie.parse(req.headers.cookie) || !cookie.parse(req.headers.cookie).user) {
     res.redirect('/login');
-  } else if (!cookie.parse(req.headers.cookie).user) res.redirect('/login');
-  res.render('index', { title: 'Home', year: new Date().getFullYear(), admin: admin(req) });
+  } else res.render('index', { title: 'Home', year: new Date().getFullYear(), admin: admin(req) });
 };
 
 exports.about = function (req, res) {
@@ -37,7 +36,7 @@ exports.loginpost = function (req, res) {
       if (err === true) res.cookie('isAdministrator', true);
       else res.cookie('isAdministrator', false);
       res.redirect('/');
-    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
+    } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err, login: true }); }
   });
 };
 
