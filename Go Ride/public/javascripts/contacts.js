@@ -1,3 +1,5 @@
+$("#headerText").html("Blocked Users");
+
 $('#details').hide()
 
 var JSON
@@ -20,11 +22,11 @@ var createItem = function (key, val) {
   })
   item.appendTo('#blockedUserList')
   item.click(function () {
-          Username = val.Username
-          console.log(Username + " adsfasdfsadf")
-          Name = val.Name
-          Surname = val.Surname
-          $('#unblockUserHeading').text(Name + " " + Surname)
+    Username = val.Username
+    console.log(Username + " adsfasdfsadf")
+    Name = val.Name
+    Surname = val.Surname
+    $('#unblockUserHeading').text(Name + " " + Surname)
     $('#details').show()
   })
 }

@@ -1,0 +1,1 @@
+$("#headerText").html("Delete Account");

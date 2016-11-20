@@ -1,9 +1,11 @@
 // Populate List .....................................................................................
-
+$("#headerText").html("Locations");
 $(document).ready(function () {
   $('#pac-input').on('input', function () {
     var savedSearchTerm = $('#pac-input').val()
-    $.post('/event', { searchTerm: savedSearchTerm }, function (data) {
+    $.post('/event', {
+      searchTerm: savedSearchTerm
+    }, function (data) {
       if (savedSearchTerm == $('#pac-input').val()) {
         $('#locationList').empty()
         $.each(data.events, createItem)
@@ -21,7 +23,7 @@ $(document).ready(function () {
 
 var JSON
 var AreaID1
-// populate list
+  // populate list
 $.getJSON('/getLocations', {}, function (data) {
   console.log('posting')
   JSON = data
@@ -88,14 +90,19 @@ function initAutocomplete() {
   // Create the autocomplete object, restricting the search to geographical
   // location types.
   autocomplete = new google.maps.places.Autocomplete(
-  /** @type {!HTMLInputElement} */(document.getElementById('pac-input')),
-    { types: ['geocode'] });
+    /** @type {!HTMLInputElement} */
+    (document.getElementById('pac-input')), {
+      types: ['geocode']
+    });
   // When the user selects an address from the dropdown, populate the address
   // fields in the form.
   autocomplete.addListener('place_changed', fillInAddress);
 
   var map = new google.maps.Map(document.getElementById('map'), {
-    center: { lat: -33.963373, lng: 25.616230 },
+    center: {
+      lat: -33.963373,
+      lng: 25.616230
+    },
     zoom: 13,
     mapTypeId: 'roadmap',
     zoomControl: true,
@@ -124,7 +131,7 @@ function initAutocomplete() {
         var val = place.address_components[i][componentForm[addressType]];
         document.getElementById(addressType).value = val;
       }
-    $('#details').show()
+      $('#details').show()
     }
   }
 
@@ -132,7 +139,7 @@ function initAutocomplete() {
   // Create the search box and link it to the UI element.
   var input = document.getElementById('pac-input')
   var searchBox = new google.maps.places.SearchBox(input)
-  // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
+    // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input)
 
   // Bias the SearchBox results towards current map's viewport.
   map.addListener('bounds_changed', function () {
@@ -140,8 +147,8 @@ function initAutocomplete() {
   })
 
   var markers = []
-  // Listen for the event fired when the user selects a prediction and retrieve
-  // more details for that place.
+    // Listen for the event fired when the user selects a prediction and retrieve
+    // more details for that place.
   searchBox.addListener('places_changed', function () {
     var places = searchBox.getPlaces()
 
@@ -193,8 +200,13 @@ function initAutocomplete() {
 function geocodeLatLng(geocoder, map, infowindow) {
   var input = document.getElementById('latlng').value;
   var latlngStr = input.split(',', 2);
-  var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
-  geocoder.geocode({ 'location': latlng }, function (results, status) {
+  var latlng = {
+    lat: parseFloat(latlngStr[0]),
+    lng: parseFloat(latlngStr[1])
+  };
+  geocoder.geocode({
+    'location': latlng
+  }, function (results, status) {
     if (status === 'OK') {
       if (results[1]) {
         map.setZoom(11);

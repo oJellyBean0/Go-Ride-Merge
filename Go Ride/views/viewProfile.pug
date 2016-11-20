@@ -1,76 +1,79 @@
-link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
-link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap-theme.min.css')
-link(rel='stylesheet', type='text/css', href='/stylesheets/simple-sidebar.css')
-link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
-            //- http://google.github.io/material-design-icons/#getting-icons
-            //- https://design.google.com/icons/
-link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
-script(src='/javascripts/modernizr-2.6.2.js')
-script(src='/javascripts/jquery-1.10.2.min.js')
+//- link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap.min.css')
+//- link(rel='stylesheet', type='text/css', href='/stylesheets/bootstrap-theme.min.css')
+//- link(rel='stylesheet', type='text/css', href='/stylesheets/simple-sidebar.css')
+//- link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
+//-             //- http://google.github.io/material-design-icons/#getting-icons
+//-             //- https://design.google.com/icons/
+//- link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+//- script(src='/javascripts/modernizr-2.6.2.js')
+//- script(src='/javascripts/jquery-1.10.2.min.js')
 
-
-div.modal-dialog
-    
-    div.col-md-5
-    div.modal-content
-        div.modal-header
-            h2.text-center
-                label#fullName(for="name")
-            div.row.center-block
+extends layout
+block head
+block content
+    div.modal-dialog
+        
+        div.col-md-5
+        div.modal-content
+            div.modal-header
+                h2.text-center
+                    label#fullName(for="name")
+                div.row.center-block
+                    div.col-md-3
+                    div.col-md-6.center-block
+                        img.img-responsive.img-circle#img(alt='Profile Image')
+                    
+            div.modal-body
+            div.row
                 div.col-md-3
-                div.col-md-6.center-block
-                    img.img-responsive.img-circle#img(alt='Profile Image')
-                
-        div.modal-body
-        div.row
-            div.col-md-3
-            div.col-md-3
-                p Age
-            div.col-md-5.pull-right
-                p#age
+                div.col-md-3
+                    p Age
+                div.col-md-5.pull-right
+                    p#age
 
-        div.row
-            div.col-md-3
-            div.col-md-3
-                p Current City
-            div.col-md-5.pull-right
-                p#currentCity
+            div.row
+                div.col-md-3
+                div.col-md-3
+                    p Current City
+                div.col-md-5.pull-right
+                    p#currentCity
 
-        div.row
-            .col-md-5
-            div.col-md-2.center-block
-                button.btn.button-primary(type="button") Back
+            div.row
+                .col-md-5
+                div.col-md-2.center-block
+                    button.btn.button-primary(type="button") Back
 
-    script(type="text/javascript").
-        var timer = function(name) {
-            var start = new Date();
-            return {
-                stop: function() {
-                    var end  = new Date();
-                    var time = end.getTime() - start.getTime();
-                    console.log('Timer:', name, 'finished in', time, 'ms');
+        script(type="text/javascript").
+            $("#headerText").html("Profile");
+            var timer = function(name) {
+                var start = new Date();
+                return {
+                    stop: function() {
+                        var end  = new Date();
+                        var time = end.getTime() - start.getTime();
+                        console.log('Timer:', name, 'finished in', time, 'ms');
+                    }
                 }
-            }
-        };
-        $( document ).ready(function() {
-            var t = timer('Some label');
-            $.post( '/getProfile',{ userID: "#{UserID}" }, function( data ) {
-                console.log(data.users[0]);
-                var name = data.users[0].Name;
-                var surname = data.users[0].Surname;
-                var fullName = name + " " + surname;
-                var imageStr = data.users[0].Picture
-                var age = data.users[0].Age;
-                var currentCity = data.users[0].City
-                $('#fullName').text(fullName);
-                $('#age').text(age);
-                $('#currentCity').text(currentCity);
-                var image = new Image();
-                image.src = 'data:image/png;base64,'+imageStr;
-                $('#img').attr(image);
+            };
+            $( document ).ready(function() {
+                var t = timer('Some label');
+                $.post( '/getProfile',{ userID: "#{UserID}" }, function( data ) {
+                    console.log(data.users[0]);
+                    var name = data.users[0].Name;
+                    var surname = data.users[0].Surname;
+                    var fullName = name + " " + surname;
+                    var imageStr = data.users[0].Picture
+                    var age = data.users[0].Age;
+                    var currentCity = data.users[0].City
+                    $('#fullName').text(fullName);
+                    $('#age').text(age);
+                    $('#currentCity').text(currentCity);
+                    var image = new Image();
+                    image.src = 'data:image/png;base64,'+imageStr;
+                    $('#img').attr(image);
 
-                t.stop();
-            })
-        });
+                    t.stop();
+                })
+            });
 
     
