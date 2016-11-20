@@ -24,7 +24,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true, isAdmin: true });
 };
 
 exports.loginpost = function (req, res) {
