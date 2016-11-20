@@ -17,9 +17,9 @@
     script(src='/javascripts/jquery-1.10.2.min.js')
     block head
   body
-    unless login
+    unless Sidebar
       #wrapper
-        if !Sidebar     
+        if !admin     
           #sidebar-wrapper
             ul.sidebar-nav
               li.sidebar-brand
