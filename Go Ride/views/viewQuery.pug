@@ -1,0 +1,28 @@
+extends layout
+block head
+    link(rel='stylesheet', type='text/css', href='/stylesheets/viewQuery.css')
+block content
+    
+    div.col-md-5
+        br
+        br
+        div.modal-content(style="margin-top:0px;")
+            div.modal-header
+                h2 Request Query:
+            form.div.modal-body(id="savedLocations")
+                button.btn.btn-primary.btn-block(type='button', id="getQuery") View outstanding join requests
+                button.btn.btn-primary.btn-block(type='button') Most Popular destination
+                button.btn.btn-primary.btn-block(type='button') Most popular events per category
+                br
+                
+    
+    .col-md-7(id='details')
+        div.modal-dialog(style="padding-top:11px;")
+            div.modal-header
+                h3(id="queryName") Outstanding Joins
+            div.modal-body
+                br
+                div(id="textbox")
+                br
+block scripts
+    script(src='/javascripts/getQuery.js')

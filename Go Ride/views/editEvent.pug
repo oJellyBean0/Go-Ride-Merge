@@ -56,8 +56,7 @@ block content
                   select.form-control#dropdownMenu(name = "eventCategory",required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 35px") Pick Event Catagory
                     span.caret
                     option(disabled, selected) Select Event
-                    
-                  
+
 
                 label(for="streetNumORVenueName", style="margin-bottom:0") Street Number
                 input#streetNumORVenueName.form-control(type="text", name="streetNumORVenueName", required, style="max-width: 600px; padding:0 0 0 0; margin-bottom:15px; height: 28px")
@@ -103,10 +102,8 @@ block content
                           script(type="text/javascript").
                             $("#deleteEvent").click(function() {
                                   $.post("/deleteEvent",{ eventID: $("#eventID").val() }, function( data ) {
-                                    //window.location.replace(manageEvent);
-                                    console.log('asasas');
+                                    window.location.href = "/manageEvent";
                                   });                                  
                             });
-                  
                 
                       

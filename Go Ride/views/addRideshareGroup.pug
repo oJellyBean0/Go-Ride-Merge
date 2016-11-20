@@ -1,12 +1,13 @@
 extends layout
-
-block content
+block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/selectize.bootstrap3.css')
+
+block scripts
     script(src = "/javascripts/selectize.js")
     script(src = '/javascripts/rideshareGroupSearchBar.js')
     
-    
+block content    
     div.row
         form.form-group(action ="", method = "post" style="margin-top:20px")
             div.col-md-5.in-line.pull-left
@@ -57,9 +58,3 @@ block content
                                     option(disabled, selected) Select event
                             p
                             div
-                                span.pull-right(style="margin-bottom:15px")
-                                    button#create.btn.btn-raised.btn-info(type="submit") Create
-                                span.pull-left(style="margin-bottom:15px")
-                                    a(href="viewListOfRideshareGroups")
-                                        button#cancel.btn.btn-raised(type="button") Cancel
-                        

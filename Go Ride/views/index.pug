@@ -1,24 +1,35 @@
 ﻿extends layout
-
+block head
+    link(rel='stylesheet', type='text/css', href='/stylesheets/index.css')
 block content
   .jumbotron
-    h1 Rideshare Groups
-    p.lead Join rideshare groups going to the event which you would like to go to
+    h1 Go Ride
+    p.lead Getting from A to B, made easy.
     p
-      a.btn.btn-primary.btn-large(href='http://expressjs.com/') Find Rideshare Groups &raquo;
+      a.btn.btn-primary.btn-large(href='/viewListOfRideshareGroups') Find a Rideshare groups &raquo;
   .row
-    .col-md-4
-      h2 View profile
-      p Express gives you a powerful, patterns-based way to build dynamic websites that enables a clean separation of concerns and gives you full control over markup for enjoyable, agile development.
-      p
-        a.btn.btn-default(href='http://expressjs.com/') Learn more &raquo;
-    .col-md-4
-      h2 Get more libraries
-      p Node Packaged Modules is a repository of software for Node.js.
-      p
-        a.btn.btn-default(href='https://www.npmjs.org/') Learn more &raquo;
-    .col-md-4
-      h2 Microsoft Azure
-      p You can easily publish to Microsoft Azure using Node.js Tools for Visual Studio. Find out how you can host your application using a free trial today.
-      p
-        a.btn.btn-default(href='http://azure.microsoft.com') Learn more &raquo;
+    div(id="container")
+      h2 3 steps to get you on  your way:
+      br
+      .col-md-4
+        span
+          p.numberCircle 1
+          h3 Check your Profile
+        p Ensure that all your details have been entered correctly and that you have a current picture so other users will be able to recognise you.
+        p
+          
+      .col-md-4
+        span
+          p.numberCircle 2
+          h3 Create/Search for a Rideshare
+          p Depending on whether you are a driver or passenger, either create or search for a rideshare for the destination you intend to travel to.
+          p
+          
+      .col-md-4
+        span
+          p.numberCircle 3
+          h3 Request to join or Accept Requests
+          p Request to join a Rideshare group, or if you are a driver, accept requests by fellow travellers to join your group.
+          p
+          
+    script(src='/javascripts/index.js')

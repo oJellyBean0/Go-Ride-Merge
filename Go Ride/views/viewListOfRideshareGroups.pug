@@ -1,8 +1,11 @@
 extends layout
+block head
+    link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
+
+block scripts
+    script(src = '/javascripts/rideshareGroupSearchBar.js')
 
 block content
-    link(rel='stylesheet', type='text/css', href='/stylesheets/addEvent.css')
-    script(src = '/javascripts/rideshareGroupSearchBar.js')
     div.row
       form.form-group(action ="", method = "post" style="margin-top:20px")
         div.col-md-5.in-line.pull-left
@@ -132,6 +135,7 @@ block content
                                     div.row
                                         div.col-md-3.col-md-offset-1    
                                             label(for="pickupPoint" style="margin-bottom:0; margin-top:10px") Pick-up point
+                                            label(for="pickupPoint") Pick-up point
                                         div.col-md-7                            
                                             div.dropdown
                                                 select.form-control#editPickupPoint(name = "pickupPoint",required) Select pick-up point
@@ -207,6 +211,4 @@ block content
 
         div.col-md-7#carIcon(style="vertical-align: middle")
             img.img-responsive.img-circle.center-block(src="/images/ShareCarRide.jpg", alt='Carpool Image')
-        
-
         

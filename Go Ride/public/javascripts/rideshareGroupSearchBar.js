@@ -1,3 +1,4 @@
+$("#headerText").html("View Groups");
 $(document).ready(function () {
 
     $("#filterRideshareGroups").click(function (e) {
@@ -10,7 +11,6 @@ $(document).ready(function () {
             console.log($("#filterRideshareGroups").attr("data-filterType"));
 
             $.post("/searchParticipatingRideshares", { searchTerm: savedSearchTerm }, function (data) {
-
                 if (savedSearchTerm == $("#searchBar").val()) {
                     $("#eventList").empty();
                     $.each(data.rideshares, createItem);
@@ -23,7 +23,6 @@ $(document).ready(function () {
             console.log($("#filterRideshareGroups").attr("data-filterType"));
 
             $.post("/searchRideshares", { searchTerm: savedSearchTerm }, function (data) {
-
                 if (savedSearchTerm == $("#searchBar").val()) {
                     $("#eventList").empty();
                     $.each(data.rideshares, createItem);
@@ -40,7 +39,6 @@ $(document).ready(function () {
         console.log(filterType);
         if (filterType == "own") {
             $.post("/searchParticipatingRideshares", { searchTerm: savedSearchTerm }, function (data) {
-
                 if (savedSearchTerm == $("#searchBar").val()) {
                     $("#eventList").empty();
                     $.each(data.rideshares, createItem);
@@ -49,7 +47,6 @@ $(document).ready(function () {
         }
         else {
             $.post("/searchRideshares", { searchTerm: savedSearchTerm }, function (data) {
-
                 if (savedSearchTerm == $("#searchBar").val()) {
                     $("#eventList").empty();
                     $.each(data.rideshares, createItem);
@@ -59,7 +56,6 @@ $(document).ready(function () {
     });
 
     $.post("/searchParticipatingRideshares", { searchTerm: "" }, function (data) {
-
         console.log("posting");
         console.log(data);
         $.each(data.rideshares, createItem);
@@ -88,7 +84,6 @@ $(document).ready(function () {
             }).appendTo("#dropdownMenu2");
         });
     });
-
 });
 
 var createItem = function (key, val) {
@@ -180,4 +175,3 @@ var createItem = function (key, val) {
         }
     });
 };
-

@@ -28,3 +28,19 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
   display: none;
 }
+#headerBar {
+  height: 60px;
+  position: relative;
+  background-color: #2196f3;
+  z-index: 9999;
+}
+#headerText {
+  margin: 0;
+  position: absolute;
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+}

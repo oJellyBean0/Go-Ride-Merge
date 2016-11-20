@@ -3,7 +3,10 @@
 * Visual Studio Code v1.7.1
 * Node.js v6.4.0
 * NPM  v3.10.3
+<<<<<<< HEAD
 * GraphicsMagick 1.3.25
+=======
+>>>>>>> original/master
 * Modules (install with npm install)
   * bootstrap-material-design@0.5.10 
   * cookie@0.3.1 
@@ -20,6 +23,7 @@
 * Minimum Resolution 1366x768
 
 ## Installation
+<<<<<<< HEAD
 Install Node, with the executable in your PATH https://nodejs.org/en/download/
 
 Install the packages using NPM
@@ -27,6 +31,13 @@ Install the packages using NPM
 Install GraphicsMagick http://www.graphicsmagick.org/download.html
 
 Install Visual Studio Code https://code.visualstudio.com/download
+=======
+Install Node, with the executable in your PATH
+
+Install the packages using NPM
+
+Install Visual Studio Code
+>>>>>>> original/master
 
 Open the Project folder `Go Ride` in VSCode
 > ~/Go-Ride/Go Ride

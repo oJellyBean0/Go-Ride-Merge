@@ -25,7 +25,9 @@
               li.sidebar-brand
                 a(href='/') Go Ride
               li
-                a(href='/login') Login
+                span
+                  i.material-icons(style="font-size:36;") vpn_key
+                  a(href='/login') Login
               //-li
                 span
                   i.material-icons(style="font-size:36;") account_box
@@ -48,16 +50,26 @@
                         i.material-icons(style="font-size:36;") delete_forever
                         a(href='/userDelete') Delete User
               li
-                a(href='/viewCalendar') Agenda
+                span
+                  i.material-icons(style="font-size:36;") today
+                  a(href='/viewCalendar') Agenda
               li
-                a(href='/manageEvent') Events
-                  ul
+                span
+                  i.material-icons(style="font-size:36;") date_range
+                  a(href='/manageEvent') Events
+                ul
+                  span
+                    i.material-icons(style="font-size:36;") add
                     a(href="addEvent") Add Event
               //-li
                 a(href='/viewProfile') View Profile
               li
-                a(href='/viewListOfRideshareGroups') Rideshare
-                  ul
+                span
+                  i.material-icons(style="font-size:36;") directions_car
+                  a(href='/viewListOfRideshareGroups') Rideshare
+                ul
+                  span
+                    i.material-icons(style="font-size:36;") add
                     a(href="addRideshareGroup") Add Rideshare
               //- ul
                     a(href="processRideshareRequest") Rideshare Requests
@@ -67,9 +79,14 @@
               li.sidebar-brand
                 a(href='/') Go Ride  
               li
+                span
+                  i.material-icons(style="font-size:36;") insert_chart
                 div(style = "color:white") Admin Reports
                   ul
                     a(href='/pendingJoinQuery') Pending Join Requests
+
+      div(id="headerBar")
+        h1(id="headerText") 
 
         #page-content-wrapper
           .container-fluid

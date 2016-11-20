@@ -1,5 +1,6 @@
 extends layout
 block content
+
     div.modal-dialog
         div.modal-header
             div.row
@@ -42,7 +43,7 @@ block content
                 div.col-md-4.clearfix
                     //button.btn.button-primary.pull-left(type="submit") Cancel
                 div.col-md-4.clearfix.text-center
-                    button.btn.button-primary(type='submit', data-toggle='modal', data-target='#modalEdit') Edit
+                    button.btn.button-primary(data-toggle='modal', data-target='#modalEdit', id='buttonEdit') Edit
                 div.col-md-4.clearfix
                     //button.btn.button-primary.pull-right(type="submit") Cancel
 
@@ -53,7 +54,7 @@ block content
                 .modal-header
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') &times;         
-                    h4#modalEdit.Label1.modal-title Edit Details?      
+                    h4.Label1.modal-title Edit Details?      
                 .modal-body
                     div.modal-dialog(style="padding-top:0px")
                         div.modal-header
@@ -64,26 +65,29 @@ block content
                                 div.col-md-4.span4
                                     label(for="nameInput") Name
                                 div.col-md-8.span8.pull-right
-                                    input.form-control(type="text", name="nameInput", id="nameInput" required)
+                                    input.form-control(type="text", name="nameInput", id="nameInput", readonly )
 
                             div.row
                                 div.col-md-4.span4
                                     label(for="surnameInput") Surname
                                 div.col-md-8.span8.pull-right
-                                    input.form-control(type="text", name="surnameInput", id="surnameInput" required)
+                                    input.form-control(type="text", name="surnameInput", id="surnameInput", readonly)
 
                             div.row
                                 div.col-md-4.span4
                                     label(for="usernameInput") Username
                                 div.col-md-8.span8.pull-right
-                                    input.form-control(type="text", name="usernameInput", id="usernameInput" required)
+                                    input.form-control(type="text", name="usernameInput", id="usernameInput", readonly)
 
                             div.row
                                 div.col-md-4.span4
                                     label(for="passwordInput") Password
                                 div.col-md-8.span8.pull-right
-                                    input.form-control(type="password", name="passwordInput", id="passwordInput" required)       
+                                    input.form-control(type="password", name="passwordInput", id="passwordInput", required)       
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
-                    button.btn.btn-primary(type='submit') Save
+                    button.btn.btn-primary(type='submit', id='submitUserDetails') Save
+
+block scripts
+    script(src='/javascripts/userDetails.js')
