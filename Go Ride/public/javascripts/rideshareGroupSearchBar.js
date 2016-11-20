@@ -148,17 +148,20 @@ var createItem = function (key, val) {
                     $("#requestEditRoute").hide();
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").show();
+                    $("#joinPending").hide();
 
                 }
                 else if (isPartofRideshare && !isDriver) {
                     $("#changePetrolCost").hide();
                     $("#joinRideshare").hide();
                     $("#requestEditRoute").show();
+                    $("#joinPending").hide();
                 }
                 else if (!isPartofRideshare) {
                     $("#requestEditRoute").hide();
                     $("#changePetrolCost").hide();
                     $("#joinRideshare").show();
+                    $("#joinPending").hide();
                 }
                 if (openSeats === 0) {
                     $("#joinRideshare").hide();
