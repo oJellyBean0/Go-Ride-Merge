@@ -15,20 +15,20 @@ block content
                 .input-group
                     input.controls(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="pac-input")
                     span.input-group-btn
-                        button.btn.btn-default(type='button', id='addLocation') Add
+                        button.btn.btn-raised.btn-info(type='button', id='addLocation') Add
                 br
                 .list-group(id='locationList')
-                    a.list-group-item(href='#') Home
-                    a.list-group-item(href='#') place 1
-                    a.list-group-item(href='#') place 2
-                    a.list-group-item(href='#') Place 3
-                    a.list-group-item(href='#') place 4
-                    a.list-group-item(href='#') place 5
+                    //- a.list-group-item(href='#') Home
+                    //- a.list-group-item(href='#') place 1
+                    //- a.list-group-item(href='#') place 2
+                    //- a.list-group-item(href='#') Place 3
+                    //- a.list-group-item(href='#') place 4
+                    //- a.list-group-item(href='#') place 5
 
     .col-md-7(id='details')
         div.modal-dialog(style="padding-top:11px;")
             div.modal-header
-                h2 *place name goes here*
+                h2(id="panelInfo") 
             div.modal-body
                 br
                 div.row

@@ -39,6 +39,7 @@ var createItem = function (key, val) { // creates item, appends to list, makes c
   })
   item.appendTo('#locationList')
   item.click(function () {
+    // $("#panelInfo").html($(this).attr('id'));
     var ID = $(this).attr('id')
     $.getJSON('/getLocations', {}, function (data) {
       console.log(data)
@@ -53,6 +54,7 @@ var createItem = function (key, val) { // creates item, appends to list, makes c
           $('#route').text(StreetName)
           $('#locality').text(Town)
           $('#administrative_area_level_1').text(Province)
+          $('#panelInfo').text(StreetNumber + " " + StreetName)
         }
       })
     })
