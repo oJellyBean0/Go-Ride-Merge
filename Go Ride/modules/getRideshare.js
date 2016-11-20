@@ -102,11 +102,11 @@ exports.tryGetRideshare = function (username, RideshareNo, callback) {
         });
     };
 
-    var isPending = function (userID, results) {
+    var isPending = function (userID, rideshareNo) {
         var tableName = '[JN08].[dbo].[PendingMarker]';
         var sql = "SELECT UserID FROM " + tableName;
         var request = new mssql.Request(connObj);
-        request.input("RideshareNo", mssql.UniqueIdentifier, results[0].RideshareNo);
+        request.input("RideshareNo", mssql.UniqueIdentifier, rideshareNo);
         request.input("UserID", mssql.UniqueIdentifier, userID);
         sql += " WHERE RideshareNo=@RideshareNo and UserID=@UserID";
         request.query(sql, function (err, recordset) {
