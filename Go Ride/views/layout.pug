@@ -98,7 +98,12 @@
               li
                 span
                   i.material-icons(style="font-size:36;") insert_chart
-                  a(href="viewQuery") Query
+                  a(href='#' data-toggle="collapse", aria-expanded="false", id="manReport", data-target="#manQuerySubmenu") Reports
+                  ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manQuerySubmenu")
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") insert_chart
+                        a(href="pendingJoinQuery") PendingJoins
 
         //- div(id="headerBar")
         //-   h1(id="headerText") 
