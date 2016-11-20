@@ -60,7 +60,7 @@
                   ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manEventsSubmenu")
                     ul
                       span
-                        i.material-icons(style="font-size:36;") add
+                        i.material-icons(style="font-size:36;") view_list
                         a(href="manageEvent") View Events
                     ul
                       span
@@ -75,7 +75,7 @@
                   ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manRideSubmenu")
                     ul
                       span
-                        i.material-icons(style="font-size:36;") add
+                        i.material-icons(style="font-size:36;") people
                         a(href="/viewListOfRideshareGroups") Rideshare Groups
                     ul
                       span
@@ -83,12 +83,12 @@
                         a(href="addRideshareGroup") Add Rideshare
                     ul
                       span
-                        i.material-icons(style="font-size:36;") add
+                        i.material-icons(style="font-size:36;") announcement
                         a(href="processRideshareRequest") Requests
-              li
-                span
-                  i.material-icons(style="font-size:36;") today
-                  a(href="viewQuery") Query
+              //- li
+              //-   span
+              //-     i.material-icons(style="font-size:36;") today
+              //-     a(href="viewQuery") Query
 
         else
           #sidebar-wrapper
@@ -98,9 +98,7 @@
               li
                 span
                   i.material-icons(style="font-size:36;") insert_chart
-                div(style = "color:white") Admin Reports
-                  ul
-                    a(href='/pendingJoinQuery') Pending Join Requests
+                  a(href="viewQuery") Query
 
         //- div(id="headerBar")
         //-   h1(id="headerText") 
