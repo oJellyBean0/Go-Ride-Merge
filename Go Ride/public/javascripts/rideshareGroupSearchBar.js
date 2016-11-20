@@ -137,18 +137,28 @@ var createItem = function (key, val) {
 
                 var filterType = $("#filterRideshareGroups").attr("data-filterType");
                 console.log(isPartofRideshare);
-                if (joinPending) {
+                if (joinPending && !isPartofRideshare) {
                     $("#requestEditRoute").hide();
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").hide();
                     $("#joinPending").text("Request to join rideshare was sent to driver");
+                    $("#pickupPointEdited").hide();
 
+                }
+                else if(joinPending && isPartofRideshare)
+                {
+                    $("#requestEditRoute").hide();
+                    $("#joinRideshare").hide();
+                    $("#changePetrolCost").hide();
+                    $("#joinPending").hide();
+                    $("#pickupPointEdited").text("A request to edit the pick-up point has been sent to the driver");
                 }
                 else if (isPartofRideshare && isDriver) {
                     $("#requestEditRoute").hide();
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").show();
                     $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
 
                 }
                 else if (isPartofRideshare && !isDriver) {
@@ -156,12 +166,14 @@ var createItem = function (key, val) {
                     $("#joinRideshare").hide();
                     $("#requestEditRoute").show();
                     $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
                 }
                 else if (!isPartofRideshare) {
                     $("#requestEditRoute").hide();
                     $("#changePetrolCost").hide();
                     $("#joinRideshare").show();
                     $("#joinPending").hide();
+                    $("#pickupPointEdited").hide();
                 }
                 if (openSeats === 0) {
                     $("#joinRideshare").hide();
