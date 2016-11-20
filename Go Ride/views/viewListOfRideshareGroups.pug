@@ -48,7 +48,7 @@ block content
                         br
                         div.row
                             div.col-md-5    
-                                label(for="price/km", style="padding-left:20px; color:black") Price/km:
+                                label(for="price/km", style="padding-left:20px; color:black") Price/km (R):
                             div.col-md-7                            
                                 label#pricekm(style = "font-weight:normal")
                         br
@@ -100,23 +100,25 @@ block content
                                 div.modal-body
                                     div.row
                                         div.col-md-3.col-md-offset-1    
-                                            label(for="price/km") Price/km
+                                            label(for="price/km" style="margin-bottom:0") Price/km (R)
                                         div.col-md-7                            
-                                            input.form-control#pricekmDialog(style = "font-weight:normal")
+                                            input.form-control#pricekmDialog(style = "font-weight:normal; max-width: 600px; padding-top:0; margin-bottom:15px; height: 28px")
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePetrolCost(type="button" data-dismiss="modal" ) Save
-                                        script(type="text/javascript").
-                                            $( "#savePetrolCost").click(function() {
-                                                var newPriceperkm = $("#pricekmDialog").val();
-                                                $("#pricekm").text(newPriceperkm);
-                                                console.log($("#pricekmDialog").val());
-                                                console.log($("#rideshareNo").val());
-                                                $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() , petrolCost : $("#pricekmDialog").val() }, function (data) {
-                                                    console.log("posting to editPetrolCost");
+                                    span.pull-right
+                                        button.btn.btn-raised.btn-info#savePetrolCost(type="button" data-dismiss="modal" style="margin:0 15 15 0") Save
+                                            script(type="text/javascript").
+                                                $( "#savePetrolCost").click(function() {
+                                                    var newPriceperkm = $("#pricekmDialog").val();
+                                                    $("#pricekm").text(newPriceperkm);
+                                                    console.log($("#pricekmDialog").val());
+                                                    console.log($("#rideshareNo").val());
+                                                    $.post("/editPetrolCost", { rideshareNo: $("#rideshareNo").val() , petrolCost : $("#pricekmDialog").val() }, function (data) {
+                                                        console.log("posting to editPetrolCost");
+                                                    });
                                                 });
-                                            });
-                                    button.btn.btn-default(type="button"  data-dismiss="modal") Close
+                                    span.pull-left
+                                        button.btn.btn-raised(type="button"  data-dismiss="modal" style="margin:0 0 15 15") Close
 
                     div.modal.fade(id="editRouteDialog" role="dialog")
                         div.modal-dialog
@@ -129,7 +131,7 @@ block content
                                 div.modal-body
                                     div.row
                                         div.col-md-3.col-md-offset-1    
-                                            label(for="pickupPoint") Pick-up point
+                                            label(for="pickupPoint" style="margin-bottom:0; margin-top:10px") Pick-up point
                                         div.col-md-7                            
                                             div.dropdown
                                                 select.form-control#editPickupPoint(name = "pickupPoint",required) Select pick-up point
@@ -137,20 +139,22 @@ block content
                                                     option(disabled, selected) Select pick-up point
 
                                 div.modal-footer
-                                    button.btn.btn-default#savePickupPoint(type="button" data-dismiss="modal" data-toggle="modal" data-target="#routeChangeConfirm") Save
-                                        script(type="text/javascript").
-                                            $( "#savePickupPoint").click(function() {
-                                                var e = document.getElementById("editPickupPoint");
-                                                console.log(e);
-                                                var value = e.options[e.selectedIndex];
-                                                console.log(value.getAttribute("data-AreaID"));
-                                                var AreaID = value.getAttribute("data-AreaID");
-                                                    $.post("/editRouteMarker", { rideshareNo: $("#rideshareNo").val(), areaID : AreaID }, function (data) {
-                                                        console.log("posting");
-                                                    });
-                                            });
-                                    input#rideshareNo(type="hidden")
-                                    button.btn.btn-default(type="button"  data-dismiss="modal") Close
+                                    span.pull-right
+                                        button.btn.btn-raised.btn-info#savePickupPoint(type="button" data-dismiss="modal" data-toggle="modal" data-target="#routeChangeConfirm" style="margin:0 15 15 0") Save
+                                            script(type="text/javascript").
+                                                $( "#savePickupPoint").click(function() {
+                                                    var e = document.getElementById("editPickupPoint");
+                                                    console.log(e);
+                                                    var value = e.options[e.selectedIndex];
+                                                    console.log(value.getAttribute("data-AreaID"));
+                                                    var AreaID = value.getAttribute("data-AreaID");
+                                                        $.post("/editRouteMarker", { rideshareNo: $("#rideshareNo").val(), areaID : AreaID }, function (data) {
+                                                            console.log("posting");
+                                                        });
+                                                });
+                                        input#rideshareNo(type="hidden")
+                                    span.pull-left
+                                        button.btn.btn-raised(type="button"  data-dismiss="modal" style="margin:0 0 15 15") Close
                                         
                     div.modal.fade(id="routeChangeConfirm" role="dialog")
                         div.modal-dialog
@@ -166,7 +170,7 @@ block content
                                             p A request to edit the route has been sent to the driver for confirmation.
                                                             
                                 div.modal-footer
-                                    button.btn.btn-default#ok(type="button" data-dismiss="modal") Ok
+                                    button.btn.btn-raised.btn-default#ok(type="button" data-dismiss="modal" style="margin:0 15 15 0") Ok
 
                     div.modal.fade(id="joinRideshareDialog" role="dialog")
                         div.modal-dialog
