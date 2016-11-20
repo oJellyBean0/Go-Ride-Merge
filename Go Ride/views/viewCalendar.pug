@@ -1,17 +1,12 @@
 extends layout
 
 block content
-<<<<<<< HEAD
-    script(src = '/javascripts/calendar.js')
     link(rel='stylesheet', type='text/css', href='/stylesheets/query.css')
-=======
->>>>>>> original/master
     div.modal-dialog
         
         div.col-md-7
         div.modal-content
             div.modal-header
-<<<<<<< HEAD
                 h2.text-center Agenda
             div.modal-body
                 .list-group#agendaList(style ="max-height: 500px; overflow: auto")
@@ -22,12 +17,6 @@ block content
                         a.text-center(href="/" style="display:table; margin:0 auto")
                             button.btn.button-primary.pull-left(type="button") Cancel
                     div.col-md-5.clearfix
-=======
-                h3.text-center
-                    label Agenda
-            div.modal-body
-                .list-group#agendaList(style ="max-height: 500px; overflow: auto")
 
 block scripts
     script(src = '/javascripts/calendar.js')
->>>>>>> original/master

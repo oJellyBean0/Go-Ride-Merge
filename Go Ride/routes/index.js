@@ -5,7 +5,7 @@
 var cookie = require('cookie');
 
 var admin = function (req) {
-  return (cookie.parse(req.headers.cookie).isAdministrator) ? true : false;
+  return (cookie.parse(req.headers.cookie).isAdministrator === true) ? true : false;
 };
 
 exports.index = function (req, res) {
