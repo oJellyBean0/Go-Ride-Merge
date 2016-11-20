@@ -24,7 +24,7 @@ exports.contact = function (req, res) {
 };
 
 exports.login = function (req, res) {
-  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true, isAdmin: true });
+  res.render('login', { title: 'Login', year: new Date().getFullYear(), message: '', login: true });
 };
 
 exports.loginpost = function (req, res) {
@@ -35,6 +35,7 @@ exports.loginpost = function (req, res) {
     if (success) {
       res.cookie('user', username);
       if (err === true) res.cookie('isAdministrator', true);
+      else res.cookie('isAdministrator', false);
       res.redirect('/');
     } else { res.render('login', { title: 'Login', year: new Date().getFullYear(), message: err }); }
   });
