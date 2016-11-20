@@ -24,31 +24,31 @@
             ul.sidebar-nav
               li.sidebar-brand
                 a(href='/') Go Ride
-              //- li
+              li
                 span
                   i.material-icons(style="font-size:36;") vpn_key
                   a(href='/login') Login
-              //-li
-                span
-                  i.material-icons(style="font-size:36;") account_box
-                  a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
-                  ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
-                    ul
-                      span
-                        i.material-icons(style="font-size:36;") info_outline
-                        a(href='/userDetails') User Details
-                    ul
-                      span
-                        i.material-icons(style="font-size:36;") location_on
-                        a(href='/manageLocations') Locations
-                    ul
-                      span
-                        i.material-icons(style="font-size:36;") block
-                        a(href='/contacts') Blocked Users
-                    ul
-                      span
-                        i.material-icons(style="font-size:36;") delete_forever
-                        a(href='/userDelete') Delete User
+              //- li
+              //-   span
+              //-     i.material-icons(style="font-size:36;") account_box
+              //-     a(href='#' data-toggle="collapse", aria-expanded="false", id="manUser", data-target="#manUserSubmenu") Manage User
+              //-     ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manUserSubmenu")
+              //-       ul
+              //-         span
+              //-           i.material-icons(style="font-size:36;") info_outline
+              //-           a(href='/userDetails') User Details
+              //-       ul
+              //-         span
+              //-           i.material-icons(style="font-size:36;") location_on
+              //-           a(href='/manageLocations') Locations
+              //-       ul
+              //-         span
+              //-           i.material-icons(style="font-size:36;") block
+              //-           a(href='/contacts') Blocked Users
+              //-       ul
+              //-         span
+              //-           i.material-icons(style="font-size:36;") delete_forever
+              //-           a(href='/userDelete') Delete User
               li
                 span
                   i.material-icons(style="font-size:36;") today
@@ -56,23 +56,40 @@
               li
                 span
                   i.material-icons(style="font-size:36;") date_range
-                  a(href='/manageEvent') Events
-                ul
-                  span
-                    i.material-icons(style="font-size:36;") add
-                    a(href="addEvent") Add Event
-              //-li
-                a(href='/viewProfile') View Profile
+                  a(href='#' data-toggle="collapse", aria-expanded="false", id="manEvents", data-target="#manEventsSubmenu") Events
+                  ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manEventsSubmenu")
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") add
+                        a(href="manageEvent") View Events
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") add
+                        a(href="addEvent") Add Event
+              //- li
+              //-   a(href='/viewProfile') View Profile
               li
                 span
                   i.material-icons(style="font-size:36;") directions_car
-                  a(href='/viewListOfRideshareGroups') Rideshare
-                ul
-                  span
-                    i.material-icons(style="font-size:36;") add
-                    a(href="addRideshareGroup") Add Rideshare
-              //- ul
-                    a(href="processRideshareRequest") Rideshare Requests
+                  a(href='#' data-toggle="collapse", aria-expanded="false", id="manRide", data-target="#manRideSubmenu") Rideshare
+                  ul.nav.collapse(aria-labelledby="btn-1", role="menu", id="manRideSubmenu")
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") add
+                        a(href="/viewListOfRideshareGroups") Rideshare Groups
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") add
+                        a(href="addRideshareGroup") Add Rideshare
+                    ul
+                      span
+                        i.material-icons(style="font-size:36;") add
+                        a(href="processRideshareRequest") Requests
+              li
+                span
+                  i.material-icons(style="font-size:36;") today
+                  a(href="viewQuery") Query
+
         else
           #sidebar-wrapper
             ul.sidebar-nav
@@ -86,7 +103,7 @@
                     a(href='/pendingJoinQuery') Pending Join Requests
 
         //- div(id="headerBar")
-        //- h1(id="headerText") 
+        //-   h1(id="headerText") 
 
         #page-content-wrapper
           .container-fluid
