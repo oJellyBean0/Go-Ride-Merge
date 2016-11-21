@@ -4,32 +4,32 @@ block head
 block content
   .jumbotron
     h1 Go Ride
-    p.lead Getting from A to B, made easy.
+    p.lead(style="margin-left:8px") Getting from A to B, made easy.
     p
       a.btn.btn-primary.btn-large(href='/viewListOfRideshareGroups') Find a Rideshare group &raquo;
-  .row
+  .row(style="margin-left:3px")
     div(id="container")
-      h2 3 steps to get you on  your way:
+      h2(style="margin-left:15px") 3 steps to get you on  your way:
       br
-      .col-md-4
+      .col-md-4(style="padding-left:8px")
         span
-          p.numberCircle 1
+          p.numberCircle(style="margin-right:8px; margin-bottom:60px") 1
           h3 Check your Profile
-        p Ensure that all your details have been entered correctly and that you have a current picture so other users will be able to recognise you.
-        p
-          
-      .col-md-4
-        span
-          p.numberCircle 2
-          h3 Search for a Rideshare
-          p Search for a Rideshare Group that is heading to the destination of your choice.
+          p(style="text-align:justify") Ensure that all your details have been entered correctly and that you have a current picture so other users will be able to recognise you.
           p
           
       .col-md-4
         span
-          p.numberCircle 3
+          p.numberCircle(style="margin-right:8px; margin-bottom:60px") 2
+          h3 Search for a Rideshare
+          p(style="text-align:justify") Search for a Rideshare Group that is heading to the destination of your choice.
+          p
+          
+      .col-md-4
+        span
+          p.numberCircle(style="margin-right:8px; margin-bottom:60px") 3
           h3 Request to join
-          p Request to join your selected Rideshare Group. If the driver accepts, you'll soon be on your way.
+          p(style="text-align:justify; margin-right:25px") Request to join your selected Rideshare Group. If the driver accepts, you'll soon be on your way.
           p
           
     script(src='/javascripts/index.js')
