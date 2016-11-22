@@ -216,7 +216,9 @@ exports.editUser = function (req, res) {
   var username = cookie.parse(req.headers.cookie).user;
   var password = req.body.password;
   user.tryEditUser(username, password, function (success, err) {
-
+        if (err)
+      res.send(err);
+    else res.send(true);
   });
 };
 

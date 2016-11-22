@@ -13,20 +13,30 @@ $(document).ready(function () {
     console.log(data.users.Name);
     $('#usernameHeading').text(JSON.users[0].Username);
     $('#name').text(JSON.users[0].Name);
-    $('#nameInput').text(JSON.users[0].Name);
+    $('#nameInput').val(JSON.users[0].Name);
     $('#surname').text(JSON.users[0].Surname);
-    $('#surnameInput').text(JSON.users[0].Surname);
+    $('#surnameInput').val(JSON.users[0].Surname);
     $('#username').text(JSON.users[0].Username);
-    $('#usernameInput').text(JSON.users[0].Username);
+    $('#usernameInput').val(JSON.users[0].Username);
     $('#password').text(JSON.users[0].Password);
-    $('#passwordInput').text(JSON.users[0].Password);
+    $('#passwordInput').val(JSON.users[0].Password);
   })
 
-  // $('#submitUserDetails').click(function () {
-  //   $.post("/editUser");
-  //   $('#' + AreaID1).remove();
-  //   console.log(AreaID1);
-  // })
+
+
+  $('#submitUserDetails').click(function () {
+    var passwordInput = $("#passwordInput").val();
+    console.log(passwordInput);
+    if (passwordInput){
+    $.post("/editUser", {
+      password: passwordInput
+    }, function (success) {
+      console.log(true);
+    });
+    }else{
+      modal.dis
+    }
+  })
 
 });
 

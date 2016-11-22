@@ -34,7 +34,7 @@ block content
                     div.col-md-5    
                         label(for="labelPassword", style="padding-left:20px; color:black") Password:
                     div.col-md-7                            
-                        label#password(type="password", style = "font-weight:normal")
+                        label#password(style = "font-weight:normal")
         
             .modal-footer
                 div.col-md-12.clearfix.text-center
@@ -43,7 +43,7 @@ block content
 
     .modal.fade#modalEdit(tabindex='-1', role='dialog', aria-labelledby='modalEditLabel1', aria-hidden='true')
         .modal-dialog(role='document')
-            form.modal-content(id="info", name="info", method="post", action="", autocomplete="on", enctype="text/plain")
+            .modal-content(id="info", name="info", method="post", action="", autocomplete="on", enctype="text/plain")
                 .modal-header
                     button.close(type='button', data-dismiss='modal', aria-label='Close')
                         span(aria-hidden='true') &times;         
@@ -73,12 +73,13 @@ block content
                                     input.form-control(type="text", name="surnameInput", id="surnameInput", readonly)
 
                             div.row
-                                div.col-md-4.span4
-                                    label(for="passwordInput") Password
-                                div.col-md-8.span8.pull-right
-                                    input.form-control(type="password", name="passwordInput", id="passwordInput", required)
+                                span
+                                    div.col-md-4.span4
+                                        label(for="passwordInput" style="color:black") Password
+                                    div.col-md-8.span8.pull-right
+                                        input.form-control(type="password", name="passwordInput", id="passwordInput", required, style="display: inline-block; vertical-align: middle;")
 
                 .modal-footer
                     button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
                     |         
-                    button.btn.btn-raised.btn-info(type='submit', id='submitUserDetails') Save
+                    button.btn.btn-raised.btn-info(id='submitUserDetails') Save
