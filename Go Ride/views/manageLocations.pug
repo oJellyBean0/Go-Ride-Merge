@@ -1,8 +1,8 @@
 extends layout
 block head
     link(rel='stylesheet', type='text/css', href='/stylesheets/manageLocations.css')
-    meta(name='viewport', content='initial-scale=1.0, user-scalable=no')
-    meta(charset='utf-8')
+    //- meta(name='viewport', content='initial-scale=1.0, user-scalable=no')
+    //- meta(charset='utf-8')
 block content
     
     div.col-md-5
@@ -11,11 +11,11 @@ block content
         div.modal-content(style="margin-top:0px;")
             div.modal-header
                 h2 Saved Locations:
-            form.div.modal-body(id="savedLocations")
+            div.modal-body(id="savedLocations")
                 .input-group
-                    input.controls(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="pac-input")
+                    input.controls(type='text', placeholder='Enter a new location here', style="max-width:none; width:100%;", id="autocomplete")
                     span.input-group-btn
-                        button.btn.btn-raised.btn-info(type='button', id='addLocation') Add
+                        button.btn.btn-raised.btn-info(type='button', id='initAddLocation', data-toggle='modal', data-target='#modalAdd') Add
                 br
                 .list-group(id='locationList')
 
@@ -51,11 +51,11 @@ block content
             div.modal-footer
                 div.row
                     div.col-md-2.clearfix
-                        button.btn.button-primary.pull-left(type="submit") Cancel
+                        button.btn.btn-raised.pull-left(type='button') Cancel
                     div.col-md-3.clearfix.text-center
-                        button.btn.button-primary(type='submit', data-toggle='modal', data-target='#modalEdit', id="editButton") Edit
+                        button.btn.btn-raised.btn-info(type='button', data-toggle='modal', data-target='#modalEdit', id="editButton") Edit
                     div.col-md-2.clearfix
-                        button.btn.button-primary.pull-right(type='submit', data-toggle='modal', data-target='#modalDelete', id="deleteButton") Delete
+                        button.btn.btn-raised.btn-danger.pull-right(type='button', data-toggle='modal', data-target='#modalDelete', id="deleteButton") Delete
                 
     
     .modal#modalEdit(tabindex='-1', role='dialog', aria-labelledby='modalEditLabel1', aria-hidden='true')
@@ -101,9 +101,9 @@ block content
                                 div.col-md-4
                                     input.form-control(type="text", name="administrative_area_level_1", id="administrative_area_level_1")       
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-dismiss='modal') Cancel
+                    button.btn.btn-raised(type='button', data-dismiss='modal') Cancel
                     |         
-                    button.btn.btn-primary(type='button', data-dismiss='modal') Save
+                    button.btn.btn-raised.btn-info(type='button', data-dismiss='modal') Save
 
 
     #modalDelete.modal.fade
@@ -116,6 +116,48 @@ block content
                 .modal-footer
                     button.btn(type='button', data-dismiss='modal') Cancel
                     button.btn.btn-primary(type='button', id="acceptDeleteLocation", data-dismiss='modal') Delete
+    
+    .modal.fade#modalAdd(tabindex='-1', role='dialog', aria-labelledby='modalAddLabel1', aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content(id="info", name="info", method="post", action="", autocomplete="on", enctype="text/plain")
+                .modal-header
+                    button.close(type='button', data-dismiss='modal', aria-label='Close')
+                        span(aria-hidden='true') &times;         
+                    h4.Label1.modal-title Add Location?      
+                .modal-body
+                    div.modal-dialog(style="padding-top:0px")
+                        div.modal-body
+                            br
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="usernameInput" style="color:black") Street Number
+                                div.col-md-8.span8.pull-right
+                                    input.form-control(type="text", name="streetnumberInput", id="street_number")
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="nameInput" style="color:black") Street Name
+                                div.col-md-8.span8.pull-right
+                                    input.form-control(type="text", name="streetnameInput", id="route")
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="surnameInput" style="color:black") Town
+                                div.col-md-8.span8.pull-right
+                                    input.form-control(type="text", name="townInput", id="locality")
+
+                            div.row
+                                div.col-md-4.span4
+                                    label(for="passwordInput" style="color:black") Short Name
+                                div.col-md-8.span8.pull-right
+                                    input.form-control(type="text", name="shortNameInput", id="shortNameInput")
+
+                .modal-footer
+                    button.btn.btn-raised(type='button', data-dismiss='modal') Cancel
+                    |         
+                    button.btn.btn-raised.btn-info(id='addLocation') Add
+
+
     .col-md-12
         br
 

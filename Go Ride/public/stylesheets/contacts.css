@@ -105,3 +105,14 @@ ul.c-controls li a:hover {
     padding: 0px 0px 0px 0px;
     margin: 0px 0px 0px 0px;
 }
+
+.changeElement:not(:last-child) {
+    font-size: 16px;
+    padding: 8 25 8 20;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.changeElement:last-child {
+    padding: 8 25 8 20;
+    font-size: 16px;
+}

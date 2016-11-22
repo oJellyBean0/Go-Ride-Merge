@@ -18,7 +18,7 @@ $(document).ready(function () {
     $('#surnameInput').val(JSON.users[0].Surname);
     $('#username').text(JSON.users[0].Username);
     $('#usernameInput').val(JSON.users[0].Username);
-    $('#password').text(JSON.users[0].Password);
+    $('#password').val(JSON.users[0].Password);
     $('#passwordInput').val(JSON.users[0].Password);
   })
 
@@ -27,13 +27,13 @@ $(document).ready(function () {
   $('#submitUserDetails').click(function () {
     var passwordInput = $("#passwordInput").val();
     console.log(passwordInput);
-    if (passwordInput){
-    $.post("/editUser", {
-      password: passwordInput
-    }, function (success) {
-      console.log(true);
-    });
-    }else{
+    if (passwordInput) {
+      $.post("/editUser", {
+        password: passwordInput
+      }, function (success) {
+        console.log(true);
+      });
+    } else {
       modal.dis
     }
   })

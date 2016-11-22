@@ -15,29 +15,28 @@ $.getJSON('/blocked', {}, function (data) {
 
 var createItem = function (key, val) {
   var item = $('<a/>', {
-    'class': 'list-group-item',
+    'class': 'list-group-item changeElement',
+    'data-toggle': "modal",
+    'data-target': "#modalUnblock",
     'id': val.Username,
     'href': '#',
-    html: val.Username + ': ' + val.Name + ' ' + val.Surname
+    // html: val.Username + ': ' + val.Name + ' ' + val.Surname
+    html: "<span>" + val.Name + " " + val.Surname + "</span><span style='text-align:right; float:right; color:#d3d3d3'> Unblock </span>"
   })
   item.appendTo('#blockedUserList')
   item.click(function () {
     Username = val.Username
-    console.log(Username + " adsfasdfsadf")
     Name = val.Name
     Surname = val.Surname
-    $('#unblockUserHeading').text(Name + " " + Surname)
-    $('#details').show()
+    $("#modalUnblockHeader").text("Unblock "+ Name + " " + Surname);
   })
 }
 
 $('#unblockUserButton').click(function () {
-  console.log(Username + " test");
-})
+    $.post("/unblockUser", {
+      username: Username
+    }, function (success) {
+      console.log(true);
+    });
+  })
 
-// $('#unblockUserButton').click(function () {
-//   $.post("/unblockUser", Username, {}, String);
-//   $('#' + Username).remove();
-//   console.log(Username);
-//   console.log("test");
-// })
