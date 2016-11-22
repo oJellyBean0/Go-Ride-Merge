@@ -84,6 +84,7 @@ app.get('/getNotifications', routes.getNotifications);
 app.get('/getCalendar', routes.getCalendar);
 app.get('/queryOutstandingJoin', routes.queryOutstandingJoin);
 app.get('/pendingJoinQuery', routes.pendingJoinQuery);
+app.get('/deleteUser', routes.deleteUser);
 
 http.createServer(app).listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));

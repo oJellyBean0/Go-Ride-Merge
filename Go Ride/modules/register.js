@@ -68,7 +68,8 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
         request.input('Surname', mssql.NVarChar, surname);
         request.input('Username', mssql.NVarChar, username);
         request.input('Password', mssql.NVarChar, password);
-        request.input('UserType', mssql.NChar, "Passenger");
+        if (driver) request.input('UserType', mssql.NChar, "Driver"); 
+        else request.input('UserType', mssql.NChar, "Passenger");
         request.input('Blocked', mssql.Bit, false);
         if (picture) {
             gm(picture.path).noProfile().resize('300', '300', '^').gravity('Center').crop('300', '300').write(picture.path, function (err) {
@@ -89,7 +90,7 @@ exports.tryRegister = function (IDnumber, name, surname, username, password, pic
                 }
             });
         } else {
-            sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
+            sql += ' (IDNumber, Name, Surname, Username, Password, UserType, Blocked) OUTPUT INSERTED.[UserID] VALUES (@IDNumber, @Name, @Surname, @Username, @Password, @UserType, @Blocked)';
             request.query(sql, function (err, recordset) {
                 if (err) errorHandler(err, sql);
                 else LocationInsert(recordset[0].UserID);
