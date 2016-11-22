@@ -4,7 +4,7 @@ var Name
 var Surname
 
 
-$("#headerText").html("User Details");
+// $("#headerText").html("User Details");
 $(document).ready(function () {
 
   $.getJSON('/getUser', {}, function (data) {
@@ -22,15 +22,15 @@ $(document).ready(function () {
     $('#passwordInput').text(JSON.users[0].Password);
   })
 
-  $('#submitUserDetails').click(function () {
-    $.post("/editUser");
-    $('#' + AreaID1).remove();
-    console.log(AreaID1);
-  })
+  // $('#submitUserDetails').click(function () {
+  //   $.post("/editUser");
+  //   $('#' + AreaID1).remove();
+  //   console.log(AreaID1);
+  // })
 
 });
 
-('#buttonEdit').click(function () {
-  console.output("asdfasdfasdf")
-  $('#nameInput').text(JSON.users[0].Name);
-})
+// ('#buttonEdit').click(function () {
+//   console.output("asdfasdfasdf")
+//   $('#nameInput').text(JSON.users[0].Name);
+// })
