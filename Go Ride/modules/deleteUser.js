@@ -27,6 +27,7 @@ exports.tryDeleteUser = function (username, callback) {
     var deleteUser = function (userID) {
         var tableName = '[JN08].[dbo].[User]';
         var sql = 'DELETE FROM ' + tableName;
+        var request = new mssql.Request(connObj);
         request.input("UserID", mssql.UniqueIdentifier, userID);
         sql += " WHERE UserID=@UserID";
         request.query(sql, function (err, recordset) {
