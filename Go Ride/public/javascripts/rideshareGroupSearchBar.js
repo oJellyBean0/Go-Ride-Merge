@@ -142,6 +142,7 @@ var createItem = function (key, val) {
                     $("#joinRideshare").hide();
                     $("#changePetrolCost").hide();
                     $("#joinPending").text("Request to join rideshare was sent to driver");
+                    $("#joinPending").show();
                     $("#pickupPointEdited").hide();
 
                 }
@@ -152,6 +153,7 @@ var createItem = function (key, val) {
                     $("#changePetrolCost").hide();
                     $("#joinPending").hide();
                     $("#pickupPointEdited").text("A request to edit the pick-up point has been sent to the driver");
+                    $("#pickupPointEdited").show();
                 }
                 else if (isPartofRideshare && isDriver) {
                     $("#requestEditRoute").hide();

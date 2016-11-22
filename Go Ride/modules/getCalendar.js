@@ -33,6 +33,7 @@ exports.tryGetCalendar = function (username, callback) {
         var request = new mssql.Request(connObj);
         request.input("UserID", mssql.UniqueIdentifier, userID);
         sql += " WHERE ro.UserID=@UserID and ro.RideshareNo=ri.RideshareNo and ri.EventID=e.EventID and ri.DriverID=d.UserID";
+        sql += " ORDER BY e.Date, e.EventName, d.Name, d.Surname";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
