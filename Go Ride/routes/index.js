@@ -194,6 +194,14 @@ exports.deleteEvent = function (req, res) {
   });
 };
 
+exports.deleteUser = function (req, res) {
+  var users = require("../modules/deleteUser.js");
+  var username = cookie.parse(req.headers.cookie).user;
+  users.tryDeleteUser(username, function (success, error) {
+    res.send(success);
+  });
+};
+
 exports.addRideshare = function (req, res) {
   var rideshare = require("../modules/addRideshare.js");
 
