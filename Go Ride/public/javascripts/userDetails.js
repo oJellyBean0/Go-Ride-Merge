@@ -32,6 +32,7 @@ $(document).ready(function () {
         password: passwordInput
       }, function (success) {
         console.log(true);
+        window.location.replace("/userDetails");
       });
     } else {
       modal.dis
