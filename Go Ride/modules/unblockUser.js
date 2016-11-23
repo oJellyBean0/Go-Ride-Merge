@@ -16,7 +16,7 @@ var dbConfig = {
 };
 var connectionError = 'Unable to Connect to Server';
 
-exports.tryUnblockUser = function (username, unblockID, callback) {
+exports.tryUnblockUser = function (username, unblockUsername, callback) {
     var errorHandler = function (error, sql) {
         console.log(error);
         console.log(sql);
@@ -24,7 +24,7 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         callback(false, error);
     };
 
-    var unsetBlock = function () {
+    var unsetBlock = function (unblockID) {
         var tableName = '[JN08].[dbo].[User]';
         var sql = 'UPDATE ' + tableName;
         var request = new mssql.Request(connObj);
@@ -41,7 +41,7 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         });
     };
 
-    var testUser = function () {
+    var testUser = function (unblockID) {
         var tableName = '[JN08].[dbo].[BlockedUser]';
         var sql = 'Select * FROM ' + tableName;
         var request = new mssql.Request(connObj);
@@ -50,7 +50,7 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
             else {
-                if (recordset.length > 0) unsetBlock();
+                if (recordset.length === 0) unsetBlock(unblockID);
                 else {
                     connObj.close();
                     callback(true);
@@ -59,7 +59,7 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         });
     };
 
-    var unblockUser = function (userID) {
+    var unblockUser = function (userID, unblockID) {
         var tableName = '[JN08].[dbo].[BlockedUser]';
         var sql = 'DELETE FROM ' + tableName;
         var request = new mssql.Request(connObj);
@@ -68,7 +68,19 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         sql += " WHERE BlockedID=@BlockedID AND BlockerID=@BlockerID";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else testUser();
+            else testUser(unblockID);
+        });
+    };
+
+    var getblockedID = function (userID) {
+        var tableName = '[JN08].[dbo].[User]';
+        var sql = 'SELECT UserID FROM ' + tableName;
+        var request = new mssql.Request(connObj);
+        request.input("Username", mssql.NVarChar, unblockUsername);
+        sql += " WHERE Username=@Username";
+        request.query(sql, function (err, recordset) {
+            if (err) errorHandler(err, sql);
+            else unblockUser(userID, recordset[0].UserID);
         });
     };
 
@@ -80,7 +92,7 @@ exports.tryUnblockUser = function (username, unblockID, callback) {
         sql += " WHERE Username=@Username";
         request.query(sql, function (err, recordset) {
             if (err) errorHandler(err, sql);
-            else unblockUser(recordset[0].UserID);
+            else getblockedID(recordset[0].UserID);
         });
     };
 

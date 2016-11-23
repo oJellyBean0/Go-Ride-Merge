@@ -213,9 +213,9 @@ exports.addRideshare = function (req, res) {
 exports.unblockUser = function (req, res) {
   var user = require("../modules/unblockUser.js");
   var username = cookie.parse(req.headers.cookie).user;
-  var unblockID = req.body.unblockID;
-  user.tryUnblockUser(username, unblockID, function (success, err) {
-
+  var unblockUsername = req.body.unblockUsername;
+  user.tryUnblockUser(username, unblockUsername, function (success, err) {
+    res.send(success);
   });
 };
 
