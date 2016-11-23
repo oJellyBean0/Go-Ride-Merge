@@ -28,15 +28,15 @@ var createItem = function (key, val) {
     Username = val.Username
     Name = val.Name
     Surname = val.Surname
-    $("#modalUnblockHeader").text("Unblock "+ Name + " " + Surname);
+    $("#modalUnblockHeader").text("Unblock " + Name + " " + Surname);
   })
 }
 
 $('#unblockUserButton').click(function () {
-    $.post("/unblockUser", {
-      username: Username
-    }, function (success) {
-      console.log(true);
-    });
-  })
-
+  $.post("/unblockUser", {
+    username: Username
+  }, function (success) {
+    console.log(true);
+    window.location.replace("/contacts");
+  });
+})
