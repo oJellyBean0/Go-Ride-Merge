@@ -34,7 +34,7 @@ var createItem = function (key, val) {
 
 $('#unblockUserButton').click(function () {
   $.post("/unblockUser", {
-    username: Username
+    unblockUsername: Username
   }, function (success) {
     console.log(true);
     window.location.replace("/contacts");
